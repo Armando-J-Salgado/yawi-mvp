@@ -1,0 +1,228 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - development
+
+  pull_request:
+    branches:
+      - main
+      - development
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+
+  prettier_frontend:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: yawi_frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+      - run: npm run format:check
+
+  prettier_backend:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: yawi_api
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+      - run: npm run format:check
+
+  build_frontend:
+    needs: prettier_frontend
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: yawi_frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+      - run: npm run build
+
+  build_backend:
+    needs: prettier_backend
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: yawi_api
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+      - run: npm run build
+
+  codeql_frontend:
+    needs: build_frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+
+      - uses: github/codeql-action/autobuild@v3
+
+      - uses: github/codeql-action/analyze@v3
+
+  codeql_backend:
+    needs: build_backend
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+
+      - uses: github/codeql-action/autobuild@v3
+
+      - uses: github/codeql-action/analyze@v3
+
+  trivy_frontend:
+    name: Trivy Frontend
+    needs: build_frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Trivy Frontend Scan
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: yawi_frontend
+          severity: CRITICAL
+          exit-code: '1'
+          format: table
+
+  trivy_backend:
+    name: Trivy Backend
+    needs: build_backend
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Trivy Backend Scan
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: yawi_api
+          severity: CRITICAL
+          exit-code: '1'
+          format: table
+
+  gitleaks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: gitleaks/gitleaks-action@v2
+
+  sbom_frontend:
+    needs: build_frontend
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: yawi_frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+
+      - run: npx @cyclonedx/cyclonedx-npm --output-file sbom-frontend.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sbom-frontend
+          path: yawi_frontend/sbom-frontend.json
+
+  sbom_backend:
+    needs: build_backend
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: yawi_api
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+
+      - run: npx @cyclonedx/cyclonedx-npm --output-file sbom-backend.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sbom-backend
+          path: yawi_api/sbom-backend.json
+
+  security_gate:
+    runs-on: ubuntu-latest
+
+    needs:
+      - prettier_frontend
+      - prettier_backend
+      - build_frontend
+      - build_backend
+      - codeql_frontend
+      - codeql_backend
+      - trivy_frontend
+      - trivy_backend
+      - gitleaks
+      - sbom_frontend
+      - sbom_backend
+
+    steps:
+      - name: Security Gate Passed
+        run: echo "All required jobs passed"
