@@ -1,0 +1,30 @@
+services:
+  yawi_api:
+    image: yawi_api
+    container_name: yawi_api
+    build:
+      context: ./yawi_api
+    env_file:
+      - ./yawi_api/.env.local
+    ports:
+      - "3000:3000"
+  
+  yawi_frontend:
+    image: yawi_frontend
+    container_name: yawi_frontend
+    build:
+      context: ./yawi_frontend
+    env_file:
+      - ./yawi_frontend/.env.local
+    ports:
+      - "4173:4173"
+    depends_on:
+      - yawi_api
+  
+  yawi_n8n:
+    image: n8nio/n8n:latest
+    container_name: yawi_n8n
+    env_file:
+      - ./yawi_n8n/.env
+    ports:
+      - "5678:5678"
