@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
   security-events: write
 
 jobs:
@@ -29,7 +30,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       - run: npm ci
       - run: npm run format:check
@@ -46,7 +47,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       - run: npm ci
       - run: npm run format:check
@@ -64,7 +65,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       - run: npm ci
       - run: npm run build
@@ -82,28 +83,15 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       - run: npm ci
       - run: npm run build
-
-  codeql_frontend:
-    needs: build_frontend
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: github/codeql-action/init@v3
-        with:
-          languages: javascript-typescript
-
-      - uses: github/codeql-action/autobuild@v3
-
-      - uses: github/codeql-action/analyze@v3
-
-  codeql_backend:
-    needs: build_backend
+  codeql:
+    name: CodeQL
+    needs:
+        - build_backend
+        - build_frontend
     runs-on: ubuntu-latest
 
     steps:
@@ -119,7 +107,7 @@ jobs:
 
   trivy_frontend:
     name: Trivy Frontend
-    needs: build_frontend
+    needs: codeql
     runs-on: ubuntu-latest
 
     steps:
@@ -136,7 +124,7 @@ jobs:
 
   trivy_backend:
     name: Trivy Backend
-    needs: build_backend
+    needs: codeql
     runs-on: ubuntu-latest
 
     steps:
@@ -160,7 +148,8 @@ jobs:
       - uses: gitleaks/gitleaks-action@v2
 
   sbom_frontend:
-    needs: build_frontend
+    needs: trivy_frontend
+    
     runs-on: ubuntu-latest
 
     defaults:
@@ -172,7 +161,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       - run: npm ci
 
@@ -184,7 +173,7 @@ jobs:
           path: yawi_frontend/sbom-frontend.json
 
   sbom_backend:
-    needs: build_backend
+    needs: trivy_backend
     runs-on: ubuntu-latest
 
     defaults:
@@ -196,7 +185,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       - run: npm ci
 
@@ -215,8 +204,7 @@ jobs:
       - prettier_backend
       - build_frontend
       - build_backend
-      - codeql_frontend
-      - codeql_backend
+      - codeql
       - trivy_frontend
       - trivy_backend
       - gitleaks
