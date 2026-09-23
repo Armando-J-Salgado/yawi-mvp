@@ -14,8 +14,8 @@ Este módulo centraliza la configuración de persistencia relacional con **TypeO
 
 2. **Servicio de Base de Datos (`database.service.ts`)**:
    - `isDatabaseEmpty()`: Verifica si la base de datos se encuentra vacía.
-   - `seed()`: Inserta registros de prueba (3 vendors con números telefónicos asociados) si no existen registros previos.
-   - `clear()`: Limpia/trunca todas las tablas respetando claves foráneas (`CASCADE`).
+   - `seed()`: Inserta registros de prueba (3 vendors con números telefónicos asociados, 3 businesses y 3 payment preferences) si no existen registros previos.
+   - `clear()`: Limpia/trunca todas las tablas (`payment_preferences`, `businesses`, `phone_numbers`, `vendors`) respetando claves foráneas (`CASCADE`).
 
 3. **Script de Limpieza (`clear-database.script.ts`)**:
    - Punto de entrada para el comando `npm run migrate:fresh`.

@@ -3,6 +3,8 @@ import { DataSource } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Vendor } from '../vendors/entities/vendor.entity';
 import { PhoneNumber } from '../phone-numbers/entities/phone-number.entity';
+import { Business } from '../businesses/entities/business.entity';
+import { PaymentPreference } from '../payment-preferences/entities/payment-preference.entity';
 
 @Injectable()
 export class DatabaseService {
@@ -82,6 +84,8 @@ export class DatabaseService {
     await this.dataSource.transaction(async (manager) => {
       const vendorRepo = manager.getRepository(Vendor);
       const phoneRepo = manager.getRepository(PhoneNumber);
+      const businessRepo = manager.getRepository(Business);
+      const prefRepo = manager.getRepository(PaymentPreference);
 
       for (const item of initialVendorsData) {
         const { phones, ...vendorData } = item;
@@ -96,10 +100,75 @@ export class DatabaseService {
           await phoneRepo.save(phone);
         }
       }
+
+      // Obtener los vendors recién creados para asociarles datos
+      const allVendors = await vendorRepo.find();
+
+      // Seed de Businesses (2 por los primeros 2 vendors)
+      const businessesData = [
+        {
+          name: 'Tienda El Buen Precio',
+          description:
+            'Tienda de artículos para el hogar con envío a domicilio.',
+          address: 'Av. Independencia #456, Centro Histórico, San Salvador',
+          balance: 2500.0,
+          owner_id: allVendors[0].id,
+        },
+        {
+          name: 'Café Don Carlos',
+          description: 'Cafetería artesanal con granos de origen salvadoreño.',
+          address: 'Colonia San Benito, Calle La Reforma #78, San Salvador',
+          balance: 800.5,
+          owner_id: allVendors[0].id,
+        },
+        {
+          name: 'Florería María',
+          description: 'Arreglos florales y decoración para eventos.',
+          address: 'Centro Comercial Metrocentro, Local B-12, Santa Tecla',
+          balance: 1200.0,
+          owner_id: allVendors[1].id,
+        },
+      ];
+
+      for (const bData of businessesData) {
+        const business = businessRepo.create(bData);
+        await businessRepo.save(business);
+      }
+
+      // Seed de Payment Preferences (1 por cada vendor)
+      const preferencesData = [
+        {
+          name: 'Transferencia Banco Agrícola',
+          account_information: {
+            bank: 'Banco Agrícola',
+            account_number: '1234567890',
+            type: 'Ahorro',
+          },
+          owner_id: allVendors[0].id,
+        },
+        {
+          name: 'Pago Móvil Tigo Money',
+          account_information: {
+            provider: 'Tigo Money',
+            phone: '+503 7890-1234',
+          },
+          owner_id: allVendors[1].id,
+        },
+        {
+          name: 'Depósito en efectivo',
+          account_information: null,
+          owner_id: allVendors[2].id,
+        },
+      ];
+
+      for (const pData of preferencesData) {
+        const pref = prefRepo.create(pData);
+        await prefRepo.save(pref);
+      }
     });
 
     this.logger.log(
-      '✅ Database seeded successfully with 3 vendors and their phone numbers.',
+      '✅ Database seeded successfully with 3 vendors, phone numbers, 3 businesses, and 3 payment preferences.',
     );
   }
 
@@ -115,12 +184,16 @@ export class DatabaseService {
       const dbType = this.dataSource.options.type;
       if (dbType === 'postgres') {
         await queryRunner.query(
-          'TRUNCATE TABLE "phone_numbers", "vendors" RESTART IDENTITY CASCADE;',
+          'TRUNCATE TABLE "payment_preferences", "businesses", "phone_numbers", "vendors" RESTART IDENTITY CASCADE;',
         );
       } else {
         // SQLite o fallback genérico
+        const prefRepo = this.dataSource.getRepository(PaymentPreference);
+        const businessRepo = this.dataSource.getRepository(Business);
         const phoneRepo = this.dataSource.getRepository(PhoneNumber);
         const vendorRepo = this.dataSource.getRepository(Vendor);
+        await prefRepo.createQueryBuilder().delete().execute();
+        await businessRepo.createQueryBuilder().delete().execute();
         await phoneRepo.createQueryBuilder().delete().execute();
         await vendorRepo.createQueryBuilder().delete().execute();
       }

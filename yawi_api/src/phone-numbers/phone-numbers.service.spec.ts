@@ -5,6 +5,8 @@ import { NotFoundException } from '@nestjs/common';
 import { PhoneNumbersService } from './phone-numbers.service';
 import { PhoneNumber } from './entities/phone-number.entity';
 import { Vendor } from '../vendors/entities/vendor.entity';
+import { Business } from '../businesses/entities/business.entity';
+import { PaymentPreference } from '../payment-preferences/entities/payment-preference.entity';
 
 describe('PhoneNumbersService (Unit / SQLite in-memory)', () => {
   let service: PhoneNumbersService;
@@ -17,7 +19,7 @@ describe('PhoneNumbersService (Unit / SQLite in-memory)', () => {
         TypeOrmModule.forRoot({
           type: 'better-sqlite3',
           database: ':memory:',
-          entities: [Vendor, PhoneNumber],
+          entities: [Vendor, PhoneNumber, Business, PaymentPreference],
           synchronize: true,
         }),
         TypeOrmModule.forFeature([PhoneNumber, Vendor]),

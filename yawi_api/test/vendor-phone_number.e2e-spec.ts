@@ -7,6 +7,8 @@ import { VendorsModule } from '../src/vendors/vendors.module';
 import { PhoneNumbersModule } from '../src/phone-numbers/phone-numbers.module';
 import { Vendor } from '../src/vendors/entities/vendor.entity';
 import { PhoneNumber } from '../src/phone-numbers/entities/phone-number.entity';
+import { Business } from '../src/businesses/entities/business.entity';
+import { PaymentPreference } from '../src/payment-preferences/entities/payment-preference.entity';
 
 describe('Vendor - PhoneNumber Integration (e2e)', () => {
   let app: INestApplication;
@@ -21,7 +23,7 @@ describe('Vendor - PhoneNumber Integration (e2e)', () => {
         TypeOrmModule.forRoot({
           type: 'better-sqlite3',
           database: ':memory:',
-          entities: [Vendor, PhoneNumber],
+          entities: [Vendor, PhoneNumber, Business, PaymentPreference],
           synchronize: true,
         }),
         VendorsModule,
