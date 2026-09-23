@@ -13,7 +13,7 @@ src/vendors/
 │   ├── update-vendor.dto.ts    # DTO para actualización parcial
 │   └── filter-vendor.dto.ts    # DTO para filtrado en listados (?country, ?withDeleted, etc.)
 ├── entities/
-│   └── vendor.entity.ts        # Entidad TypeORM con Swagger y relación OneToMany
+│   └── vendor.entity.ts        # Entidad TypeORM con Swagger y relaciones OneToMany (phone_numbers, businesses, payment_preferences)
 ├── vendors.controller.ts       # Controlador REST con documentación Swagger completa
 ├── vendors.service.ts          # Lógica de negocio, hashing bcrypt y transacciones
 ├── vendors.module.ts           # Módulo NestJS con TypeOrmModule.forFeature([Vendor, PhoneNumber])
@@ -29,7 +29,7 @@ src/vendors/
 |--------|----------|-------------|---------------------------|
 | `POST` | `/vendors` | Crear nuevo vendedor | **Transacción atómica**: Crea el `Vendor` y su `PhoneNumber` inicial en una sola operación con rollback automático en caso de fallo. Hashea password con `bcrypt`. |
 | `GET` | `/vendors` | Listar vendedores | Soporta filtros dinámicos por query params (`name`, `surname`, `country`, `DUI`, `NIT`, `username`) y soft delete (`withDeleted=true`). |
-| `GET` | `/vendors/:id` | Detalle de vendedor | Retorna el vendedor con su arreglo de `phone_numbers`. |
+| `GET` | `/vendors/:id` | Detalle de vendedor | Retorna el vendedor con sus relaciones asociadas (`phone_numbers`, `businesses`, `payment_preferences`). |
 | `PATCH` | `/vendors/:id` | Actualización parcial | Actualiza campos modificables. Si incluye `password`, lo hashea antes de persistir. |
 | `DELETE` | `/vendors/:id` | Soft Delete (204) | Eliminación lógica mediante `@DeleteDateColumn()`. No borra físicamente. |
 | `PATCH` | `/vendors/:id/recover` | Restauración | Restaura un vendedor soft-deleted removiendo el timestamp `deletedAt`. |

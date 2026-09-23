@@ -24,13 +24,18 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('YAWI API')
     .setDescription(
-      'Documentación interactiva de la API de YAWI — Módulos Vendors y Phone Numbers.',
+      'Documentación interactiva de la API de YAWI — Módulos Vendors, Phone Numbers, Businesses y Payment Preferences.',
     )
     .setVersion('1.0')
     .addTag('Vendors', 'Operaciones para la gestión de vendedores')
     .addTag(
       'Phone Numbers',
       'Operaciones para la gestión de números telefónicos',
+    )
+    .addTag('Businesses', 'Operaciones para la gestión de negocios')
+    .addTag(
+      'Payment Preferences',
+      'Operaciones para la gestión de preferencias de pago',
     )
     .build();
 

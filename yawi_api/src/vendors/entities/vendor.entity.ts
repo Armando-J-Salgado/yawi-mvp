@@ -9,6 +9,8 @@ import {
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { PhoneNumber } from '../../phone-numbers/entities/phone-number.entity';
+import { Business } from '../../businesses/entities/business.entity';
+import { PaymentPreference } from '../../payment-preferences/entities/payment-preference.entity';
 
 @Entity('vendors')
 export class Vendor {
@@ -106,6 +108,20 @@ export class Vendor {
   })
   @OneToMany(() => PhoneNumber, (phone) => phone.owner)
   phone_numbers: PhoneNumber[];
+
+  @ApiProperty({
+    description: 'Lista de negocios asociados al vendedor',
+    type: () => [Business],
+  })
+  @OneToMany(() => Business, (business) => business.owner)
+  businesses: Business[];
+
+  @ApiProperty({
+    description: 'Lista de preferencias de pago del vendedor',
+    type: () => [PaymentPreference],
+  })
+  @OneToMany(() => PaymentPreference, (pref) => pref.owner)
+  payment_preferences: PaymentPreference[];
 
   @ApiProperty({
     description: 'Fecha de creación del registro',

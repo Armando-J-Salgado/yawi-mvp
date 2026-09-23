@@ -6,6 +6,8 @@ import * as bcrypt from 'bcrypt';
 import { VendorsService } from './vendors.service';
 import { Vendor } from './entities/vendor.entity';
 import { PhoneNumber } from '../phone-numbers/entities/phone-number.entity';
+import { Business } from '../businesses/entities/business.entity';
+import { PaymentPreference } from '../payment-preferences/entities/payment-preference.entity';
 import { CreateVendorDto } from './dto/create-vendor.dto';
 
 describe('VendorsService (Unit / SQLite in-memory)', () => {
@@ -33,7 +35,7 @@ describe('VendorsService (Unit / SQLite in-memory)', () => {
         TypeOrmModule.forRoot({
           type: 'better-sqlite3',
           database: ':memory:',
-          entities: [Vendor, PhoneNumber],
+          entities: [Vendor, PhoneNumber, Business, PaymentPreference],
           synchronize: true,
         }),
         TypeOrmModule.forFeature([Vendor, PhoneNumber]),

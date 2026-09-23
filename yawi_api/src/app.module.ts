@@ -3,6 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { VendorsModule } from './vendors/vendors.module';
 import { PhoneNumbersModule } from './phone-numbers/phone-numbers.module';
+import { BusinessesModule } from './businesses/businesses.module';
+import { PaymentPreferencesModule } from './payment-preferences/payment-preferences.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -15,6 +17,8 @@ import { AppService } from './app.service';
     DatabaseModule,
     VendorsModule,
     PhoneNumbersModule,
+    BusinessesModule,
+    PaymentPreferencesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
