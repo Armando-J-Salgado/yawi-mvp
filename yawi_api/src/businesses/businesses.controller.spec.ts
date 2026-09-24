@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { NotFoundException } from '@nestjs/common';
+import { NotFoundException, BadRequestException } from '@nestjs/common';
 import { BusinessesController } from './businesses.controller';
 import { BusinessesService } from './businesses.service';
 import { CreateBusinessDto } from './dto/create-business.dto';
@@ -17,6 +17,7 @@ describe('BusinessesController (Unit)', () => {
     address: 'Av. Independencia #456, Centro Histórico, San Salvador',
     balance: 1500.5,
     owner_id: 'd3b07384-d113-4089-a292-1262d088a2a8',
+    imagesUrls: null,
     owner: {
       id: 'd3b07384-d113-4089-a292-1262d088a2a8',
       username: 'carlos_salvador',
@@ -24,6 +25,24 @@ describe('BusinessesController (Unit)', () => {
     createdAt: new Date(),
     updatedAt: new Date(),
     deletedAt: null,
+  };
+
+  const mockFile: Express.Multer.File = {
+    fieldname: 'image',
+    originalname: 'test-image.jpg',
+    encoding: '7bit',
+    mimetype: 'image/jpeg',
+    size: 1024,
+    buffer: Buffer.from('fake-image-data'),
+    destination: '',
+    filename: '',
+    path: '',
+    stream: null as any,
+  };
+
+  const mockBusinessWithImage = {
+    ...mockBusiness,
+    imagesUrls: ['https://example.com/businesses/uuid-test-image.jpg'],
   };
 
   const mockBusinessesService = {
@@ -48,6 +67,10 @@ describe('BusinessesController (Unit)', () => {
       if (id === mockBusiness.id) return Promise.resolve(mockBusiness);
       throw new NotFoundException('Business not found');
     }),
+    addImage: jest.fn().mockImplementation((id: string) => {
+      if (id === mockBusiness.id) return Promise.resolve(mockBusinessWithImage);
+      throw new NotFoundException('Business not found');
+    }),
   };
 
   beforeEach(async () => {
@@ -63,6 +86,8 @@ describe('BusinessesController (Unit)', () => {
 
     controller = module.get<BusinessesController>(BusinessesController);
     service = module.get<BusinessesService>(BusinessesService);
+
+    jest.clearAllMocks();
   });
 
   it('debe estar definido el controlador', () => {
@@ -71,7 +96,7 @@ describe('BusinessesController (Unit)', () => {
   });
 
   describe('create()', () => {
-    it('debe invocar service.create con el DTO', async () => {
+    it('debe invocar service.create con el DTO y sin archivo', async () => {
       const dto: CreateBusinessDto = {
         name: 'Tienda El Buen Precio',
         description: 'Tienda de artículos para el hogar con envío a domicilio.',
@@ -80,9 +105,57 @@ describe('BusinessesController (Unit)', () => {
         owner_id: 'd3b07384-d113-4089-a292-1262d088a2a8',
       };
 
-      const result = await controller.create(dto);
+      const result = await controller.create(dto, undefined);
       expect(result).toEqual(mockBusiness);
-      expect(service.create).toHaveBeenCalledWith(dto);
+      expect(service.create).toHaveBeenCalledWith(dto, undefined);
+    });
+
+    it('debe invocar service.create con el DTO y un archivo de imagen', async () => {
+      mockBusinessesService.create.mockResolvedValueOnce(mockBusinessWithImage);
+      const dto: CreateBusinessDto = {
+        name: 'Tienda El Buen Precio',
+        description: 'Tienda de artículos para el hogar con envío a domicilio.',
+        address: 'Av. Independencia #456, Centro Histórico, San Salvador',
+        owner_id: 'd3b07384-d113-4089-a292-1262d088a2a8',
+      };
+
+      const result = await controller.create(dto, mockFile);
+      expect(result).toEqual(mockBusinessWithImage);
+      expect(service.create).toHaveBeenCalledWith(dto, mockFile);
+    });
+  });
+
+  describe('addImage()', () => {
+    it('1. Happy Path: debe invocar service.addImage y retornar el business con la imagen agregada', async () => {
+      const result = await controller.addImage(mockBusiness.id, mockFile);
+
+      expect(result).toEqual(mockBusinessWithImage);
+      expect(result.imagesUrls).toContain(
+        'https://example.com/businesses/uuid-test-image.jpg',
+      );
+      expect(service.addImage).toHaveBeenCalledWith(mockBusiness.id, mockFile);
+    });
+
+    it('2. Excepción: debe propagar NotFoundException si el business no existe', async () => {
+      mockBusinessesService.addImage.mockRejectedValueOnce(
+        new NotFoundException('Business not found'),
+      );
+
+      await expect(
+        controller.addImage('00000000-0000-0000-0000-000000000000', mockFile),
+      ).rejects.toThrow(NotFoundException);
+    });
+
+    it('3. Excepción: debe propagar BadRequestException si se excede el máximo de imágenes', async () => {
+      mockBusinessesService.addImage.mockRejectedValueOnce(
+        new BadRequestException(
+          'El negocio ya tiene el máximo de 4 imágenes permitidas.',
+        ),
+      );
+
+      await expect(
+        controller.addImage(mockBusiness.id, mockFile),
+      ).rejects.toThrow(BadRequestException);
     });
   });
 

@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, FindOptionsWhere } from 'typeorm';
 import { Business } from './entities/business.entity';
@@ -6,20 +10,29 @@ import { Vendor } from '../vendors/entities/vendor.entity';
 import { CreateBusinessDto } from './dto/create-business.dto';
 import { UpdateBusinessDto } from './dto/update-business.dto';
 import { FilterBusinessDto } from './dto/filter-business.dto';
+import { UploadFileService } from '../uploader/upload-file.service';
 
 @Injectable()
 export class BusinessesService {
+  /** Número máximo de imágenes permitidas por Business */
+  static readonly MAX_IMAGES = 4;
+
   constructor(
     @InjectRepository(Business)
     private readonly businessRepository: Repository<Business>,
     @InjectRepository(Vendor)
     private readonly vendorRepository: Repository<Vendor>,
+    private readonly uploadFileService: UploadFileService,
   ) {}
 
   /**
    * Crea un nuevo Business verificando previamente la existencia del Vendor propietario.
+   * Si se proporciona un archivo de imagen, lo sube y almacena la URL.
    */
-  async create(createBusinessDto: CreateBusinessDto): Promise<Business> {
+  async create(
+    createBusinessDto: CreateBusinessDto,
+    file?: Express.Multer.File,
+  ): Promise<Business> {
     const { owner_id } = createBusinessDto;
 
     const vendor = await this.vendorRepository.findOne({
@@ -32,13 +45,53 @@ export class BusinessesService {
       );
     }
 
-    const business = this.businessRepository.create(createBusinessDto);
+    let imagesUrls: string[] | null = null;
+
+    if (file) {
+      const uploadResult = await this.uploadFileService.execute(
+        file,
+        'businesses',
+      );
+      imagesUrls = [uploadResult.url];
+    }
+
+    const business = this.businessRepository.create({
+      ...createBusinessDto,
+      imagesUrls,
+    });
     const savedBusiness = await this.businessRepository.save(business);
 
     return (await this.businessRepository.findOne({
       where: { id: savedBusiness.id },
       relations: { owner: true },
     }))!;
+  }
+
+  /**
+   * Agrega una imagen al listado de un Business existente.
+   * Valida que no se supere el máximo de 4 imágenes.
+   */
+  async addImage(id: string, file: Express.Multer.File): Promise<Business> {
+    const business = await this.findOne(id);
+
+    const currentImages = business.imagesUrls || [];
+
+    if (currentImages.length >= BusinessesService.MAX_IMAGES) {
+      throw new BadRequestException(
+        `El negocio ya tiene el máximo de ${BusinessesService.MAX_IMAGES} imágenes permitidas.`,
+      );
+    }
+
+    const uploadResult = await this.uploadFileService.execute(
+      file,
+      'businesses',
+    );
+
+    business.imagesUrls = [...currentImages, uploadResult.url];
+
+    await this.businessRepository.save(business);
+
+    return await this.findOne(id);
   }
 
   /**

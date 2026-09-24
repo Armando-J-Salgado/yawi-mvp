@@ -50,6 +50,16 @@ export class Business {
   balance: number;
 
   @ApiProperty({
+    description: 'Lista de URLs de imágenes del negocio (máximo 4)',
+    example: ['https://example.com/img1.jpg', 'https://example.com/img2.jpg'],
+    nullable: true,
+    required: false,
+    type: [String],
+  })
+  @Column({ type: 'simple-json', nullable: true })
+  imagesUrls: string[] | null;
+
+  @ApiProperty({
     description: 'ID del Vendor propietario (Foreign Key UUID)',
     example: 'd3b07384-d113-4089-a292-1262d088a2a8',
   })
