@@ -4,9 +4,10 @@ import { BusinessesService } from './businesses.service';
 import { BusinessesController } from './businesses.controller';
 import { Business } from './entities/business.entity';
 import { Vendor } from '../vendors/entities/vendor.entity';
+import { UploaderModule } from '../uploader/uploader.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Business, Vendor])],
+  imports: [TypeOrmModule.forFeature([Business, Vendor]), UploaderModule],
   controllers: [BusinessesController],
   providers: [BusinessesService],
   exports: [BusinessesService],

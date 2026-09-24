@@ -1,19 +1,45 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import { NotFoundException } from '@nestjs/common';
+import { NotFoundException, BadRequestException } from '@nestjs/common';
 import { BusinessesService } from './businesses.service';
 import { Business } from './entities/business.entity';
 import { Vendor } from '../vendors/entities/vendor.entity';
 import { PhoneNumber } from '../phone-numbers/entities/phone-number.entity';
 import { PaymentPreference } from '../payment-preferences/entities/payment-preference.entity';
+import { UploadFileService } from '../uploader/upload-file.service';
 
 describe('BusinessesService (Unit / SQLite in-memory)', () => {
   let service: BusinessesService;
   let dataSource: DataSource;
   let sampleVendor: Vendor;
+  let mockUploadFileService: any;
+
+  const mockUploadResult = {
+    url: '/uploads/businesses/uuid-test-image.jpg',
+    path: 'uploads/businesses/uuid-test-image.jpg',
+    size: 1024,
+    mimetype: 'image/jpeg',
+  };
+
+  const mockFile: Express.Multer.File = {
+    fieldname: 'image',
+    originalname: 'test-image.jpg',
+    encoding: '7bit',
+    mimetype: 'image/jpeg',
+    size: 1024,
+    buffer: Buffer.from('fake-image-data'),
+    destination: '',
+    filename: '',
+    path: '',
+    stream: null as any,
+  };
 
   beforeAll(async () => {
+    mockUploadFileService = {
+      execute: jest.fn().mockResolvedValue(mockUploadResult),
+    };
+
     const module: TestingModule = await Test.createTestingModule({
       imports: [
         TypeOrmModule.forRoot({
@@ -24,7 +50,13 @@ describe('BusinessesService (Unit / SQLite in-memory)', () => {
         }),
         TypeOrmModule.forFeature([Business, Vendor]),
       ],
-      providers: [BusinessesService],
+      providers: [
+        BusinessesService,
+        {
+          provide: UploadFileService,
+          useValue: mockUploadFileService,
+        },
+      ],
     }).compile();
 
     service = module.get<BusinessesService>(BusinessesService);
@@ -55,6 +87,8 @@ describe('BusinessesService (Unit / SQLite in-memory)', () => {
         NIT: '0614-010190-101-1',
       }),
     );
+
+    jest.clearAllMocks();
   });
 
   describe('create()', () => {
@@ -99,6 +133,43 @@ describe('BusinessesService (Unit / SQLite in-memory)', () => {
 
       expect(business).toBeDefined();
       expect(Number(business.balance)).toBe(0);
+    });
+
+    it('4. Happy Path: crea un Business con imagen y almacena la URL', async () => {
+      const business = await service.create(
+        {
+          name: 'Negocio con Imagen',
+          description: 'Tiene imagen desde su creación',
+          address: 'Calle con Imagen #100',
+          owner_id: sampleVendor.id,
+        },
+        mockFile,
+      );
+
+      expect(mockUploadFileService.execute).toHaveBeenCalledWith(
+        mockFile,
+        'businesses',
+      );
+
+      // simple-json en SQLite almacena como string; parseamos si es necesario.
+      const urls =
+        typeof business.imagesUrls === 'string'
+          ? JSON.parse(business.imagesUrls)
+          : business.imagesUrls;
+      expect(urls).toHaveLength(1);
+      expect(urls[0]).toBe(mockUploadResult.url);
+    });
+
+    it('5. Caso Límite: crea un Business sin imagen y imagesUrls es null', async () => {
+      const business = await service.create({
+        name: 'Negocio sin Imagen',
+        description: 'Sin imagen adjunta',
+        address: 'Calle Sin Imagen #200',
+        owner_id: sampleVendor.id,
+      });
+
+      expect(business.imagesUrls).toBeNull();
+      expect(mockUploadFileService.execute).not.toHaveBeenCalled();
     });
   });
 
@@ -307,6 +378,95 @@ describe('BusinessesService (Unit / SQLite in-memory)', () => {
       const recovered = await service.recover(created.id);
       expect(recovered.deletedAt).toBeNull();
       expect(recovered.id).toBe(created.id);
+    });
+  });
+
+  describe('addImage()', () => {
+    it('1. Happy Path: debe agregar una imagen a un business sin imágenes previas', async () => {
+      const business = await service.create({
+        name: 'Negocio para Imagen',
+        description: 'Descripción de prueba',
+        address: 'Dirección #1',
+        owner_id: sampleVendor.id,
+      });
+
+      // Verificar que el valor inicial es null.
+      expect(business.imagesUrls).toBeNull();
+
+      const updated = await service.addImage(business.id, mockFile);
+
+      expect(mockUploadFileService.execute).toHaveBeenCalledWith(
+        mockFile,
+        'businesses',
+      );
+
+      // simple-json en SQLite almacena como string; parseamos si es necesario.
+      const urls =
+        typeof updated.imagesUrls === 'string'
+          ? JSON.parse(updated.imagesUrls)
+          : updated.imagesUrls;
+      expect(urls).toHaveLength(1);
+      expect(urls[0]).toBe(mockUploadResult.url);
+    });
+
+    it('2. Happy Path: debe agregar imágenes hasta el máximo de 4', async () => {
+      const business = await service.create({
+        name: 'Negocio Multi-Imagen',
+        description: 'Descripción de prueba',
+        address: 'Dirección #2',
+        owner_id: sampleVendor.id,
+      });
+
+      // Agregar 4 imágenes secuencialmente
+      let counter = 0;
+      mockUploadFileService.execute.mockImplementation(() => {
+        counter++;
+        return Promise.resolve({
+          ...mockUploadResult,
+          url: `/uploads/businesses/img-${counter}.jpg`,
+        });
+      });
+
+      await service.addImage(business.id, mockFile);
+      await service.addImage(business.id, mockFile);
+      await service.addImage(business.id, mockFile);
+      const finalBusiness = await service.addImage(business.id, mockFile);
+
+      const urls =
+        typeof finalBusiness.imagesUrls === 'string'
+          ? JSON.parse(finalBusiness.imagesUrls)
+          : finalBusiness.imagesUrls;
+      expect(urls).toHaveLength(4);
+      expect(mockUploadFileService.execute).toHaveBeenCalledTimes(4);
+    });
+
+    it('3. Excepción: debe lanzar BadRequestException al intentar agregar una 5ta imagen', async () => {
+      const business = await service.create({
+        name: 'Negocio Lleno de Imágenes',
+        description: 'Descripción de prueba',
+        address: 'Dirección #3',
+        owner_id: sampleVendor.id,
+      });
+
+      // Pre-cargar 4 imágenes directamente en la entidad
+      const repo = dataSource.getRepository(Business);
+      await repo.save({
+        ...business,
+        imagesUrls: ['/img1.jpg', '/img2.jpg', '/img3.jpg', '/img4.jpg'],
+      });
+
+      await expect(service.addImage(business.id, mockFile)).rejects.toThrow(
+        BadRequestException,
+      );
+      await expect(service.addImage(business.id, mockFile)).rejects.toThrow(
+        /máximo de 4 imágenes/,
+      );
+    });
+
+    it('4. Excepción: debe lanzar NotFoundException si el business no existe', async () => {
+      await expect(
+        service.addImage('00000000-0000-0000-0000-000000000000', mockFile),
+      ).rejects.toThrow(NotFoundException);
     });
   });
 });

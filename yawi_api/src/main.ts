@@ -3,6 +3,8 @@ import { ValidationPipe, Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { DatabaseService } from './database/database.service';
+import * as express from 'express';
+import { join } from 'path';
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
@@ -19,6 +21,8 @@ async function bootstrap() {
       },
     }),
   );
+
+  app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
 
   // Configuración de OpenAPI / Swagger
   const config = new DocumentBuilder()
