@@ -1,0 +1,110 @@
+{
+  "hero": {
+    "badge": "Mercado Cultural de Yawi",
+    "title": "Arte, tradición e historias vivas de Latinoamérica",
+    "subtitle": "Descubre piezas artesanales únicas creadas a mano por maestros artesanos, conectando culturas y enriqueciendo hogares en todo el mundo.",
+    "cta_primary": "Explorar colección",
+    "cta_secondary": "Conocer artesanos",
+    "collage_1_alt": "Textil tradicional tejido a mano",
+    "collage_2_alt": "Artesano trabajando en torno de cerámica",
+    "collage_3_alt": "Joyería artesanal con piedras autóctonas",
+    "collage_4_alt": "Detalle de tallado en madera fina"
+  },
+  "why_yawi": {
+    "title": "¿Por qué elegir Yawi?",
+    "subtitle": "Un puente directo entre el talento ancestral y el comercio justo global.",
+    "cards": [
+      {
+        "title": "Comercio Justo y Directo",
+        "subtitle": "Garantizamos retribución digna e impacto económico directo a las comunidades artesanas."
+      },
+      {
+        "title": "Autenticidad Certificada",
+        "subtitle": "Cada pieza es 100% auténtica, elaborada a mano con técnicas y saberes ancestrales."
+      },
+      {
+        "title": "Historias con Alma",
+        "subtitle": "Conoce al artesano detrás de cada creación y la tradición viva que representa."
+      },
+      {
+        "title": "Envíos Seguros Globales",
+        "subtitle": "Empaque especializado y logística confiable para que tus tesoros lleguen intactos."
+      }
+    ]
+  },
+  "categories": {
+    "title": "Explora por categoría",
+    "subtitle": "Encuentra la pieza perfecta elaborada con técnicas centenarias.",
+    "items": {
+      "textiles": "Textiles & Tejidos",
+      "ceramics": "Cerámica & Barro",
+      "jewelry": "Joyería Tradicional",
+      "wood": "Talla en Madera",
+      "leather": "Cuero & Marroquinería",
+      "food": "Sabores Artesanales"
+    }
+  },
+  "story": {
+    "badge": "Nuestra Filosofía",
+    "title": "Una historia viva detrás de cada creación",
+    "text": "En Yawi creemos que el arte tradicional no es solo un objeto decorativo; es la memoria, la identidad y la voz de pueblos enteros. Cada producto cuenta una historia transmitida por generaciones, preservando saberes milenarios y dignificando a quienes con sus manos mantienen encendida nuestra herencia cultural.",
+    "image_alt": "Maestra artesana compartiendo su técnica tradicional",
+    "metrics": {
+      "handmade": "Hecho a Mano",
+      "communities": "Comunidades",
+      "middlemen": "Intermediarios"
+    }
+  },
+  "explore_latam": {
+    "title": "Explora Latinoamérica",
+    "subtitle": "Viaja a través de la riqueza artesanal y la diversidad cultural de nuestra región.",
+    "active_label": "Activo",
+    "coming_soon": "Próximamente",
+    "available_collection": "Colección disponible",
+    "coming_soon_collection": "Pronto disponible",
+    "countries": {
+      "mexico": "México",
+      "guatemala": "Guatemala",
+      "colombia": "Colombia",
+      "peru": "Perú",
+      "ecuador": "Ecuador"
+    }
+  },
+  "featured_products": {
+    "title": "Productos destacados",
+    "subtitle": "Selección curada de creaciones exclusivas recién llegadas a nuestra galería.",
+    "price_label": "Precio",
+    "view_product": "Ver producto",
+    "empty_message": "No hay productos disponibles por el momento.",
+    "error_message": "No se pudieron cargar los productos.",
+    "prev": "Anterior",
+    "next": "Siguiente"
+  },
+  "culture": {
+    "title": "Llevar la cultura más lejos",
+    "text": "Cada adquisición apoya la preservación de técnicas en peligro de extinción y empodera a familias de artesanos para seguir creando con dignidad y orgullo.",
+    "quote": "«El arte popular es el latido más profundo de Latinoamérica.»"
+  },
+  "testimonials": {
+    "title": "Testimonios y Voces de la Comunidad",
+    "subtitle": "Historias reales de quienes compran con propósito y de quienes crean con el corazón.",
+    "buyer_label": "Comprador",
+    "artisan_label": "Artesano",
+    "buyer": {
+      "name": "Camila Fernández",
+      "location": "Madrid, España",
+      "quote": "Recibir mi tapiz de Oaxaca fue una experiencia mágica. La calidad del tejido y conocer la historia de doña Elena le dieron un valor incalculable a mi hogar."
+    },
+    "artisan": {
+      "name": "Don Mateo Choc",
+      "location": "Santiago Atitlán, Guatemala",
+      "craft": "Maestro tejedor",
+      "quote": "Gracias a Yawi nuestras obras llegan a hogares de todo el mundo sin intermediarios injustos. Ahora nuestra cooperativa puede educar a los jóvenes en este hermoso oficio."
+    }
+  },
+  "final_cta": {
+    "title": "Sé parte del movimiento cultural",
+    "description": "Únete a una comunidad global apasionada por el arte auténtico, el diseño consciente y el impacto social positivo.",
+    "button": "Explorar la galería"
+  }
+}

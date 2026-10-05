@@ -1,0 +1,35 @@
+{
+  "hero": {
+    "collage": [
+      { "src": "", "alt": "hero.collage_1_alt" },
+      { "src": "", "alt": "hero.collage_2_alt" },
+      { "src": "", "alt": "hero.collage_3_alt" },
+      { "src": "", "alt": "hero.collage_4_alt" }
+    ]
+  },
+  "categories": [
+    { "id": "textiles", "src": "", "titleKey": "categories.items.textiles" },
+    { "id": "ceramics", "src": "", "titleKey": "categories.items.ceramics" },
+    { "id": "jewelry", "src": "", "titleKey": "categories.items.jewelry" },
+    { "id": "wood", "src": "", "titleKey": "categories.items.wood" },
+    { "id": "leather", "src": "", "titleKey": "categories.items.leather" },
+    { "id": "food", "src": "", "titleKey": "categories.items.food" }
+  ],
+  "story": {
+    "src": "",
+    "alt": "story.image_alt"
+  },
+  "explore_latam": {
+    "countries": [
+      { "id": "mexico", "src": "", "active": true },
+      { "id": "guatemala", "src": "", "active": false },
+      { "id": "colombia", "src": "", "active": false },
+      { "id": "peru", "src": "", "active": false },
+      { "id": "ecuador", "src": "", "active": false }
+    ]
+  },
+  "testimonials": {
+    "buyer": { "avatar_src": "" },
+    "artisan": { "avatar_src": "" }
+  }
+}

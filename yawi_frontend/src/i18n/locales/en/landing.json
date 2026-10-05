@@ -1,0 +1,110 @@
+{
+  "hero": {
+    "badge": "Yawi Cultural Market",
+    "title": "Art, tradition and living stories from Latin America",
+    "subtitle": "Discover unique handcrafted pieces created by master artisans, bridging cultures and enriching homes around the world.",
+    "cta_primary": "Explore collection",
+    "cta_secondary": "Meet artisans",
+    "collage_1_alt": "Traditional handwoven textile",
+    "collage_2_alt": "Artisan shaping clay on a pottery wheel",
+    "collage_3_alt": "Handcrafted jewelry with native stones",
+    "collage_4_alt": "Detail of fine wood carving"
+  },
+  "why_yawi": {
+    "title": "Why choose Yawi?",
+    "subtitle": "A direct bridge between ancestral talent and fair global trade.",
+    "cards": [
+      {
+        "title": "Direct Fair Trade",
+        "subtitle": "We ensure dignified earnings and direct economic impact for artisan communities."
+      },
+      {
+        "title": "Certified Authenticity",
+        "subtitle": "Each piece is 100% authentic, handmade with ancestral techniques and heritage."
+      },
+      {
+        "title": "Stories with Soul",
+        "subtitle": "Meet the artisan behind every creation and the living tradition it represents."
+      },
+      {
+        "title": "Safe Global Shipping",
+        "subtitle": "Specialized packaging and reliable logistics so your treasures arrive pristine."
+      }
+    ]
+  },
+  "categories": {
+    "title": "Explore by category",
+    "subtitle": "Find the perfect piece crafted with centuries-old craftsmanship.",
+    "items": {
+      "textiles": "Textiles & Weaving",
+      "ceramics": "Ceramics & Clay",
+      "jewelry": "Traditional Jewelry",
+      "wood": "Wood Carving",
+      "leather": "Leather Goods",
+      "food": "Artisanal Flavors"
+    }
+  },
+  "story": {
+    "badge": "Our Philosophy",
+    "title": "A living story behind every creation",
+    "text": "At Yawi we believe traditional craft is not merely a decorative object; it is the memory, identity, and voice of entire peoples. Every piece tells a story passed down through generations, preserving ancient wisdom and honoring those whose hands keep our cultural heritage alive.",
+    "image_alt": "Master artisan sharing traditional technique",
+    "metrics": {
+      "handmade": "Handmade",
+      "communities": "Communities",
+      "middlemen": "Middlemen"
+    }
+  },
+  "explore_latam": {
+    "title": "Explore Latin America",
+    "subtitle": "Journey through the artisanal richness and cultural diversity of our region.",
+    "active_label": "Active",
+    "coming_soon": "Coming soon",
+    "available_collection": "Collection available",
+    "coming_soon_collection": "Available soon",
+    "countries": {
+      "mexico": "Mexico",
+      "guatemala": "Guatemala",
+      "colombia": "Colombia",
+      "peru": "Peru",
+      "ecuador": "Ecuador"
+    }
+  },
+  "featured_products": {
+    "title": "Featured products",
+    "subtitle": "A curated selection of exclusive handmade creations freshly arrived in our gallery.",
+    "price_label": "Price",
+    "view_product": "View product",
+    "empty_message": "No products available at this time.",
+    "error_message": "Could not load products.",
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "culture": {
+    "title": "Taking culture further",
+    "text": "Every purchase supports the preservation of endangered techniques and empowers artisan families to continue creating with dignity and pride.",
+    "quote": "“Folk art is the deepest heartbeat of Latin America.”"
+  },
+  "testimonials": {
+    "title": "Community Voices & Testimonials",
+    "subtitle": "Real stories from those who buy with purpose and those who create from the heart.",
+    "buyer_label": "Buyer",
+    "artisan_label": "Artisan",
+    "buyer": {
+      "name": "Camila Fernández",
+      "location": "Madrid, Spain",
+      "quote": "Receiving my Oaxaca tapestry was a magical experience. The quality of the weave and learning Elena's story added priceless meaning to my home."
+    },
+    "artisan": {
+      "name": "Don Mateo Choc",
+      "location": "Santiago Atitlan, Guatemala",
+      "craft": "Master Weaver",
+      "quote": "Thanks to Yawi, our work reaches homes worldwide without unfair middlemen. Our cooperative can now educate youth in this precious craft."
+    }
+  },
+  "final_cta": {
+    "title": "Be part of the cultural movement",
+    "description": "Join a global community passionate about authentic art, conscious design, and positive social impact.",
+    "button": "Explore the gallery"
+  }
+}
