@@ -45,7 +45,7 @@
     ]
   },
   "testimonials": {
-    "buyer": { "avatar_src": "" },
-    "artisan": { "avatar_src": "" }
+    "buyer": { "avatar_src": "src/assets/profile-demo1.webp" },
+    "artisan": { "avatar_src": "src/assets/profile-demo2.webp" }
   }
 }

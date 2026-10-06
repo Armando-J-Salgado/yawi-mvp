@@ -1,12 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Globe, ShieldCheck, Heart, Truck } from 'lucide-react';
+import { Globe, Handshake, BadgeCheck, Amphora } from 'lucide-react';
 import { SectionContainer, Card } from '../../../../components/ui';
 
 export const WhyYawiSection: React.FC = () => {
   const { t } = useTranslation('landing');
 
-  const icons = [Globe, ShieldCheck, Heart, Truck];
+  const icons = [BadgeCheck, Handshake, Globe, Amphora];
 
   return (
     <SectionContainer id="why-yawi" background="surface">
