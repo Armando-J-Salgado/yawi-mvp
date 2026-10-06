@@ -1,0 +1,58 @@
+import type { Product } from '../types';
+
+export const FEATURED_PRODUCTS: Product[] = [
+  {
+    id: '1',
+    name: 'Tapiz Zapoteco de Lana Natural',
+    country: 'El Salvador',
+    artisan: 'Familia Mendoza',
+    price: 120.0,
+    currency: 'USD',
+    imageSrc: 'src/assets/producto1.webp',
+  },
+  {
+    id: '2',
+    name: 'Huipil Bordado con Hilos de Seda',
+    country: 'Guatemala',
+    artisan: 'María López',
+    price: 85.0,
+    currency: 'USD',
+    imageSrc: 'src/assets/productos2.webp',
+  },
+  {
+    id: '3',
+    name: 'Vasija Ceremonial de Barro Negro',
+    country: 'El Salvador',
+    artisan: 'Don Pedro Jiménez',
+    price: 65.0,
+    currency: 'USD',
+    imageSrc: 'src/assets/producto3.webp',
+  },
+  {
+    id: '4',
+    name: 'Aretes Filigrana en Plata 925',
+    country: 'Honduras',
+    artisan: 'Elena Castro',
+    price: 95.0,
+    currency: 'USD',
+    imageSrc: 'src/assets/productos4.webp',
+  },
+  {
+    id: '5',
+    name: 'Máscara Tradicional Tallada en Cedro',
+    country: 'Perú',
+    artisan: 'Manuel Huamán',
+    price: 110.0,
+    currency: 'USD',
+    imageSrc: 'src/assets/productos5.webp',
+  },
+  {
+    id: '6',
+    name: 'Sombrero Fino de Paja Toquilla',
+    country: 'Ecuador',
+    artisan: 'Rosa Espinoza',
+    price: 140.0,
+    currency: 'USD',
+    imageSrc: 'src/assets/producto6.webp',
+  },
+];

@@ -1,0 +1,110 @@
+{
+  "hero": {
+    "badge": "Mercado Cultural de Yawi",
+    "title": "De Latinoamérica para el mundo",
+    "subtitle": "Descubre productos artesanales creados por emprendedores latinoamericanos y recibe en tu puerta aquello que te conecta con tu cultura, tus recuerdos y tus raíces.",
+    "cta_primary": "Ver productos",
+    "cta_secondary": "Conocer artesanos",
+    "collage_1_alt": "Textil tradicional tejido a mano",
+    "collage_2_alt": "Artesano trabajando en torno de cerámica",
+    "collage_3_alt": "Joyería artesanal con piedras autóctonas",
+    "collage_4_alt": "Detalle de tallado en madera fina"
+  },
+  "why_yawi": {
+    "title": "¿Por qué elegir Yawi?",
+    "subtitle": "Un puente directo entre el talento ancestral y el comercio justo global.",
+    "cards": [
+      {
+        "title": "Conexión cultural",
+        "subtitle": "Encuentra productos auténticos que representan la identidad y tradiciones latinoamericanas."
+      },
+      {
+        "title": "Apoyo directo",
+        "subtitle": "Tu compra beneficia directamente a emprendedores y familias artesanas."
+      },
+      {
+        "title": "Alcance Internacional",
+        "subtitle": "Compra desde cualquier lugar y recibe productos provenientes de Latinoamérica."
+      },
+      {
+        "title": "Descubrimientos únicos",
+        "subtitle": "Artículos que difícilmente encontrarás en plataformas tradicionales."
+      }
+    ]
+  },
+  "categories": {
+    "title": "Explora por categoría",
+    "subtitle": "Encuentra la pieza perfecta elaborada con técnicas centenarias.",
+    "items": {
+      "textiles": "Textiles & Tejidos",
+      "ceramics": "Cerámica & Barro",
+      "jewelry": "Joyería Tradicional",
+      "wood": "Talla en Madera",
+      "accesories": "Accesorios",
+      "paintings": "Pinturas Artesanales"
+    }
+  },
+  "story": {
+    "badge": "Nuestra Filosofía",
+    "title": "Cada Pieza tiene una historia",
+    "text": "Los productos en Yawi son creados por emprendedores y artesanos que preservan técnicas, conocimientos y tradiciones transmitidas por generaciones.",
+    "image_alt": "Maestra artesana compartiendo su técnica tradicional",
+    "metrics": {
+      "handmade": "Hecho a Mano",
+      "communities": "Comunidades",
+      "middlemen": "Intermediarios"
+    }
+  },
+  "explore_latam": {
+    "title": "Explora Latinoamérica",
+    "subtitle": "Viaja a través de la riqueza artesanal y la diversidad cultural de nuestra región.",
+    "active_label": "Activo",
+    "coming_soon": "Próximamente",
+    "available_collection": "Colección disponible",
+    "coming_soon_collection": "Pronto disponible",
+    "countries": {
+      "elsalvador": "El Salvador",
+      "guatemala": "Guatemala",
+      "honduras": "Honduras",
+      "peru": "Perú",
+      "ecuador": "Ecuador"
+    }
+  },
+  "featured_products": {
+    "title": "Productos destacados",
+    "subtitle": "Selección curada de creaciones exclusivas recién llegadas a nuestra galería.",
+    "price_label": "Precio",
+    "view_product": "Ver producto",
+    "empty_message": "No hay productos disponibles por el momento.",
+    "error_message": "No se pudieron cargar los productos.",
+    "prev": "Anterior",
+    "next": "Siguiente"
+  },
+  "culture": {
+    "title": "Llevar la cultura más lejos",
+    "text": "Miles de latinoamericanos viven en otros países manteniendo vivos sus recuerdos, costumbres y tradiciones. Yawi les acerca nuevamente a esos elementos que forman parte de su identidad.",
+    "quote": "«La oportunidad perfecta para quienes están lejos de casa»"
+  },
+  "testimonials": {
+    "title": "Testimonios de la Comunidad",
+    "subtitle": "Historias reales de quienes compran con propósito y de quienes crean con el corazón.",
+    "buyer_label": "Comprador",
+    "artisan_label": "Artesano",
+    "buyer": {
+      "name": "Camila Fernández",
+      "location": "New Jersey, EE.UU.",
+      "quote": "Pude encontrar productos que me recuerdan mi infancia en El Salvador."
+    },
+    "artisan": {
+      "name": "Don Mateo Choc",
+      "location": "Santiago Atitlán, Guatemala",
+      "craft": "Maestro tejedor",
+      "quote": "Ahora mis productos llegan a clientes que jamás habría podido alcanzar por mi cuenta."
+    }
+  },
+  "final_cta": {
+    "title": "Sé parte del movimiento cultural",
+    "description": "Únete a una comunidad global apasionada por el arte auténtico, el diseño consciente y el impacto social positivo.",
+    "button": "Explorar la galería"
+  }
+}
