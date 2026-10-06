@@ -44,9 +44,7 @@ export const CountryCard: React.FC<CountryCardProps> = ({
       </div>
 
       <div>
-        <h3 className="text-lg font-bold text-primary-navy mb-1">
-          {countryName}
-        </h3>
+        <h3 className="text-lg font-bold text-primary-navy mb-1">{countryName}</h3>
         <p className="text-xs text-muted-text">
           {isActive ? availableSubtitle : comingSoonSubtitle}
         </p>

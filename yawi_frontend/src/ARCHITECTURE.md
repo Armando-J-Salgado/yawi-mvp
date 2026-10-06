@@ -25,11 +25,11 @@ pages  ->  features  ->  components (ui / layout / common)
 
 ## 2. `src/components/` subfolders
 
-| Folder | Purpose | May contain | Must NOT contain |
-|---|---|---|---|
-| `ui/` | Design-system primitives, domain-agnostic | `Button`, `Input`, `Select`, `Modal`, `Badge`, `Spinner`, `Skeleton`, `Rating`, `Tabs` | Domain words (product, cart, order), data fetching, Redux, i18n keys |
-| `layout/` | Structural shells shared by many pages | `AppLayout`, `Header`, `Footer`, `NavBar`, `AccountLayout`, `PageContainer` | Page content, business logic |
-| `common/` | Shared composed components that know the domain but are used by **2+ features** | `ProductCard`, `PriceTag`, `SellerBadge`, `EmptyState`, `ErrorState`, `Pagination`, `SearchBar` | Fetching, store access. Receive everything via props |
+| Folder    | Purpose                                                                         | May contain                                                                                     | Must NOT contain                                                     |
+| --------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `ui/`     | Design-system primitives, domain-agnostic                                       | `Button`, `Input`, `Select`, `Modal`, `Badge`, `Spinner`, `Skeleton`, `Rating`, `Tabs`          | Domain words (product, cart, order), data fetching, Redux, i18n keys |
+| `layout/` | Structural shells shared by many pages                                          | `AppLayout`, `Header`, `Footer`, `NavBar`, `AccountLayout`, `PageContainer`                     | Page content, business logic                                         |
+| `common/` | Shared composed components that know the domain but are used by **2+ features** | `ProductCard`, `PriceTag`, `SellerBadge`, `EmptyState`, `ErrorState`, `Pagination`, `SearchBar` | Fetching, store access. Receive everything via props                 |
 
 Component-specific to **one** feature does not go here. It goes in `src/features/<feature>/components/`.
 
@@ -51,32 +51,32 @@ ProductCard/
 
 ## 3. Rest of `src/` (where everything else goes)
 
-| Path | Responsibility | Naming |
-|---|---|---|
-| `api/` | Raw backend calls. One file per resource. Returns typed DTOs, throws typed errors. No React, no mapping logic | `products.api.ts`, `orders.api.ts`, `auth.api.ts` |
-| `services/` | Pure domain logic: DTO -> domain model mapping, calculations (cart totals, shipment status labels), orchestration of several `api` calls. No React | `cart.service.ts`, `shipment.service.ts` |
-| `features/<name>/` | Vertical slice for a business capability (see below) | `catalog`, `cart`, `checkout`, `orders`, `profile`, `seller`, `auth` |
-| `pages/` | Route-level components. Compose features and layout, read route params. **No logic beyond composition** | `OrderTrackingPage/OrderTrackingPage.tsx` |
-| `routes/` | Router config, route guards (`RequireAuth`, `RequireRole`), lazy imports | `index.tsx`, `guards.tsx` |
-| `hooks/` | Generic, reusable hooks with no domain knowledge | `useDebounce`, `useMediaQuery`, `useLocalStorage` |
-| `store/` | Redux Toolkit root store, typed `useAppDispatch/useAppSelector`. Slices that are feature-specific live in the feature | `store.ts`, `hooks.ts` |
-| `context/` | React Context for app-wide, rarely changing values: auth session, locale, theme | `AuthContext.tsx` |
-| `i18n/` | i18n setup and EN/ES translation JSON (replaces `data/` for translations) | `locales/en/*.json`, `locales/es/*.json` |
-| `data/` | Static non-translation content (constants, option lists, category definitions) | `categories.ts` |
-| `lib/` | Third-party client setup and config | `supabase.ts`, `queryClient.ts`, `env.ts` |
-| `types/` | Global shared domain types and generated DB types | `database.types.ts`, `common.ts` |
-| `utils/` | Small pure helpers, no I/O, no React | `formatCurrency.ts`, `formatDate.ts`, `slugify.ts` |
-| `assets/` | Images, icons, fonts | |
-| `test/` | Test infrastructure only (see section 6) | `setup.ts`, `test-utils.tsx`, `mocks/` |
+| Path               | Responsibility                                                                                                                                     | Naming                                                               |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `api/`             | Raw backend calls. One file per resource. Returns typed DTOs, throws typed errors. No React, no mapping logic                                      | `products.api.ts`, `orders.api.ts`, `auth.api.ts`                    |
+| `services/`        | Pure domain logic: DTO -> domain model mapping, calculations (cart totals, shipment status labels), orchestration of several `api` calls. No React | `cart.service.ts`, `shipment.service.ts`                             |
+| `features/<name>/` | Vertical slice for a business capability (see below)                                                                                               | `catalog`, `cart`, `checkout`, `orders`, `profile`, `seller`, `auth` |
+| `pages/`           | Route-level components. Compose features and layout, read route params. **No logic beyond composition**                                            | `OrderTrackingPage/OrderTrackingPage.tsx`                            |
+| `routes/`          | Router config, route guards (`RequireAuth`, `RequireRole`), lazy imports                                                                           | `index.tsx`, `guards.tsx`                                            |
+| `hooks/`           | Generic, reusable hooks with no domain knowledge                                                                                                   | `useDebounce`, `useMediaQuery`, `useLocalStorage`                    |
+| `store/`           | Redux Toolkit root store, typed `useAppDispatch/useAppSelector`. Slices that are feature-specific live in the feature                              | `store.ts`, `hooks.ts`                                               |
+| `context/`         | React Context for app-wide, rarely changing values: auth session, locale, theme                                                                    | `AuthContext.tsx`                                                    |
+| `i18n/`            | i18n setup and EN/ES translation JSON (replaces `data/` for translations)                                                                          | `locales/en/*.json`, `locales/es/*.json`                             |
+| `data/`            | Static non-translation content (constants, option lists, category definitions)                                                                     | `categories.ts`                                                      |
+| `lib/`             | Third-party client setup and config                                                                                                                | `supabase.ts`, `queryClient.ts`, `env.ts`                            |
+| `types/`           | Global shared domain types and generated DB types                                                                                                  | `database.types.ts`, `common.ts`                                     |
+| `utils/`           | Small pure helpers, no I/O, no React                                                                                                               | `formatCurrency.ts`, `formatDate.ts`, `slugify.ts`                   |
+| `assets/`          | Images, icons, fonts                                                                                                                               |                                                                      |
+| `test/`            | Test infrastructure only (see section 6)                                                                                                           | `setup.ts`, `test-utils.tsx`, `mocks/`                               |
 
 ### State management decision
 
-| Kind of state | Tool |
-|---|---|
-| Server data (products, orders, shipment, profiles) | **TanStack Query** hooks inside features. Do not copy server data into Redux |
-| Cross-page client state (cart, active filters if shared) | **Redux Toolkit** slice |
-| App-wide static-ish values (auth session, locale, theme) | **Context** |
-| Local UI state (open modal, input value) | `useState` / `useReducer` in the component |
+| Kind of state                                            | Tool                                                                         |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Server data (products, orders, shipment, profiles)       | **TanStack Query** hooks inside features. Do not copy server data into Redux |
+| Cross-page client state (cart, active filters if shared) | **Redux Toolkit** slice                                                      |
+| App-wide static-ish values (auth session, locale, theme) | **Context**                                                                  |
+| Local UI state (open modal, input value)                 | `useState` / `useReducer` in the component                                   |
 
 ### Feature slice structure
 
@@ -93,20 +93,20 @@ features/orders/
 
 ## 4. "Where does this go?" cheat sheet
 
-| I need to... | Put it in |
-|---|---|
-| Add a generic button/input/modal | `components/ui/` |
-| Add a card used by catalog and seller storefront | `components/common/` |
-| Add a filter sidebar used only in catalog | `features/catalog/components/` |
-| Call Supabase or an HTTP endpoint | `api/<resource>.api.ts` |
-| Convert API shape to UI shape, compute totals | `services/<domain>.service.ts` |
-| Expose server data to components | `features/<x>/hooks/use<Thing>.ts` (TanStack Query) |
-| Store cart items | `features/cart/store/cart.slice.ts` |
-| Add a new route/screen | `pages/<Name>Page/` + register in `routes/index.tsx` |
-| Protect a route by role (customer / seller) | `routes/guards.tsx` |
-| Add user-facing text | `i18n/locales/{en,es}/<namespace>.json` (both languages) |
-| Format a price or date | `utils/` |
-| Configure a third-party SDK | `lib/` |
+| I need to...                                     | Put it in                                                |
+| ------------------------------------------------ | -------------------------------------------------------- |
+| Add a generic button/input/modal                 | `components/ui/`                                         |
+| Add a card used by catalog and seller storefront | `components/common/`                                     |
+| Add a filter sidebar used only in catalog        | `features/catalog/components/`                           |
+| Call Supabase or an HTTP endpoint                | `api/<resource>.api.ts`                                  |
+| Convert API shape to UI shape, compute totals    | `services/<domain>.service.ts`                           |
+| Expose server data to components                 | `features/<x>/hooks/use<Thing>.ts` (TanStack Query)      |
+| Store cart items                                 | `features/cart/store/cart.slice.ts`                      |
+| Add a new route/screen                           | `pages/<Name>Page/` + register in `routes/index.tsx`     |
+| Protect a route by role (customer / seller)      | `routes/guards.tsx`                                      |
+| Add user-facing text                             | `i18n/locales/{en,es}/<namespace>.json` (both languages) |
+| Format a price or date                           | `utils/`                                                 |
+| Configure a third-party SDK                      | `lib/`                                                   |
 
 ---
 
@@ -127,12 +127,12 @@ features/orders/
 
 ## 6. Testing
 
-| Type | Tool | Location |
-|---|---|---|
-| Unit (services, utils, slices) | Vitest | Colocated: `cart.service.test.ts` next to the file |
-| Component / hook | Vitest + React Testing Library + `@testing-library/jest-dom` | Colocated: `ProductCard.test.tsx` |
-| API mocking | MSW (Mock Service Worker) | `src/test/mocks/handlers.ts` |
-| End-to-end (critical flows) | Playwright | Repo-level `e2e/` folder, outside `src/` |
+| Type                           | Tool                                                         | Location                                           |
+| ------------------------------ | ------------------------------------------------------------ | -------------------------------------------------- |
+| Unit (services, utils, slices) | Vitest                                                       | Colocated: `cart.service.test.ts` next to the file |
+| Component / hook               | Vitest + React Testing Library + `@testing-library/jest-dom` | Colocated: `ProductCard.test.tsx`                  |
+| API mocking                    | MSW (Mock Service Worker)                                    | `src/test/mocks/handlers.ts`                       |
+| End-to-end (critical flows)    | Playwright                                                   | Repo-level `e2e/` folder, outside `src/`           |
 
 Test infrastructure in `src/test/`:
 

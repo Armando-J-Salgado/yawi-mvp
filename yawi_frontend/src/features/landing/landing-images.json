@@ -1,31 +1,47 @@
 {
   "hero": {
     "collage": [
-      { "src": "", "alt": "hero.collage_1_alt" },
-      { "src": "", "alt": "hero.collage_2_alt" },
-      { "src": "", "alt": "hero.collage_3_alt" },
-      { "src": "", "alt": "hero.collage_4_alt" }
+      { "src": "src/assets/hamacas.webp", "alt": "hero.collage_1_alt" },
+      { "src": "src/assets/artesana.webp", "alt": "hero.collage_2_alt" },
+      { "src": "src/assets/artesano.webp", "alt": "hero.collage_3_alt" },
+      { "src": "src/assets/accesorios.webp", "alt": "hero.collage_4_alt" }
     ]
   },
   "categories": [
-    { "id": "textiles", "src": "", "titleKey": "categories.items.textiles" },
-    { "id": "ceramics", "src": "", "titleKey": "categories.items.ceramics" },
-    { "id": "jewelry", "src": "", "titleKey": "categories.items.jewelry" },
-    { "id": "wood", "src": "", "titleKey": "categories.items.wood" },
-    { "id": "leather", "src": "", "titleKey": "categories.items.leather" },
-    { "id": "food", "src": "", "titleKey": "categories.items.food" }
+    {
+      "id": "textiles",
+      "src": "src/assets/textiles.webp",
+      "titleKey": "categories.items.textiles"
+    },
+    {
+      "id": "ceramics",
+      "src": "src/assets/alfareria.webp",
+      "titleKey": "categories.items.ceramics"
+    },
+    { "id": "jewelry", "src": "src/assets/joyeria.webp", "titleKey": "categories.items.jewelry" },
+    { "id": "wood", "src": "src/assets/maderas.webp", "titleKey": "categories.items.wood" },
+    {
+      "id": "accesories",
+      "src": "src/assets/milpas.webp",
+      "titleKey": "categories.items.accesories"
+    },
+    {
+      "id": "paintings",
+      "src": "src/assets/pinturas.webp",
+      "titleKey": "categories.items.paintings"
+    }
   ],
   "story": {
-    "src": "",
+    "src": "src/assets/artesana-2.webp",
     "alt": "story.image_alt"
   },
   "explore_latam": {
     "countries": [
-      { "id": "mexico", "src": "", "active": true },
-      { "id": "guatemala", "src": "", "active": false },
-      { "id": "colombia", "src": "", "active": false },
-      { "id": "peru", "src": "", "active": false },
-      { "id": "ecuador", "src": "", "active": false }
+      { "id": "elsalvador", "src": "src/assets/el-salvador.webp", "active": true },
+      { "id": "guatemala", "src": "src/assets/guatemala.webp", "active": false },
+      { "id": "honduras", "src": "src/assets/honduras.webp", "active": false },
+      { "id": "peru", "src": "src/assets/peru.webp", "active": false },
+      { "id": "ecuador", "src": "src/assets/ecuador.webp", "active": false }
     ]
   },
   "testimonials": {

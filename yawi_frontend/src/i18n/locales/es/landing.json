@@ -1,9 +1,9 @@
 {
   "hero": {
     "badge": "Mercado Cultural de Yawi",
-    "title": "Arte, tradición e historias vivas de Latinoamérica",
-    "subtitle": "Descubre piezas artesanales únicas creadas a mano por maestros artesanos, conectando culturas y enriqueciendo hogares en todo el mundo.",
-    "cta_primary": "Explorar colección",
+    "title": "De Latinoamérica para el mundo",
+    "subtitle": "Descubre productos artesanales creados por emprendedores latinoamericanos y recibe en tu puerta aquello que te conecta con tu cultura, tus recuerdos y tus raíces.",
+    "cta_primary": "Ver productos",
     "cta_secondary": "Conocer artesanos",
     "collage_1_alt": "Textil tradicional tejido a mano",
     "collage_2_alt": "Artesano trabajando en torno de cerámica",
@@ -15,20 +15,20 @@
     "subtitle": "Un puente directo entre el talento ancestral y el comercio justo global.",
     "cards": [
       {
-        "title": "Comercio Justo y Directo",
-        "subtitle": "Garantizamos retribución digna e impacto económico directo a las comunidades artesanas."
+        "title": "Conexión cultural",
+        "subtitle": "Encuentra productos auténticos que representan la identidad y tradiciones latinoamericanas."
       },
       {
-        "title": "Autenticidad Certificada",
-        "subtitle": "Cada pieza es 100% auténtica, elaborada a mano con técnicas y saberes ancestrales."
+        "title": "Apoyo directo",
+        "subtitle": "Tu compra beneficia directamente a emprendedores y familias artesanas."
       },
       {
-        "title": "Historias con Alma",
-        "subtitle": "Conoce al artesano detrás de cada creación y la tradición viva que representa."
+        "title": "Alcance Internacional",
+        "subtitle": "Compra desde cualquier lugar y recibe productos provenientes de Latinoamérica."
       },
       {
-        "title": "Envíos Seguros Globales",
-        "subtitle": "Empaque especializado y logística confiable para que tus tesoros lleguen intactos."
+        "title": "Descubrimientos únicos",
+        "subtitle": "Artículos que difícilmente encontrarás en plataformas tradicionales."
       }
     ]
   },
@@ -40,14 +40,14 @@
       "ceramics": "Cerámica & Barro",
       "jewelry": "Joyería Tradicional",
       "wood": "Talla en Madera",
-      "leather": "Cuero & Marroquinería",
-      "food": "Sabores Artesanales"
+      "accesories": "Accesorios",
+      "paintings": "Pinturas Artesanales"
     }
   },
   "story": {
     "badge": "Nuestra Filosofía",
-    "title": "Una historia viva detrás de cada creación",
-    "text": "En Yawi creemos que el arte tradicional no es solo un objeto decorativo; es la memoria, la identidad y la voz de pueblos enteros. Cada producto cuenta una historia transmitida por generaciones, preservando saberes milenarios y dignificando a quienes con sus manos mantienen encendida nuestra herencia cultural.",
+    "title": "Cada Pieza tiene una historia",
+    "text": "Los productos en Yawi son creados por emprendedores y artesanos que preservan técnicas, conocimientos y tradiciones transmitidas por generaciones.",
     "image_alt": "Maestra artesana compartiendo su técnica tradicional",
     "metrics": {
       "handmade": "Hecho a Mano",
@@ -63,9 +63,9 @@
     "available_collection": "Colección disponible",
     "coming_soon_collection": "Pronto disponible",
     "countries": {
-      "mexico": "México",
+      "elsalvador": "El Salvador",
       "guatemala": "Guatemala",
-      "colombia": "Colombia",
+      "honduras": "Honduras",
       "peru": "Perú",
       "ecuador": "Ecuador"
     }
@@ -82,24 +82,24 @@
   },
   "culture": {
     "title": "Llevar la cultura más lejos",
-    "text": "Cada adquisición apoya la preservación de técnicas en peligro de extinción y empodera a familias de artesanos para seguir creando con dignidad y orgullo.",
-    "quote": "«El arte popular es el latido más profundo de Latinoamérica.»"
+    "text": "Miles de latinoamericanos viven en otros países manteniendo vivos sus recuerdos, costumbres y tradiciones. Yawi les acerca nuevamente a esos elementos que forman parte de su identidad.",
+    "quote": "«La oportunidad perfecta para quienes están lejos de casa»"
   },
   "testimonials": {
-    "title": "Testimonios y Voces de la Comunidad",
+    "title": "Testimonios de la Comunidad",
     "subtitle": "Historias reales de quienes compran con propósito y de quienes crean con el corazón.",
     "buyer_label": "Comprador",
     "artisan_label": "Artesano",
     "buyer": {
       "name": "Camila Fernández",
-      "location": "Madrid, España",
-      "quote": "Recibir mi tapiz de Oaxaca fue una experiencia mágica. La calidad del tejido y conocer la historia de doña Elena le dieron un valor incalculable a mi hogar."
+      "location": "New Jersey, EE.UU.",
+      "quote": "Pude encontrar productos que me recuerdan mi infancia en El Salvador."
     },
     "artisan": {
       "name": "Don Mateo Choc",
       "location": "Santiago Atitlán, Guatemala",
       "craft": "Maestro tejedor",
-      "quote": "Gracias a Yawi nuestras obras llegan a hogares de todo el mundo sin intermediarios injustos. Ahora nuestra cooperativa puede educar a los jóvenes en este hermoso oficio."
+      "quote": "Ahora mis productos llegan a clientes que jamás habría podido alcanzar por mi cuenta."
     }
   },
   "final_cta": {

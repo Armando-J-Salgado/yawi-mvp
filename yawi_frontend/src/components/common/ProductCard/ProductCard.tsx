@@ -38,7 +38,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute top-3 left-3 z-10">
-          <Badge variant="default" className="backdrop-blur-md bg-surface/90 text-primary-navy shadow-xs">
+          <Badge
+            variant="default"
+            className="backdrop-blur-md bg-surface/90 text-primary-navy shadow-xs"
+          >
             <MapPin className="w-3 h-3 mr-1 inline text-primary-indigo" />
             {country}
           </Badge>
@@ -64,9 +67,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </span>
             <span className="text-lg font-extrabold text-primary-navy">
               ${price.toFixed(2)}{' '}
-              <span className="text-xs font-semibold text-muted-text">
-                {currency}
-              </span>
+              <span className="text-xs font-semibold text-muted-text">{currency}</span>
             </span>
           </div>
 

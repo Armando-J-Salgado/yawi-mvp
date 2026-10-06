@@ -48,10 +48,7 @@ export const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({
   }
 
   return (
-    <div
-      style={containerStyle}
-      className={`relative overflow-hidden ${className}`}
-    >
+    <div style={containerStyle} className={`relative overflow-hidden ${className}`}>
       {!hasLoaded && (
         <div className="absolute inset-0 z-10 flex items-center justify-center bg-border/60">
           <Skeleton className="w-full h-full" />

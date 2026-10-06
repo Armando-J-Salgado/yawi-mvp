@@ -14,9 +14,7 @@ export const ExploreLatamSection: React.FC = () => {
         <h2 className="text-3xl sm:text-4xl font-extrabold text-primary-navy tracking-tight mb-4">
           {t('explore_latam.title')}
         </h2>
-        <p className="text-base sm:text-lg text-muted-text">
-          {t('explore_latam.subtitle')}
-        </p>
+        <p className="text-base sm:text-lg text-muted-text">{t('explore_latam.subtitle')}</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">

@@ -284,7 +284,7 @@ Características:
 ```css
 background: white;
 border-radius: 24px;
-border: 1px solid rgba(0,0,0,.05);
+border: 1px solid rgba(0, 0, 0, 0.05);
 ```
 
 La información debe caber en una sola lectura rápida.
@@ -445,7 +445,7 @@ Nunca saturar la hero section con demasiado texto.
 ## Primary Button
 
 ```css
-background: #18245B;
+background: #18245b;
 color: white;
 border-radius: 999px;
 padding: 14px 28px;
@@ -458,8 +458,8 @@ font-weight: 600;
 
 ```css
 background: transparent;
-border: 1px solid #18245B;
-color: #18245B;
+border: 1px solid #18245b;
+color: #18245b;
 ```
 
 ---
@@ -590,4 +590,4 @@ Tomar:
 
 - Composición editorial
 - Tarjetas grandes
-- Secciones bien 
+- Secciones bien

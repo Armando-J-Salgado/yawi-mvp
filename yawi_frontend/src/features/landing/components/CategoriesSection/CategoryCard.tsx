@@ -7,11 +7,7 @@ export interface CategoryCardProps {
   onClick?: () => void;
 }
 
-export const CategoryCard: React.FC<CategoryCardProps> = ({
-  imageSrc,
-  title,
-  onClick,
-}) => {
+export const CategoryCard: React.FC<CategoryCardProps> = ({ imageSrc, title, onClick }) => {
   return (
     <div
       onClick={onClick}

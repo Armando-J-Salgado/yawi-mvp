@@ -65,11 +65,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
           {/* Header with close button */}
           <div className="flex items-center justify-between pb-6 border-b border-border">
             <div className="flex items-center gap-2">
-              <img
-                src="/src/assets/yawi-logo.svg"
-                alt={t('logo_alt')}
-                className="h-7 w-auto"
-              />
+              <img src="/src/assets/yawi-logo.svg" alt={t('logo_alt')} className="h-7 w-auto" />
             </div>
             <button
               type="button"

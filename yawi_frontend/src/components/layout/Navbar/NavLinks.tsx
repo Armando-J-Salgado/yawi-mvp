@@ -20,14 +20,11 @@ export interface NavLinksProps {
   direction?: 'row' | 'col';
 }
 
-export const NavLinks: React.FC<NavLinksProps> = ({
-  onItemClick,
-  direction = 'row',
-}) => {
+export const NavLinks: React.FC<NavLinksProps> = ({ onItemClick, direction = 'row' }) => {
   const { t } = useTranslation('nav');
   const location = useLocation();
   const [activeHash, setActiveHash] = useState<string>(
-    typeof window !== 'undefined' ? window.location.hash : ''
+    typeof window !== 'undefined' ? window.location.hash : '',
   );
 
   useEffect(() => {
@@ -40,15 +37,13 @@ export const NavLinks: React.FC<NavLinksProps> = ({
   }, []);
 
   const containerClasses =
-    direction === 'row'
-      ? 'flex items-center gap-7'
-      : 'flex flex-col items-stretch gap-3 w-full';
+    direction === 'row' ? 'flex items-center gap-7' : 'flex flex-col items-stretch gap-3 w-full';
 
   return (
     <div className={containerClasses}>
       {NAV_ITEMS.map((item) => {
         const label = t(item.labelKey);
-        
+
         // Active check: matches hash, or if no hash and item is home '/'
         const isActive =
           item.href === '/'

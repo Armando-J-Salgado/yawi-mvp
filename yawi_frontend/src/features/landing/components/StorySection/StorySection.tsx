@@ -22,33 +22,25 @@ export const StorySection: React.FC = () => {
             {t('story.title')}
           </h2>
 
-          <p className="text-base sm:text-lg text-muted-text leading-relaxed">
-            {t('story.text')}
-          </p>
+          <p className="text-base sm:text-lg text-muted-text leading-relaxed">{t('story.text')}</p>
 
           <div className="pt-4 border-t border-border flex items-center gap-6">
             <div>
-              <p className="text-2xl sm:text-3xl font-extrabold text-primary-navy">
-                100%
-              </p>
+              <p className="text-2xl sm:text-3xl font-extrabold text-primary-navy">100%</p>
               <p className="text-xs text-muted-text font-medium uppercase tracking-wider">
                 {t('story.metrics.handmade')}
               </p>
             </div>
             <div className="h-10 w-px bg-border" />
             <div>
-              <p className="text-2xl sm:text-3xl font-extrabold text-primary-navy">
-                +25
-              </p>
+              <p className="text-2xl sm:text-3xl font-extrabold text-primary-navy">+25</p>
               <p className="text-xs text-muted-text font-medium uppercase tracking-wider">
                 {t('story.metrics.communities')}
               </p>
             </div>
             <div className="h-10 w-px bg-border" />
             <div>
-              <p className="text-2xl sm:text-3xl font-extrabold text-primary-navy">
-                0%
-              </p>
+              <p className="text-2xl sm:text-3xl font-extrabold text-primary-navy">0%</p>
               <p className="text-xs text-muted-text font-medium uppercase tracking-wider">
                 {t('story.metrics.middlemen')}
               </p>

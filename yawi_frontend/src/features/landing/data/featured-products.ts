@@ -4,7 +4,7 @@ export const FEATURED_PRODUCTS: Product[] = [
   {
     id: '1',
     name: 'Tapiz Zapoteco de Lana Natural',
-    country: 'México',
+    country: 'El Salvador',
     artisan: 'Familia Mendoza',
     price: 120.0,
     currency: 'USD',
@@ -22,7 +22,7 @@ export const FEATURED_PRODUCTS: Product[] = [
   {
     id: '3',
     name: 'Vasija Ceremonial de Barro Negro',
-    country: 'México',
+    country: 'El Salvador',
     artisan: 'Don Pedro Jiménez',
     price: 65.0,
     currency: 'USD',
@@ -31,7 +31,7 @@ export const FEATURED_PRODUCTS: Product[] = [
   {
     id: '4',
     name: 'Aretes Filigrana en Plata 925',
-    country: 'Colombia',
+    country: 'Honduras',
     artisan: 'Elena Castro',
     price: 95.0,
     currency: 'USD',

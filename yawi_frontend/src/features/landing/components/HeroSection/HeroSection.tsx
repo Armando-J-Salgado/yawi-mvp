@@ -43,12 +43,7 @@ export const HeroSection: React.FC = () => {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
 
-              <Button
-                variant="secondary"
-                size="lg"
-                as="a"
-                href="#testimonials"
-              >
+              <Button variant="secondary" size="lg" as="a" href="#testimonials">
                 {t('hero.cta_secondary')}
               </Button>
             </div>

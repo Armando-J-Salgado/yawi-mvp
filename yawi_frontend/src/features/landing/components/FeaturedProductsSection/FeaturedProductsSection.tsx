@@ -15,17 +15,11 @@ export const FeaturedProductsSection: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-primary-navy tracking-tight mb-3">
             {t('featured_products.title')}
           </h2>
-          <p className="text-base sm:text-lg text-muted-text">
-            {t('featured_products.subtitle')}
-          </p>
+          <p className="text-base sm:text-lg text-muted-text">{t('featured_products.subtitle')}</p>
         </div>
       </div>
 
-      <ProductCarousel
-        products={products}
-        isLoading={isLoading}
-        isError={isError}
-      />
+      <ProductCarousel products={products} isLoading={isLoading} isError={isError} />
     </SectionContainer>
   );
 };

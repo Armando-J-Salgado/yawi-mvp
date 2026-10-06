@@ -83,15 +83,9 @@ export const Footer: React.FC = () => {
           {/* Col 1: Brand & Tagline */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <img
-                src={yawiLogo}
-                alt="Yawi"
-                className="h-8 w-auto brightness-0 invert"
-              />
+              <img src={yawiLogo} alt="Yawi" className="h-8 w-auto brightness-0 invert" />
             </div>
-            <p className="text-sm text-soft-lavender/80 leading-relaxed">
-              {tFooter('tagline')}
-            </p>
+            <p className="text-sm text-soft-lavender/80 leading-relaxed">{tFooter('tagline')}</p>
           </div>
 
           {/* Col 2: Quick Links */}

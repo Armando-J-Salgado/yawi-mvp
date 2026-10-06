@@ -6,11 +6,7 @@ export interface BadgeProps {
   className?: string;
 }
 
-export const Badge: React.FC<BadgeProps> = ({
-  children,
-  variant = 'default',
-  className = '',
-}) => {
+export const Badge: React.FC<BadgeProps> = ({ children, variant = 'default', className = '' }) => {
   const variantStyles = {
     default: 'bg-soft-lavender/30 text-primary-navy',
     accent: 'bg-peach-accent text-primary-navy',

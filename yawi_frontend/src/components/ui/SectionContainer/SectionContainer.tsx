@@ -24,9 +24,7 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
       id={id}
       className={`py-16 md:py-24 transition-colors duration-200 ${bgStyles[background]} ${className}`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        {children}
-      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">{children}</div>
     </section>
   );
 };

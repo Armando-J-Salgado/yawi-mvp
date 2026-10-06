@@ -4,16 +4,16 @@
 /* ─── Tema customizado (Tailwind v4 @theme) ─── */
 @theme {
   /* Colores — paleta centralizada (DESIGN.md) */
-  --color-primary-navy: #18245B;
-  --color-primary-indigo: #6776FF;
-  --color-soft-lavender: #B7B1FF;
-  --color-peach-accent: #F4A782;
+  --color-primary-navy: #18245b;
+  --color-primary-indigo: #6776ff;
+  --color-soft-lavender: #b7b1ff;
+  --color-peach-accent: #f4a782;
 
-  --color-background: #FAF9F7;
-  --color-surface: #FFFFFF;
-  --color-border: #ECECEC;
+  --color-background: #faf9f7;
+  --color-surface: #ffffff;
+  --color-border: #ececec;
   --color-muted-text: #707070;
-  --color-primary-text: #1D1D1D;
+  --color-primary-text: #1d1d1d;
 
   /* Fuentes */
   --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;

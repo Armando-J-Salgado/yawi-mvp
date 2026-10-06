@@ -95,10 +95,7 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {products.map((product) => (
-          <div
-            key={product.id}
-            className="w-[280px] sm:w-[320px] shrink-0 snap-start"
-          >
+          <div key={product.id} className="w-[280px] sm:w-[320px] shrink-0 snap-start">
             <ProductCard
               imageSrc={product.imageSrc}
               name={product.name}

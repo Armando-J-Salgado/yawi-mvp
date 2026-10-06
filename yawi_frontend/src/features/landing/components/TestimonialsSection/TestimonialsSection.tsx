@@ -14,9 +14,7 @@ export const TestimonialsSection: React.FC = () => {
         <h2 className="text-3xl sm:text-4xl font-extrabold text-primary-navy tracking-tight mb-4">
           {t('testimonials.title')}
         </h2>
-        <p className="text-base sm:text-lg text-muted-text">
-          {t('testimonials.subtitle')}
-        </p>
+        <p className="text-base sm:text-lg text-muted-text">{t('testimonials.subtitle')}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">

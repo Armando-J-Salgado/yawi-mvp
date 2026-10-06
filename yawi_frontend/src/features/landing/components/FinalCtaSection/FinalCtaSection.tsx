@@ -7,7 +7,10 @@ export const FinalCtaSection: React.FC = () => {
   const { t } = useTranslation('landing');
 
   return (
-    <section id="final-cta" className="relative overflow-hidden py-20 md:py-28 bg-gradient-to-br from-primary-navy via-[#23337A] to-primary-indigo text-white">
+    <section
+      id="final-cta"
+      className="relative overflow-hidden py-20 md:py-28 bg-gradient-to-br from-primary-navy via-[#23337A] to-primary-indigo text-white"
+    >
       {/* Background glowing effects */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-soft-lavender/20 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-peach-accent/20 rounded-full blur-3xl pointer-events-none" />

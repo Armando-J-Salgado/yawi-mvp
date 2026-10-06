@@ -70,16 +70,16 @@ export default defineConfig({
 /* ─── Tema customizado (Tailwind v4 @theme) ─── */
 @theme {
   /* Colores — paleta centralizada (DESIGN.md) */
-  --color-primary-navy: #18245B;
-  --color-primary-indigo: #6776FF;
-  --color-soft-lavender: #B7B1FF;
-  --color-peach-accent: #F4A782;
+  --color-primary-navy: #18245b;
+  --color-primary-indigo: #6776ff;
+  --color-soft-lavender: #b7b1ff;
+  --color-peach-accent: #f4a782;
 
-  --color-background: #FAF9F7;
-  --color-surface: #FFFFFF;
-  --color-border: #ECECEC;
+  --color-background: #faf9f7;
+  --color-surface: #ffffff;
+  --color-border: #ececec;
   --color-muted-text: #707070;
-  --color-primary-text: #1D1D1D;
+  --color-primary-text: #1d1d1d;
 
   /* Fuentes */
   --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -352,12 +352,12 @@ interface ButtonProps {
 
 **Estilos (Tailwind, basados en DESIGN.md):**
 
-| Variante | Fondo | Texto | Borde |
-|---|---|---|---|
-| `primary` | `bg-primary-navy` | `text-white` | ninguno |
-| `secondary` | `bg-transparent` | `text-primary-navy` | `border border-primary-navy` |
-| `ghost` | `bg-transparent` | `text-primary-navy` | ninguno |
-| `cta` | `bg-peach-accent` | `text-primary-navy` | ninguno |
+| Variante    | Fondo             | Texto               | Borde                        |
+| ----------- | ----------------- | ------------------- | ---------------------------- |
+| `primary`   | `bg-primary-navy` | `text-white`        | ninguno                      |
+| `secondary` | `bg-transparent`  | `text-primary-navy` | `border border-primary-navy` |
+| `ghost`     | `bg-transparent`  | `text-primary-navy` | ninguno                      |
+| `cta`       | `bg-peach-accent` | `text-primary-navy` | ninguno                      |
 
 Todos con `rounded-button` (999px), `font-semibold`, padding `14px 28px`.
 
@@ -508,8 +508,8 @@ src/components/layout/Navbar/
 ```ts
 // Dentro de NavLinks.tsx o en un archivo de configuración del layout
 interface NavItem {
-  labelKey: string;    // clave i18n (ej: "nav:home")
-  href: string;        // ruta destino
+  labelKey: string; // clave i18n (ej: "nav:home")
+  href: string; // ruta destino
   type: 'link' | 'cta-primary' | 'cta-secondary';
 }
 
@@ -560,6 +560,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 ```
 
 La Navbar lee `isAuthenticated` del store y renderiza condicionalmente:
+
 - `false` → "Iniciar sesión"
 - `true` → avatar/nombre del usuario (placeholder por ahora)
 
@@ -694,6 +695,7 @@ src/features/landing/components/HeroSection/
 - **Mobile**: Stack vertical. Texto arriba, collage debajo (2 columnas compactas).
 
 **Reglas:**
+
 - Título: Tipografía `text-4xl md:text-6xl font-extrabold`, `letter-spacing: -0.03em`, `leading-tight`.
 - CTAs: Usar componente `Button` del design system.
 - Imágenes del collage: Importadas desde `landing-images.json`.
@@ -807,7 +809,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     name: 'Bolsa tejida a mano',
     country: 'México',
     artisan: 'María López',
-    price: 45.00,
+    price: 45.0,
     currency: 'USD',
     imageSrc: '', // placeholder vacío → ImagePlaceholder mostrará skeleton
   },
@@ -858,6 +860,7 @@ export function useFeaturedProducts(): {
 ```
 
 **ProductCarousel:**
+
 - Carrusel horizontal con CSS `scroll-snap`.
 - Cada tarjeta: `ImagePlaceholder`, nombre, país, artesano, precio, botón "Ver producto".
 - Flechas de navegación (prev/next) visibles en desktop.
@@ -897,6 +900,7 @@ src/features/landing/components/CultureSection/
 ```
 
 **Estructura simple:**
+
 - Título (h2).
 - Párrafo de texto.
 - Fondo con color de acento sutil (lavender) o gradiente suave según `DESIGN.md`.
@@ -911,6 +915,7 @@ src/features/landing/components/TestimonialsSection/
 ```
 
 **Estructura:**
+
 - Título de sección.
 - Dos tarjetas lado a lado (stack en mobile):
   - **Comprador**: avatar (ImagePlaceholder), nombre, label "Comprador", frase/cita.
@@ -926,6 +931,7 @@ src/features/landing/components/FinalCtaSection/
 ```
 
 **Estructura:**
+
 - Fondo con gradiente de la paleta (navy → indigo → lavender).
 - Título centrado (texto blanco).
 - Descripción breve.
@@ -1041,11 +1047,11 @@ export default App;
 
 Verificar **cada sección** en los siguientes breakpoints:
 
-| Breakpoint | Ancho | Comportamiento esperado |
-|---|---|---|
-| Mobile | < 640px | 1 columna, sidebar menu, tarjetas apiladas, carrusel horizontal |
-| Tablet | 640–1023px | 2 columnas donde aplique, navbar con hamburguesa |
-| Desktop | ≥ 1024px | Layout completo, navbar expandida, grids de 3-4 columnas |
+| Breakpoint | Ancho      | Comportamiento esperado                                         |
+| ---------- | ---------- | --------------------------------------------------------------- |
+| Mobile     | < 640px    | 1 columna, sidebar menu, tarjetas apiladas, carrusel horizontal |
+| Tablet     | 640–1023px | 2 columnas donde aplique, navbar con hamburguesa                |
+| Desktop    | ≥ 1024px   | Layout completo, navbar expandida, grids de 3-4 columnas        |
 
 ### 5.2 Checklist por sección
 
@@ -1081,15 +1087,19 @@ Crear un `README.md` en cada carpeta nueva con la siguiente estructura:
 # <Nombre de la carpeta>
 
 ## Propósito
+
 <Qué contiene y para qué sirve>
 
 ## Contenido
+
 <Lista de archivos/subcarpetas con descripción de una línea>
 
 ## Reglas
+
 <Qué se puede y qué NO se puede hacer aquí, según ARCHITECTURE.md>
 
 ## Dependencias
+
 <De qué carpetas importa y quién puede importar de aquí>
 ```
 
@@ -1113,17 +1123,17 @@ Crear un `README.md` en cada carpeta nueva con la siguiente estructura:
 
 Documentar las siguientes decisiones arquitectónicas tomadas en este milestone:
 
-| # | Decisión | Opciones consideradas | Elección | Razón |
-|---|---|---|---|---|
-| 1 | State management | Redux Toolkit, Zustand | **Zustand** | Más ligero, menos boilerplate; decisión explícita del equipo. `ARCHITECTURE.md` referencia Redux Toolkit pero se prioriza la velocidad de desarrollo del MVP |
-| 2 | Path alias `@/` | Configurar ahora, diferir | **Diferido a M2** | El milestone 1 tiene pocos archivos cruzados; se configurará cuando la complejidad lo requiera |
-| 3 | Librería de iconos | Lucide React, React Icons, SVGs manuales | **Lucide React** | Tree-shakeable, estilo outline moderno alineado con DESIGN.md |
-| 4 | Carrusel de productos | Swiper.js, Embla, CSS scroll-snap | **CSS scroll-snap** | Sin dependencias externas, suficiente para MVP, mejor rendimiento |
-| 5 | Tailwind CSS | v3, v4 | **v4** | Configuración vía CSS (sin config JS), más moderno, mejor DX |
-| 6 | Tipografía | Inter, Outfit, Poppins | **Inter** | Excelente legibilidad, amplio soporte de pesos, estándar en diseño moderno |
-| 7 | i18n | react-i18next, custom | **react-i18next** | Estándar de la industria, alineado con ARCHITECTURE.md |
-| 8 | Idioma por defecto | Español, auto-detect | **Español** | Mercado principal: Latinoamérica |
-| 9 | Explorar Latam | Mapa interactivo, Tarjetas | **Tarjetas de países** | Más ligero para MVP, misma información visual |
+| #   | Decisión              | Opciones consideradas                    | Elección               | Razón                                                                                                                                                        |
+| --- | --------------------- | ---------------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | State management      | Redux Toolkit, Zustand                   | **Zustand**            | Más ligero, menos boilerplate; decisión explícita del equipo. `ARCHITECTURE.md` referencia Redux Toolkit pero se prioriza la velocidad de desarrollo del MVP |
+| 2   | Path alias `@/`       | Configurar ahora, diferir                | **Diferido a M2**      | El milestone 1 tiene pocos archivos cruzados; se configurará cuando la complejidad lo requiera                                                               |
+| 3   | Librería de iconos    | Lucide React, React Icons, SVGs manuales | **Lucide React**       | Tree-shakeable, estilo outline moderno alineado con DESIGN.md                                                                                                |
+| 4   | Carrusel de productos | Swiper.js, Embla, CSS scroll-snap        | **CSS scroll-snap**    | Sin dependencias externas, suficiente para MVP, mejor rendimiento                                                                                            |
+| 5   | Tailwind CSS          | v3, v4                                   | **v4**                 | Configuración vía CSS (sin config JS), más moderno, mejor DX                                                                                                 |
+| 6   | Tipografía            | Inter, Outfit, Poppins                   | **Inter**              | Excelente legibilidad, amplio soporte de pesos, estándar en diseño moderno                                                                                   |
+| 7   | i18n                  | react-i18next, custom                    | **react-i18next**      | Estándar de la industria, alineado con ARCHITECTURE.md                                                                                                       |
+| 8   | Idioma por defecto    | Español, auto-detect                     | **Español**            | Mercado principal: Latinoamérica                                                                                                                             |
+| 9   | Explorar Latam        | Mapa interactivo, Tarjetas               | **Tarjetas de países** | Más ligero para MVP, misma información visual                                                                                                                |
 
 ---
 
@@ -1266,14 +1276,14 @@ yawi_frontend/
 
 Las siguientes decisiones **no se toman** en este milestone:
 
-| Decisión | Razón | Milestone estimado |
-|---|---|---|
-| Configurar path alias `@/` | Complejidad innecesaria para M1 | M2 |
-| Testing E2E con Playwright | No hay flujos críticos aún | M3+ |
-| TanStack Query | Sin conexión a API | M2 cuando se integre backend |
-| Supabase client setup (`lib/`) | Sin backend aún | M2 |
-| Route guards (RequireAuth, RequireRole) | Sin auth real | M2+ |
-| Dark mode | No prioritario para MVP landing | Futuro |
+| Decisión                                | Razón                           | Milestone estimado           |
+| --------------------------------------- | ------------------------------- | ---------------------------- |
+| Configurar path alias `@/`              | Complejidad innecesaria para M1 | M2                           |
+| Testing E2E con Playwright              | No hay flujos críticos aún      | M3+                          |
+| TanStack Query                          | Sin conexión a API              | M2 cuando se integre backend |
+| Supabase client setup (`lib/`)          | Sin backend aún                 | M2                           |
+| Route guards (RequireAuth, RequireRole) | Sin auth real                   | M2+                          |
+| Dark mode                               | No prioritario para MVP landing | Futuro                       |
 
 ---
 

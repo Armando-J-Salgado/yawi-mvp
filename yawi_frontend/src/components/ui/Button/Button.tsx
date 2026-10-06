@@ -35,8 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
       'bg-primary-navy text-white hover:bg-primary-indigo active:brightness-95 disabled:bg-muted-text/40 shadow-sm',
     secondary:
       'bg-transparent text-primary-navy border border-primary-navy hover:bg-primary-navy/5 active:bg-primary-navy/10',
-    ghost:
-      'bg-transparent text-primary-navy hover:bg-primary-navy/10 active:bg-primary-navy/15',
+    ghost: 'bg-transparent text-primary-navy hover:bg-primary-navy/10 active:bg-primary-navy/15',
     cta: 'bg-peach-accent text-primary-navy hover:brightness-95 active:brightness-90 shadow-sm',
   };
 
@@ -46,11 +45,10 @@ export const Button: React.FC<ButtonProps> = ({
     lg: 'px-9 py-4 text-lg',
   };
 
-  const disabledStyles = disabled
-    ? 'opacity-50 pointer-events-none cursor-not-allowed'
-    : '';
+  const disabledStyles = disabled ? 'opacity-50 pointer-events-none cursor-not-allowed' : '';
 
-  const classes = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${disabledStyles} ${className}`.trim();
+  const classes =
+    `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${disabledStyles} ${className}`.trim();
 
   if (as === 'a' && href) {
     return (
@@ -68,12 +66,7 @@ export const Button: React.FC<ButtonProps> = ({
   }
 
   return (
-    <button
-      type={type}
-      className={classes}
-      onClick={onClick}
-      disabled={disabled}
-    >
+    <button type={type} className={classes} onClick={onClick} disabled={disabled}>
       {children}
     </button>
   );

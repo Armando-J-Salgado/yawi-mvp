@@ -27,9 +27,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Quote className="w-8 h-8 text-soft-lavender" />
-          <Badge variant={roleType === 'artisan' ? 'accent' : 'default'}>
-            {roleLabel}
-          </Badge>
+          <Badge variant={roleType === 'artisan' ? 'accent' : 'default'}>{roleLabel}</Badge>
         </div>
 
         <p className="text-base sm:text-lg text-primary-navy/90 italic leading-relaxed">
@@ -39,19 +37,11 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
       <div className="flex items-center gap-4 pt-6 mt-6 border-t border-border">
         <div className="w-12 h-12 rounded-full overflow-hidden bg-soft-lavender/30 shrink-0 border border-border">
-          <ImagePlaceholder
-            src={avatarSrc}
-            alt={name}
-            className="w-full h-full object-cover"
-          />
+          <ImagePlaceholder src={avatarSrc} alt={name} className="w-full h-full object-cover" />
         </div>
         <div className="truncate">
-          <h4 className="text-base font-bold text-primary-navy truncate">
-            {name}
-          </h4>
-          {subtitle && (
-            <p className="text-xs text-muted-text truncate">{subtitle}</p>
-          )}
+          <h4 className="text-base font-bold text-primary-navy truncate">{name}</h4>
+          {subtitle && <p className="text-xs text-muted-text truncate">{subtitle}</p>}
         </div>
       </div>
     </Card>
