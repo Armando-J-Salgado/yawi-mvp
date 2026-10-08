@@ -1,0 +1,1 @@
+export { SellerHowItWorksSection } from './SellerHowItWorksSection';

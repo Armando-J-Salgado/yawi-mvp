@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "src": "src/assets/artesanias.webp",
+    "alt": "hero.image_alt"
+  },
+  "problem": {
+    "src": "",
+    "alt": "problem.image_alt"
+  },
+  "how_yawi_helps": {
+    "blocks": [
+      { "id": "customers", "src": "", "alt": "how_yawi_helps.blocks.0.image_alt" },
+      { "id": "income", "src": "", "alt": "how_yawi_helps.blocks.1.image_alt" },
+      { "id": "simple", "src": "", "alt": "how_yawi_helps.blocks.2.image_alt" }
+    ]
+  },
+  "story": {
+    "src": "",
+    "alt": "story.image_alt"
+  }
+}
