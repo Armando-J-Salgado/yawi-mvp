@@ -7,10 +7,12 @@ import esCommon from './locales/es/common.json';
 import esLanding from './locales/es/landing.json';
 import esNav from './locales/es/nav.json';
 import esFooter from './locales/es/footer.json';
+import esSeller from './locales/es/seller.json';
 import enCommon from './locales/en/common.json';
 import enLanding from './locales/en/landing.json';
 import enNav from './locales/en/nav.json';
 import enFooter from './locales/en/footer.json';
+import enSeller from './locales/en/seller.json';
 
 i18n
   .use(LanguageDetector)
@@ -22,12 +24,14 @@ i18n
         landing: esLanding,
         nav: esNav,
         footer: esFooter,
+        seller: esSeller,
       },
       en: {
         common: enCommon,
         landing: enLanding,
         nav: enNav,
         footer: enFooter,
+        seller: enSeller,
       },
     },
     lng: 'es', // Idioma por defecto: español
