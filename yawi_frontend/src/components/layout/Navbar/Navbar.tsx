@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { Menu, Globe, User as UserIcon } from 'lucide-react';
 import { NavLinks } from './NavLinks';
 import { MobileMenu } from './MobileMenu';
-import { Button } from '../../ui';
 import { useAuthStore } from '../../../store/authStore';
 import yawiLogo from '../../../assets/yawi-logo.svg';
 
 export const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation('nav');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { isAuthenticated, user, setAuthenticated } = useAuthStore();
+  const { isAuthenticated, user, logout } = useAuthStore();
 
   const toggleLanguage = () => {
     const nextLang = i18n.language.startsWith('es') ? 'en' : 'es';
@@ -21,8 +21,8 @@ export const Navbar: React.FC = () => {
     <header className="sticky top-0 z-30 w-full bg-surface/90 backdrop-blur-md border-b border-border/80 transition-shadow duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         {/* Brand / Logo */}
-        <a
-          href="/"
+        <Link
+          to="/"
           className="flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-indigo rounded-lg"
           aria-label={t('logo_alt')}
         >
@@ -31,7 +31,7 @@ export const Navbar: React.FC = () => {
             alt={t('logo_alt')}
             className="h-9 w-auto hover:opacity-90 transition-opacity"
           />
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6" aria-label="Main">
@@ -56,7 +56,7 @@ export const Navbar: React.FC = () => {
             <div className="hidden sm:flex items-center gap-2">
               <button
                 type="button"
-                onClick={() => setAuthenticated(false)}
+                onClick={() => logout()}
                 className="w-9 h-9 rounded-full bg-primary-navy text-white text-xs font-bold flex items-center justify-center hover:bg-primary-indigo transition-colors"
                 title="Cerrar sesión"
               >
@@ -64,15 +64,13 @@ export const Navbar: React.FC = () => {
               </button>
             </div>
           ) : (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setAuthenticated(true)}
-              className="hidden sm:inline-flex items-center gap-1.5"
+            <Link
+              to="/login"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-primary-navy hover:text-primary-indigo transition-colors rounded-button"
             >
               <UserIcon className="w-4 h-4" />
               <span>{t('login')}</span>
-            </Button>
+            </Link>
           )}
 
           {/* Hamburger toggle button (Mobile) */}
