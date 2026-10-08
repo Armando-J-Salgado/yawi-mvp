@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { X, Globe, User as UserIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { NavLinks } from './NavLinks';
-import { Button } from '../../ui';
 import { useAuthStore } from '../../../store/authStore';
+import yawiLogo from '../../../assets/yawi-logo.svg';
 
 export interface MobileMenuProps {
   isOpen: boolean;
@@ -19,7 +20,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
   currentLanguage,
 }) => {
   const { t } = useTranslation('nav');
-  const { isAuthenticated, user, setAuthenticated } = useAuthStore();
+  const { isAuthenticated, user, logout } = useAuthStore();
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -65,7 +66,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
           {/* Header with close button */}
           <div className="flex items-center justify-between pb-6 border-b border-border">
             <div className="flex items-center gap-2">
-              <img src="/src/assets/yawi-logo.svg" alt={t('logo_alt')} className="h-7 w-auto" />
+              <img src={yawiLogo} alt={t('logo_alt')} className="h-7 w-auto" />
             </div>
             <button
               type="button"
@@ -97,25 +98,25 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                 <p className="text-xs text-muted-text truncate">{user?.email}</p>
               </div>
               <button
-                onClick={() => setAuthenticated(false)}
-                className="text-xs text-peach-accent font-medium hover:underline"
+                type="button"
+                onClick={() => {
+                  logout();
+                  onClose();
+                }}
+                className="text-xs text-peach-accent font-medium hover:underline cursor-pointer"
               >
                 Salir
               </button>
             </div>
           ) : (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setAuthenticated(true);
-                onClose();
-              }}
-              className="w-full justify-start gap-2 text-primary-navy"
+            <Link
+              to="/login"
+              onClick={onClose}
+              className="flex items-center gap-2 px-3 py-2 text-sm font-semibold text-primary-navy hover:text-primary-indigo hover:bg-border/40 rounded-xl transition-colors"
             >
               <UserIcon className="w-4 h-4" />
-              {t('login')}
-            </Button>
+              <span>{t('login')}</span>
+            </Link>
           )}
 
           <button

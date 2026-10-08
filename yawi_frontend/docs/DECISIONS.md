@@ -35,10 +35,25 @@ Este documento registra formalmente las decisiones de arquitectura, tecnologías
 
 ---
 
+## Milestone 3 — Login y Registro de Customers
+
+| #      | Decisión                      | Opciones consideradas                                                                     | Elección                                                     | Justificación                                                                                                                                                 |
+| ------ | ----------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **18** | **Rutas URL**                 | `/iniciar-sesion` y `/registro`, `/login` y `/register`, `/auth/login` y `/auth/register` | **`/login` y `/register`**                                   | Convención universal en apps web. Simplicidad, familiaridad para usuarios y consistencia con la práctica estándar de la industria.                            |
+| **19** | **Layout de autenticación**   | `AppLayout` (Navbar + Footer), Layout limpio minimalista                                  | **Layout limpio (solo logo + contenido)**                    | Reduce distracciones, da aspecto profesional y premium. Las páginas de auth no necesitan navegación completa.                                                 |
+| **20** | **Fuente de países**          | `i18n-iso-countries`, API REST Countries, Array estático                                  | **`i18n-iso-countries`**                                     | Lista completa traducida ES/EN sin llamadas HTTP. Se integra con i18n del proyecto. Cero latencia. El cacheo es implícito (es un paquete estático).           |
+| **21** | **Toast notifications**       | Componente custom, `react-hot-toast`, `sonner`                                            | **Componente personalizado en `components/ui/`**             | Sin dependencias extra. Estilizado 100% acorde a `DESIGN.md`. Control total sobre animaciones y comportamiento. Coherente con la filosofía del design system. |
+| **22** | **Modelo Customer**           | Tipo desde cero, Modelo del backend                                                       | **Definir `Customer` desde cero en `src/types/`**            | El backend no está conectado en este milestone. Se define la estructura ideal y se ajusta después.                                                            |
+| **23** | **Refactor authStore**        | Ampliar `User` → `AuthUser`, Crear `Customer` separado, Reemplazar `User`                 | **Ampliar `User` → `AuthUser` + `CustomerRegistrationData`** | Evolución del tipo existente. `AuthUser` para datos de sesión, `CustomerRegistrationData` para el formulario. Separación de responsabilidades.                |
+| **24** | **Navbar → Login**            | Link a `/login`, Mantener botón directo                                                   | **Convertir botón en `Link` a `/login`**                     | Flujo real de navegación. MobileMenu también debe incluir el enlace.                                                                                          |
+| **25** | **Validación de formularios** | Funciones puras en `utils/`, `react-hook-form` + `zod`, Solo `react-hook-form`            | **Funciones puras en `utils/validation.ts`**                 | Sin dependencias extra. Testeables. Alineado con la filosofía MVP ligera. Se puede migrar a zod en el futuro si se necesita.                                  |
+
+---
+
 ## Decisiones Diferidas a Futuros Milestones
 
-- **TanStack Query (React Query)**: Integración en Milestone 3 al conectar los endpoints de `yawi_api`.
-- **Supabase Client Setup (`src/lib/supabase.ts`)**: Integración en Milestone 3 con autenticación real de usuarios/vendedores.
+- **TanStack Query (React Query)**: Integración en Milestone 4 al conectar los endpoints de `yawi_api`.
+- **Supabase Client Setup (`src/lib/supabase.ts`)**: Integración en Milestone 4 con autenticación real de usuarios/vendedores.
 - **Formulario interactivo de registro de artesano**: Reemplazar `#registro` por modal/formulario funcional conectado a API/n8n.
 - **Route Guards (`RequireAuth`, `RequireRole`)**: Configuración al incorporar paneles privados de usuario y artesano.
 - **Pruebas End-to-End con Playwright**: Implementación una vez estabilizados los flujos completos.
