@@ -54,7 +54,7 @@ export async function registerApi(
   // return { success: true };
 
   // Mock: simula delay de red y retorna éxito
-  //!M4: DELETE WHEN MOCK IS CHANGED TO THE OFFICIAL VERSION 
+  //!M4: DELETE WHEN MOCK IS CHANGED TO THE OFFICIAL VERSION
   console.log(data);
   await new Promise((resolve) => setTimeout(resolve, 1000));
   return { success: true };
