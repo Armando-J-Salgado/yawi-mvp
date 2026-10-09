@@ -6,6 +6,7 @@ import { PhoneNumbersModule } from './phone-numbers/phone-numbers.module';
 import { BusinessesModule } from './businesses/businesses.module';
 import { PaymentPreferencesModule } from './payment-preferences/payment-preferences.module';
 import { UploaderModule } from './uploader/uploader.module';
+import { CustomersModule } from './customers/customers.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -21,6 +22,7 @@ import { AppService } from './app.service';
     BusinessesModule,
     PaymentPreferencesModule,
     UploaderModule,
+    CustomersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
