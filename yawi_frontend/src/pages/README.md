@@ -10,6 +10,8 @@ Representa las vistas de nivel superior asociadas a rutas de la aplicación web.
 - `SellerLandingPage/`: Página de vendedores (`/vender`) que orquesta y ensambla las 9 secciones del feature seller (usa `AppLayout`).
 - `LoginPage/`: Página de inicio de sesión (`/login`) que orquesta el feature `auth` (usa `AuthLayout`).
 - `RegisterPage/`: Página de registro de clientes (`/register`) que orquesta el feature `auth` en 2 pasos (usa `AuthLayout`).
+- `ArtisansPage/`: Página de exploración de artesanos (`/artisans`) que orquesta el feature `artisans` (usa `AppLayout`).
+- `BusinessDetailPage/`: Página de detalle de negocio/artesano (`/artisans/:id`) que orquesta el feature `artisans` (usa `AppLayout`).
 - `README.md`: Este archivo descriptivo.
 
 ## Reglas
@@ -20,5 +22,5 @@ Representa las vistas de nivel superior asociadas a rutas de la aplicación web.
 
 ## Dependencias
 
-- Importa de: `features/landing/`, `features/seller/`, `features/auth/`.
+- Importa de: `features/landing/`, `features/seller/`, `features/auth/`, `features/artisans/`.
 - Importado por: `routes/index.tsx`.

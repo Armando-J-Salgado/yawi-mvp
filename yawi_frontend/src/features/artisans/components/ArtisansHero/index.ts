@@ -1,0 +1,1 @@
+export { ArtisansHero } from './ArtisansHero';

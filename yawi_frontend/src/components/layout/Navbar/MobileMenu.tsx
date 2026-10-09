@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { X, Globe, User as UserIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -42,12 +43,14 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
     };
   }, [isOpen, onClose]);
 
-  return (
+  if (typeof document === 'undefined') return null;
+
+  return createPortal(
     <>
       {/* Backdrop overlay */}
       <div
         onClick={onClose}
-        className={`fixed inset-0 z-40 bg-primary-navy/40 backdrop-blur-xs transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-50 bg-primary-navy/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         aria-hidden="true"
@@ -55,7 +58,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 z-50 h-full w-[280px] sm:w-[320px] bg-surface shadow-2xl p-6 flex flex-col justify-between transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed top-0 right-0 z-50 h-screen h-[100dvh] w-[290px] sm:w-[320px] bg-surface bg-white shadow-2xl p-6 flex flex-col justify-between transition-transform duration-300 ease-in-out md:hidden overflow-y-auto ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         role="dialog"
@@ -136,6 +139,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
           </button>
         </div>
       </div>
-    </>
+    </>,
+    document.body,
   );
 };
