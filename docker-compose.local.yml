@@ -17,7 +17,7 @@ services:
     env_file:
       - ./yawi_frontend/.env.local
     ports:
-      - "4173:4173"
+      - "5173:5173"
     depends_on:
       - yawi_api
   

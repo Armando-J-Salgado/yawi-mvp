@@ -2,7 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { NAV_ITEMS } from '../Navbar';
-import yawiLogo from '../../../assets/yawi-logo.svg';
+
+const yawiLogo = '/images/yawi-logo.svg';
 
 // Custom Social SVG icons matching Lucide outline style
 const InstagramIcon: React.FC<{ className?: string }> = ({ className }) => (

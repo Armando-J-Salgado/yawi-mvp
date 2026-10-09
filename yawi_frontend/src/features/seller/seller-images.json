@@ -1,6 +1,6 @@
 {
   "hero": {
-    "src": "src/assets/artesanias.webp",
+    "src": "/images/artesanias.webp",
     "alt": "hero.image_alt"
   },
   "problem": {

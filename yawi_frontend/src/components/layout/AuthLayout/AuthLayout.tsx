@@ -1,7 +1,8 @@
 import { Outlet, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Globe } from 'lucide-react';
-import yawiLogo from '../../../assets/yawi-logo.svg';
+
+const yawiLogo = '/images/yawi-logo.svg';
 
 /**
  * Layout minimalista para páginas de autenticación.

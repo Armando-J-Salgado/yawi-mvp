@@ -1,51 +1,51 @@
 {
   "hero": {
     "collage": [
-      { "src": "src/assets/hamacas.webp", "alt": "hero.collage_1_alt" },
-      { "src": "src/assets/artesana.webp", "alt": "hero.collage_2_alt" },
-      { "src": "src/assets/artesano.webp", "alt": "hero.collage_3_alt" },
-      { "src": "src/assets/accesorios.webp", "alt": "hero.collage_4_alt" }
+      { "src": "/images/hamacas.webp", "alt": "hero.collage_1_alt" },
+      { "src": "/images/artesana.webp", "alt": "hero.collage_2_alt" },
+      { "src": "/images/artesano.webp", "alt": "hero.collage_3_alt" },
+      { "src": "/images/accesorios.webp", "alt": "hero.collage_4_alt" }
     ]
   },
   "categories": [
     {
       "id": "textiles",
-      "src": "src/assets/textiles.webp",
+      "src": "/images/textiles.webp",
       "titleKey": "categories.items.textiles"
     },
     {
       "id": "ceramics",
-      "src": "src/assets/alfareria.webp",
+      "src": "/images/alfareria.webp",
       "titleKey": "categories.items.ceramics"
     },
-    { "id": "jewelry", "src": "src/assets/joyeria.webp", "titleKey": "categories.items.jewelry" },
-    { "id": "wood", "src": "src/assets/maderas.webp", "titleKey": "categories.items.wood" },
+    { "id": "jewelry", "src": "/images/joyeria.webp", "titleKey": "categories.items.jewelry" },
+    { "id": "wood", "src": "/images/maderas.webp", "titleKey": "categories.items.wood" },
     {
       "id": "accesories",
-      "src": "src/assets/milpas.webp",
+      "src": "/images/milpas.webp",
       "titleKey": "categories.items.accesories"
     },
     {
       "id": "paintings",
-      "src": "src/assets/pinturas.webp",
+      "src": "/images/pinturas.webp",
       "titleKey": "categories.items.paintings"
     }
   ],
   "story": {
-    "src": "src/assets/artesana-2.webp",
+    "src": "/images/artesana-2.webp",
     "alt": "story.image_alt"
   },
   "explore_latam": {
     "countries": [
-      { "id": "elsalvador", "src": "src/assets/el-salvador.webp", "active": true },
-      { "id": "guatemala", "src": "src/assets/guatemala.webp", "active": false },
-      { "id": "honduras", "src": "src/assets/honduras.webp", "active": false },
-      { "id": "peru", "src": "src/assets/peru.webp", "active": false },
-      { "id": "ecuador", "src": "src/assets/ecuador.webp", "active": false }
+      { "id": "elsalvador", "src": "/images/el-salvador.webp", "active": true },
+      { "id": "guatemala", "src": "/images/guatemala.webp", "active": false },
+      { "id": "honduras", "src": "/images/honduras.webp", "active": false },
+      { "id": "peru", "src": "/images/peru.webp", "active": false },
+      { "id": "ecuador", "src": "/images/ecuador.webp", "active": false }
     ]
   },
   "testimonials": {
-    "buyer": { "avatar_src": "src/assets/profile-demo1.webp" },
-    "artisan": { "avatar_src": "src/assets/profile-demo2.webp" }
+    "buyer": { "avatar_src": "/images/profile-demo1.webp" },
+    "artisan": { "avatar_src": "/images/profile-demo2.webp" }
   }
 }
