@@ -10,6 +10,18 @@ async function bootstrap() {
   const logger = new Logger('Bootstrap');
   const app = await NestFactory.create(AppModule);
 
+  // Configuración de CORS
+  const rawCorsOrigin = process.env.CORS_ORIGIN ?? 'http://localhost:5173';
+  const corsOrigins = rawCorsOrigin.includes(',')
+    ? rawCorsOrigin.split(',').map((o) => o.trim())
+    : [rawCorsOrigin.trim()];
+
+  app.enableCors({
+    origin: corsOrigins,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  });
+
   // Validación global de DTOs
   app.useGlobalPipes(
     new ValidationPipe({

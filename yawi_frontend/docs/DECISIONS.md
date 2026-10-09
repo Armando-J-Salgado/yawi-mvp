@@ -50,10 +50,24 @@ Este documento registra formalmente las decisiones de arquitectura, tecnologías
 
 ---
 
+## Milestone 5 — Página de Artesanos y Detalle de Negocio
+
+| #      | Decisión                                | Opciones consideradas                          | Elección                                     | Justificación                                                                                                                                     |
+| ------ | --------------------------------------- | ---------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **26** | **Librería de server state**            | useState+fetch, TanStack Query, mock           | **TanStack Query** (`@tanstack/react-query`) | Primer milestone con API real. Arquitectura lo requiere explícitamente para gestión de cache, reintentos y estados de carga.                      |
+| **27** | **Búsqueda y filtrado por país/nombre** | Filtrado en API, filtrado en cliente           | **Filtrado en cliente**                      | La API no soporta búsqueda por nombre de artesano ni filtro por país directamente. Toda la lista cabe en memoria con excelente rendimiento.       |
+| **28** | **Exposición de datos del Vendor**      | Pasar objeto completo, tipo `PublicVendor`     | **`PublicVendor`** en el servicio            | Evitar filtros ad-hoc por componente. El servicio es la única fuente que conoce qué campos son públicos y sanea datos sensibles (DUI, NIT, etc.). |
+| **29** | **Parámetro de ruta de detalle**        | UUID, slug                                     | **UUID** del business                        | Conexión directa con el endpoint existente `GET /businesses/:id`, sin necesidad de resolver slugs en backend.                                     |
+| **30** | **Ruta URL**                            | `/artisanos`, `/artisans`                      | **`/artisans`**                              | Consistente con la clave `artisans` de `nav.json` y la convención de URLs en inglés del proyecto.                                                 |
+| **31** | **Namespace i18n**                      | `landing.json`, nuevo `artisans.json`          | **`artisans.json`** (en/es)                  | Separación limpia de dominios. Consistente con decisión #11.                                                                                      |
+| **32** | **Ubicación resumida del negocio**      | Dir. completa, solo país, truncar primera coma | **Truncar en primera coma**                  | Muestra parte útil de la dirección sin revelar información innecesaria en listados. Lógica centralizada en `utils/formatAddress.ts`.              |
+| **33** | **Enlace "Artisans" en Navbar**         | Hash link, ruta real                           | **Ruta real `/artisans`**                    | Página real requiere `NavLink` con `type: 'route'` para marcar activo correctamente en navegación.                                                |
+
+---
+
 ## Decisiones Diferidas a Futuros Milestones
 
-- **TanStack Query (React Query)**: Integración en Milestone 4 al conectar los endpoints de `yawi_api`.
-- **Supabase Client Setup (`src/lib/supabase.ts`)**: Integración en Milestone 4 con autenticación real de usuarios/vendedores.
+- **Supabase Client Setup (`src/lib/supabase.ts`)**: Integración con autenticación real de usuarios/vendedores.
 - **Formulario interactivo de registro de artesano**: Reemplazar `#registro` por modal/formulario funcional conectado a API/n8n.
 - **Route Guards (`RequireAuth`, `RequireRole`)**: Configuración al incorporar paneles privados de usuario y artesano.
 - **Pruebas End-to-End con Playwright**: Implementación una vez estabilizados los flujos completos.
