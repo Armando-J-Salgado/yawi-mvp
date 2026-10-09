@@ -8,7 +8,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     artisan: 'Familia Mendoza',
     price: 120.0,
     currency: 'USD',
-    imageSrc: 'src/assets/producto1.webp',
+    imageSrc: '/images/producto1.webp',
   },
   {
     id: '2',
@@ -17,7 +17,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     artisan: 'María López',
     price: 85.0,
     currency: 'USD',
-    imageSrc: 'src/assets/productos2.webp',
+    imageSrc: '/images/productos2.webp',
   },
   {
     id: '3',
@@ -26,7 +26,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     artisan: 'Don Pedro Jiménez',
     price: 65.0,
     currency: 'USD',
-    imageSrc: 'src/assets/producto3.webp',
+    imageSrc: '/images/producto3.webp',
   },
   {
     id: '4',
@@ -35,7 +35,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     artisan: 'Elena Castro',
     price: 95.0,
     currency: 'USD',
-    imageSrc: 'src/assets/productos4.webp',
+    imageSrc: '/images/productos4.webp',
   },
   {
     id: '5',
@@ -44,7 +44,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     artisan: 'Manuel Huamán',
     price: 110.0,
     currency: 'USD',
-    imageSrc: 'src/assets/productos5.webp',
+    imageSrc: '/images/productos5.webp',
   },
   {
     id: '6',
@@ -53,6 +53,6 @@ export const FEATURED_PRODUCTS: Product[] = [
     artisan: 'Rosa Espinoza',
     price: 140.0,
     currency: 'USD',
-    imageSrc: 'src/assets/producto6.webp',
+    imageSrc: '/images/producto6.webp',
   },
 ];

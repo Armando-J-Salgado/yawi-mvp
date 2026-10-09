@@ -5,7 +5,8 @@ import { X, Globe, User as UserIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { NavLinks } from './NavLinks';
 import { useAuthStore } from '../../../store/authStore';
-import yawiLogo from '../../../assets/yawi-logo.svg';
+
+const yawiLogo = '/images/yawi-logo.svg';
 
 export interface MobileMenuProps {
   isOpen: boolean;

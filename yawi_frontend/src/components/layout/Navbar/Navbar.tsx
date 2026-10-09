@@ -5,7 +5,8 @@ import { Menu, Globe, User as UserIcon } from 'lucide-react';
 import { NavLinks } from './NavLinks';
 import { MobileMenu } from './MobileMenu';
 import { useAuthStore } from '../../../store/authStore';
-import yawiLogo from '../../../assets/yawi-logo.svg';
+
+const yawiLogo = '/images/yawi-logo.svg';
 
 export const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation('nav');

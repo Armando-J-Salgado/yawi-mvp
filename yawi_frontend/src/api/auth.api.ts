@@ -1,4 +1,52 @@
-import type { AuthResponse, CustomerRegistrationData, LoginCredentials } from '../types/auth';
+import type { AuthResponse, LoginCredentials } from '../types/auth';
+
+const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
+
+/** Payload que espera `POST /customers` (contrato real de yawi_api). */
+export interface CreateCustomerPayload {
+  email: string;
+  password: string;
+  name: string;
+  lastname: string;
+  country: string; // nombre completo, no ISO
+  personal_address: string;
+}
+
+/** Respuesta pública de `POST /customers` (sin `password`). */
+export interface CustomerDto {
+  id: string;
+  email: string;
+  name: string;
+  lastname: string;
+  country: string;
+  personal_address: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+}
+
+/** Error tipado de la API NestJS. */
+export class ApiError extends Error {
+  readonly status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.name = 'ApiError';
+    this.status = status;
+  }
+}
+
+/** Extrae el mensaje del body de error NestJS ({ message: string | string[] }). */
+async function extractErrorMessage(res: Response): Promise<string> {
+  try {
+    const body = (await res.json()) as { message?: string | string[] };
+    if (Array.isArray(body.message)) return body.message.join(' ');
+    if (typeof body.message === 'string' && body.message.length > 0) return body.message;
+  } catch {
+    // Respuesta sin JSON
+  }
+  return `Error ${res.status}`;
+}
 
 /**
  * Llama al endpoint de login del backend.
@@ -9,14 +57,6 @@ import type { AuthResponse, CustomerRegistrationData, LoginCredentials } from '.
  */
 export async function loginApi(credentials: LoginCredentials): Promise<AuthResponse> {
   // TODO [M4]: Implementar llamada real
-  // Ejemplo con Supabase:
-  // const { data, error } = await supabase.auth.signInWithPassword({
-  //   email: credentials.email,
-  //   password: credentials.password,
-  // });
-  // if (error) return { success: false, error: error.message };
-  // return { success: true, user: mapToAuthUser(data.user) };
-
   // Mock: simula delay de red y retorna éxito
   await new Promise((resolve) => setTimeout(resolve, 800));
   return {
@@ -33,29 +73,20 @@ export async function loginApi(credentials: LoginCredentials): Promise<AuthRespo
 }
 
 /**
- * Llama al endpoint de registro del backend.
- * TODO [M4]: Reemplazar con llamada real a Supabase o API REST.
- *
- * @param data - Datos del formulario de registro (sin confirmPassword)
- * @returns AuthResponse con resultado de la operación
+ * Crea un Customer real en el backend.
+ * @throws {ApiError} si el backend responde con status != 2xx.
+ * @throws {TypeError} si falla la red (fetch rechaza); el servicio lo trata como error genérico.
  */
-export async function registerApi(
-  data: Omit<CustomerRegistrationData, 'confirmPassword'>,
-): Promise<AuthResponse> {
-  // TODO [M4]: Implementar llamada real
-  // Ejemplo con Supabase:
-  // const { data: authData, error } = await supabase.auth.signUp({
-  //   email: data.email,
-  //   password: data.password,
-  // });
-  // if (error) return { success: false, error: error.message };
-  // // Guardar perfil en tabla customers
-  // await supabase.from('customers').insert({ ... });
-  // return { success: true };
+export async function registerApi(payload: CreateCustomerPayload): Promise<CustomerDto> {
+  const res = await fetch(`${API_BASE}/customers`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
 
-  // Mock: simula delay de red y retorna éxito
-  //!M4: DELETE WHEN MOCK IS CHANGED TO THE OFFICIAL VERSION
-  console.log(data);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  return { success: true };
+  if (!res.ok) {
+    throw new ApiError(await extractErrorMessage(res), res.status);
+  }
+
+  return (await res.json()) as CustomerDto;
 }
