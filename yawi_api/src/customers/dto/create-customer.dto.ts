@@ -6,7 +6,10 @@ export class CreateCustomerDto {
     description: 'Correo electrónico único del cliente',
     example: 'cliente@example.com',
   })
-  @IsEmail({}, { message: 'El correo electrónico debe tener un formato válido' })
+  @IsEmail(
+    {},
+    { message: 'El correo electrónico debe tener un formato válido' },
+  )
   @IsNotEmpty({ message: 'El correo electrónico es requerido' })
   @IsString({ message: 'El correo electrónico debe ser una cadena de texto' })
   email: string;

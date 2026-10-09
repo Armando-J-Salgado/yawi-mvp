@@ -119,9 +119,9 @@ describe('Customer Module (e2e)', () => {
       .expect(200);
 
     expect(response.body.length).toBeGreaterThanOrEqual(1);
-    expect(
-      response.body.every((c: any) => c.country === 'El Salvador'),
-    ).toBe(true);
+    expect(response.body.every((c: any) => c.country === 'El Salvador')).toBe(
+      true,
+    );
   });
 
   it('7. PATCH /customers/:id — Actualiza parcialmente el nombre (200)', async () => {

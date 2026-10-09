@@ -275,10 +275,7 @@ describe('CustomersService (Unit / SQLite in-memory)', () => {
         .getOne();
 
       expect(raw?.password).not.toBe('NewPassword123!');
-      const isNewMatch = await bcrypt.compare(
-        'NewPassword123!',
-        raw!.password,
-      );
+      const isNewMatch = await bcrypt.compare('NewPassword123!', raw!.password);
       expect(isNewMatch).toBe(true);
     });
 
