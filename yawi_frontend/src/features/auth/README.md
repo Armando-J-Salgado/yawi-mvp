@@ -21,10 +21,9 @@ auth/
 
 ## Conexión con backend
 
-El backend no está conectado en M3. Los archivos relevantes para conectar:
-
-- `src/api/auth.api.ts` — Reemplazar mocks con llamadas reales (buscar TODO [M4]).
-- `src/store/authStore.ts` — La acción `login` usa mock; actualizar para usar el servicio real.
+- **Registro (M4-1, real):** `RegisterForm` → `services/auth.service.ts#registerUser` → `api/auth.api.ts#registerApi` → `POST /customers`. El servicio mapea el formulario al contrato de `yawi_api` (`address` → `personal_address`, país ISO → nombre) y normaliza errores a `AuthResponse` (mensaje del backend o fallback i18n).
+- **Login (mock):** sigue sin autenticación real. `loginApi` y `authStore.login` conservan el mock; conectar en un milestone posterior (buscar `TODO [M4]`).
+- El registro **no pasa por el store**: el formulario llama al servicio directamente porque no persiste estado de sesión.
 
 ## Notas
 

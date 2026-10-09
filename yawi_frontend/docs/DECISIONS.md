@@ -50,6 +50,21 @@ Este documento registra formalmente las decisiones de arquitectura, tecnologías
 
 ---
 
+## Milestone 4 — Integración del Registro de Customers con la API
+
+| #      | Decisión                               | Opciones consideradas                                                                | Elección                                                                  | Justificación                                                                                                                                                 |
+| ------ | -------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **34** | **Formato de `country` enviado**       | Convertir ISO→nombre en servicio, enviar código ISO, guardar nombre en formulario    | **Convertir ISO alpha-2 → nombre oficial en el servicio**                 | La API persiste nombres completos (`"El Salvador"`). El formulario conserva el código ISO (no cambia la UI ni los tests de validación).                       |
+| **35** | **Mensajes de error del backend**      | Mostrar mensaje del backend + fallback i18n, mapear status→i18n, mapear + mensaje    | **Mensaje del backend + fallback i18n**                                   | Cumple "notificación de error enviado desde el backend". Si no hay mensaje (red/inesperado) se usa `register.error_generic`.                                  |
+| **36** | **Estrategia de mocking de tests**     | `vi.stubGlobal('fetch')`, MSW, mockear el módulo api                                 | **`vi.stubGlobal('fetch', ...)`**                                         | Sin dependencias nuevas; valida el contrato HTTP real del servicio.                                                                                           |
+| **37** | **Ubicación de la acción de registro** | Servicio directo desde el componente, acción `register` en store, hook `useMutation` | **Servicio directo desde el componente**                                  | El registro no persiste estado de sesión; no requiere store. Mantiene el comportamiento actual y minimiza archivos.                                           |
+| **38** | **Capa HTTP**                          | Patrón inline como `artisans.api.ts`, helper en `api/http.ts`, helper en `lib/`      | **Mismo patrón inline que `artisans.api.ts`**                             | Cada archivo `api/*` define su `API_BASE` y usa `fetch`. Cero estructuras nuevas, consistente con lo existente.                                               |
+| **39** | **Documentación**                      | READMEs en api/services/types + DECISIONS, solo carpetas nuevas, máxima              | **READMEs en `api/`, `services/`, `types/` + `DECISIONS.md`**             | Cubre el NFR de autonomía para futuros agentes sin crear carpetas nuevas.                                                                                     |
+| **40** | **Mapeo DTO ↔ dominio**                | DTO y payload en `api/`, mapeo en servicio; todo en servicio; tipos en `types/`      | **DTO/payload en `api/auth.api.ts`; mapeo en `services/auth.service.ts`** | Sigue el ejemplo trabajado de `ARCHITECTURE.md` (api devuelve DTO, el servicio mapea a dominio).                                                              |
+| **41** | **Alias `@/` en Vitest**               | Dejar tests con imports relativos, replicar alias en `vitest.config.ts`              | **Replicar `resolve.alias` de `vite.config.ts` en `vitest.config.ts`**    | Corrige la resolución de `@/` en tests (arregla `artisans.service.test.ts` y `BusinessCard.test.tsx`), mantiene coherencia build/test y no altera el runtime. |
+
+---
+
 ## Milestone 5 — Página de Artesanos y Detalle de Negocio
 
 | #      | Decisión                                | Opciones consideradas                          | Elección                                     | Justificación                                                                                                                                     |
