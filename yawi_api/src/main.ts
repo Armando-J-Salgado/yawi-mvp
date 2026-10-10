@@ -51,6 +51,7 @@ async function bootstrap() {
       'Operaciones para la gestión de números telefónicos',
     )
     .addTag('Businesses', 'Operaciones para la gestión de negocios')
+    .addTag('Products', 'Operaciones para la gestión de productos')
     .addTag(
       'Payment Preferences',
       'Operaciones para la gestión de preferencias de pago',

@@ -4,6 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { Vendor } from '../vendors/entities/vendor.entity';
 import { PhoneNumber } from '../phone-numbers/entities/phone-number.entity';
 import { Business } from '../businesses/entities/business.entity';
+import { Product } from '../products/entities/product.entity';
 import { PaymentPreference } from '../payment-preferences/entities/payment-preference.entity';
 import { Customer } from '../customers/entities/customer.entity';
 
@@ -153,6 +154,83 @@ export class DatabaseService {
           await businessRepo.save(business);
         }
 
+        const createdBusinesses = await businessRepo.find();
+
+        // Seed de Products (2 por cada business creado)
+        const productsData = [
+          {
+            name: 'Juego de Sábanas King Size',
+            price: 45.0,
+            tags: ['hogar', 'dormitorio', 'textil'],
+            properties: {
+              material: '100% algodón',
+              thread_count: 300,
+              color: 'azul marino',
+            },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Lámpara de Mesa LED',
+            price: 22.5,
+            tags: ['hogar', 'iluminación', 'led'],
+            properties: {
+              power: '12W',
+              color_temp: '3000K',
+              dimmable: true,
+            },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Café Pacamara Especial 500g',
+            price: 12.0,
+            tags: ['café', 'artesanal', 'especialidad'],
+            properties: {
+              origin: 'Apaneca, El Salvador',
+              roast: 'medio',
+              process: 'lavado',
+            },
+            business_id: createdBusinesses[1].id,
+          },
+          {
+            name: 'Café Bourbon Miel 500g',
+            price: 14.5,
+            tags: ['café', 'artesanal', 'gourmet'],
+            properties: {
+              origin: 'Santa Ana, El Salvador',
+              roast: 'claro',
+              process: 'honey',
+            },
+            business_id: createdBusinesses[1].id,
+          },
+          {
+            name: 'Ramo de Rosas Rojas x12',
+            price: 25.0,
+            tags: ['flores', 'rosas', 'regalos'],
+            properties: {
+              quantity: 12,
+              flower_type: 'rosa ecuatoriana',
+              includes_card: true,
+            },
+            business_id: createdBusinesses[2].id,
+          },
+          {
+            name: 'Arreglo Floral Primaveral',
+            price: 35.0,
+            tags: ['flores', 'arreglos', 'eventos'],
+            properties: {
+              size: 'mediano',
+              vase_included: true,
+            },
+            business_id: createdBusinesses[2].id,
+          },
+        ];
+
+        const productRepo = manager.getRepository(Product);
+        for (const pData of productsData) {
+          const product = productRepo.create(pData);
+          await productRepo.save(product);
+        }
+
         // Seed de Payment Preferences (1 por cada vendor)
         const preferencesData = [
           {
@@ -270,7 +348,7 @@ export class DatabaseService {
     });
 
     this.logger.log(
-      '✅ Database seeded successfully with vendors, customers, phone numbers, businesses, and payment preferences.',
+      '✅ Database seeded successfully with vendors, customers, phone numbers, businesses, products, and payment preferences.',
     );
   }
 
@@ -286,15 +364,17 @@ export class DatabaseService {
       const dbType = this.dataSource.options.type;
       if (dbType === 'postgres') {
         await queryRunner.query(
-          'TRUNCATE TABLE "payment_preferences", "businesses", "phone_numbers", "vendors", "customers" RESTART IDENTITY CASCADE;',
+          'TRUNCATE TABLE "products", "payment_preferences", "businesses", "phone_numbers", "vendors", "customers" RESTART IDENTITY CASCADE;',
         );
       } else {
         // SQLite o fallback genérico
+        const productRepo = this.dataSource.getRepository(Product);
         const prefRepo = this.dataSource.getRepository(PaymentPreference);
         const businessRepo = this.dataSource.getRepository(Business);
         const phoneRepo = this.dataSource.getRepository(PhoneNumber);
         const vendorRepo = this.dataSource.getRepository(Vendor);
         const customerRepo = this.dataSource.getRepository(Customer);
+        await productRepo.createQueryBuilder().delete().execute();
         await prefRepo.createQueryBuilder().delete().execute();
         await businessRepo.createQueryBuilder().delete().execute();
         await phoneRepo.createQueryBuilder().delete().execute();

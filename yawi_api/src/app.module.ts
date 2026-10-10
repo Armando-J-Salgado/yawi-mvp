@@ -8,6 +8,7 @@ import { PaymentPreferencesModule } from './payment-preferences/payment-preferen
 import { UploaderModule } from './uploader/uploader.module';
 import { CustomersModule } from './customers/customers.module';
 import { AuthModule } from './auth/auth.module';
+import { ProductsModule } from './products/products.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -25,6 +26,7 @@ import { AppService } from './app.service';
     UploaderModule,
     CustomersModule,
     AuthModule,
+    ProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
