@@ -1,0 +1,57 @@
+{
+  "hero": {
+    "badge": "Authentic Products",
+    "title": "Discover the soul of Latin America",
+    "subtitle": "Explore handmade pieces from artisans across the region and connect with unique cultures.",
+    "cta_primary": "Explore catalog",
+    "cta_secondary": "Learn about Yawi",
+    "made_in_latam": "Made in Latin America",
+    "fair_trade": "Fair trade"
+  },
+  "search": {
+    "label": "Search products",
+    "placeholder": "Search by name or tag..."
+  },
+  "filters": {
+    "title": "Filter by tags",
+    "all": "All",
+    "clear": "Clear filters"
+  },
+  "grid": {
+    "loading": "Loading products...",
+    "empty": "We couldn't find products with those criteria.",
+    "error": "We couldn't load the products. Please try again.",
+    "retry": "Retry"
+  },
+  "card": {
+    "view_product": "View product",
+    "artisan_label": "Artisan",
+    "price_label": "Price"
+  },
+  "featured": {
+    "title": "Featured Products",
+    "subtitle": "A selection of pieces that represent the best of Latin American craftsmanship."
+  },
+  "culture": {
+    "title": "Every purchase supports an artisan",
+    "text": "By shopping at Yawi you directly support Latin American entrepreneurs and artisans, helping preserve traditions and creating fair opportunities for their communities.",
+    "footer": "Yawi · Handmade marketplace"
+  },
+  "detail": {
+    "back": "Back to catalog",
+    "gallery_title": "Gallery",
+    "tags_title": "Tags",
+    "price_label": "Price",
+    "artisan_title": "About the artisan",
+    "artisan_country": "Country",
+    "add_to_cart": "Add to cart",
+    "no_images": "This product has no images available yet.",
+    "culture_title": "The impact of your purchase",
+    "culture_text": "Buying {{name}} supports Latin American artisans and helps preserve traditional techniques.",
+    "culture_badge": "Fair and Sustainable Trade",
+    "culture_footer": "Every purchase creates real impact in artisan communities",
+    "loading": "Loading product...",
+    "error": "We couldn't load the product.",
+    "not_found": "Product not found."
+  }
+}
