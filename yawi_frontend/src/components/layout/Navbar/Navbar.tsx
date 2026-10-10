@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Menu, Globe, User as UserIcon } from 'lucide-react';
 import { NavLinks } from './NavLinks';
 import { MobileMenu } from './MobileMenu';
+import { ProfileMenu } from './ProfileMenu';
 import { useAuthStore } from '../../../store/authStore';
 
 const yawiLogo = '/images/yawi-logo.svg';
@@ -11,7 +12,7 @@ const yawiLogo = '/images/yawi-logo.svg';
 export const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation('nav');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { isAuthenticated, user, logout } = useAuthStore();
+  const { isAuthenticated } = useAuthStore();
 
   const toggleLanguage = () => {
     const nextLang = i18n.language.startsWith('es') ? 'en' : 'es';
@@ -54,16 +55,7 @@ export const Navbar: React.FC = () => {
 
           {/* Auth Button */}
           {isAuthenticated ? (
-            <div className="hidden sm:flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => logout()}
-                className="w-9 h-9 rounded-full bg-primary-navy text-white text-xs font-bold flex items-center justify-center hover:bg-primary-indigo transition-colors"
-                title="Cerrar sesión"
-              >
-                {user?.name?.[0] || 'U'}
-              </button>
-            </div>
+            <ProfileMenu />
           ) : (
             <Link
               to="/login"

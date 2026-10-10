@@ -6,7 +6,17 @@ Centraliza los stores de estado global de la aplicación web utilizando Zustand 
 
 ## Contenido
 
-- `authStore.ts`: Store global del estado de sesión del usuario (`isAuthenticated`, `user`, `setAuthenticated`, `setUser`).
+- `authStore.ts`: Store global del estado de sesión del usuario. Estado: `isAuthenticated`, `user`, `token`. Acciones: `setAuthenticated`, `setUser`, `login`, `logout`, `restoreSession`.
+
+## Sesión y persistencia
+
+- El store usa el middleware `persist` de Zustand con `localStorage` bajo la clave `yawi-auth`
+  (`partialize` persiste `isAuthenticated`, `user` y `token`).
+- `login(email, password)` llama a `services/auth.service.ts` y, si hay éxito, guarda el JWT
+  y lo inyecta en `lib/authToken` (`setAuthToken`) para autorizar futuras peticiones.
+- `restoreSession()` valida el token persistido con `GET /auth/me` al montar la app
+  (vía `features/auth/hooks/useSessionBootstrap`); si es inválido, limpia la sesión.
+- `logout()` limpia estado y helper de token.
 
 ## Reglas
 

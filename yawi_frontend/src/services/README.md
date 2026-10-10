@@ -13,10 +13,10 @@ Lógica de dominio **pura** (sin React): mapea DTOs del backend a modelos de dom
 
 ## Contenido
 
-| Archivo               | Responsabilidad                                                                                                                                                                                              |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `auth.service.ts`     | `loginUser` (mock) y `registerUser` (real). Mapea `CustomerRegistrationData` → `CreateCustomerPayload` (incluye `resolveCountryName` y `address` → `personal_address`) y normaliza errores a `AuthResponse`. |
-| `artisans.service.ts` | Mapea `BusinessDto` → `Business`, sanea datos públicos del vendor (`PublicVendor`).                                                                                                                          |
+| Archivo               | Responsabilidad                                                                                                                                                                                                 |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `auth.service.ts`     | `loginUser` (real, `POST /auth/login`), `registerUser` (real, `POST /customers`) y `fetchCurrentUser` (`GET /auth/me`, bootstrap). Mapea DTOs ↔ `AuthUser`/`AuthResponse` y normaliza errores a `AuthResponse`. |
+| `artisans.service.ts` | Mapea `BusinessDto` → `Business`, sanea datos públicos del vendor (`PublicVendor`).                                                                                                                             |
 
 ## Nota sobre imports (`@/` vs relativos)
 

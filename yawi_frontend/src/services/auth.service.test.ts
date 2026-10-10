@@ -1,7 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { loginUser, registerUser } from './auth.service';
-import type { CustomerRegistrationData } from '../types/auth';
-import type { CustomerDto } from '../api/auth.api';
+import { fetchCurrentUser, loginUser, registerUser } from './auth.service';
+import type { CustomerRegistrationData } from '@/types/auth';
+import type { CustomerDto, LoginResponseDto } from '@/api/auth.api';
+import { setAuthToken } from '@/lib/authToken';
 
 function buildFormData(
   overrides: Partial<CustomerRegistrationData> = {},
@@ -33,6 +34,22 @@ function buildCustomerDto(overrides: Partial<CustomerDto> = {}): CustomerDto {
   };
 }
 
+function buildLoginDto(overrides: Partial<LoginResponseDto> = {}): LoginResponseDto {
+  return {
+    access_token: 'jwt-token',
+    token_type: 'Bearer',
+    expires_in: '1d',
+    user: {
+      id: 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
+      userType: 'customer',
+      email: 'cliente@example.com',
+      name: 'Ana',
+      lastname: 'Pérez',
+    },
+    ...overrides,
+  };
+}
+
 function jsonResponse(body: unknown, status = 200): Response {
   return {
     ok: status >= 200 && status < 300,
@@ -42,24 +59,78 @@ function jsonResponse(body: unknown, status = 200): Response {
 }
 
 describe('auth.service', () => {
+  beforeEach(() => {
+    vi.stubGlobal('fetch', vi.fn());
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.clearAllMocks();
+    setAuthToken(null);
+  });
+
   describe('loginUser', () => {
-    it('returns success for mock login', async () => {
-      const result = await loginUser({ email: 'test@test.com', password: 'password123' });
+    it('maps LoginResponseDto to AuthResponse with session data', async () => {
+      vi.mocked(fetch).mockResolvedValueOnce(jsonResponse(buildLoginDto(), 200));
+
+      const result = await loginUser({ email: 'cliente@example.com', password: 'secret123' });
+
       expect(result.success).toBe(true);
-      expect(result.user?.email).toBe('test@test.com');
+      expect(result.user?.id).toBe('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11');
+      expect(result.user?.userType).toBe('customer');
+      expect(result.token).toBe('jwt-token');
+      expect(result.tokenType).toBe('Bearer');
+      expect(result.expiresIn).toBe('1d');
+    });
+
+    it('returns the backend error message on 401', async () => {
+      vi.mocked(fetch).mockResolvedValueOnce(
+        jsonResponse({ statusCode: 401, message: 'Credenciales inválidas' }, 401),
+      );
+
+      const result = await loginUser({ email: 'cliente@example.com', password: 'wrong' });
+
+      expect(result.success).toBe(false);
+      expect(result.error).toBe('Credenciales inválidas');
+    });
+
+    it('falls back to no error message on network failure', async () => {
+      vi.mocked(fetch).mockRejectedValueOnce(new TypeError('Failed to fetch'));
+
+      const result = await loginUser({ email: 'cliente@example.com', password: 'secret123' });
+
+      expect(result.success).toBe(false);
+      expect(result.error).toBeUndefined();
+    });
+  });
+
+  describe('fetchCurrentUser', () => {
+    it('returns the mapped AuthUser when GET /auth/me succeeds', async () => {
+      setAuthToken('my-token');
+      vi.mocked(fetch).mockResolvedValueOnce(
+        jsonResponse(
+          { id: 'x', userType: 'customer', email: 'a@b.com', name: 'Ana', lastname: 'Pérez' },
+          200,
+        ),
+      );
+
+      const user = await fetchCurrentUser();
+
+      expect(user.id).toBe('x');
+      expect(user.email).toBe('a@b.com');
+      expect(user.userType).toBe('customer');
+    });
+
+    it('propagates the error when the token is invalid', async () => {
+      vi.mocked(fetch).mockResolvedValueOnce(
+        jsonResponse({ statusCode: 401, message: 'Token inválido' }, 401),
+      );
+
+      await expect(fetchCurrentUser()).rejects.toThrow('Token inválido');
     });
   });
 
   describe('registerUser', () => {
-    beforeEach(() => {
-      vi.stubGlobal('fetch', vi.fn());
-    });
-
-    afterEach(() => {
-      vi.unstubAllGlobals();
-      vi.clearAllMocks();
-    });
-
     it('creates the customer and maps the response to AuthUser', async () => {
       vi.mocked(fetch).mockResolvedValueOnce(jsonResponse(buildCustomerDto(), 201));
 

@@ -22,10 +22,19 @@ const res = await fetch(`${API_BASE}/<recurso>`, {/* ... */});
 
 ## Recursos
 
-| Archivo           | Recurso                                                     | Consumido por                  |
-| ----------------- | ----------------------------------------------------------- | ------------------------------ |
-| `auth.api.ts`     | `POST /customers` (registro real), login mock (`TODO [M4]`) | `services/auth.service.ts`     |
-| `artisans.api.ts` | `GET /businesses`, `GET /businesses/:id`                    | `services/artisans.service.ts` |
+| Archivo           | Recurso                                                                           | Consumido por                  |
+| ----------------- | --------------------------------------------------------------------------------- | ------------------------------ |
+| `auth.api.ts`     | `POST /customers` (registro), `POST /auth/login` (login), `GET /auth/me` (sesión) | `services/auth.service.ts`     |
+| `artisans.api.ts` | `GET /businesses`, `GET /businesses/:id`                                          | `services/artisans.service.ts` |
+
+## Auth (`auth.api.ts`)
+
+- `registerApi(payload)` → `POST /customers` (público).
+- `loginApi(credentials)` → `POST /auth/login` (público). Devuelve `LoginResponseDto`
+  (`access_token`, `token_type`, `expires_in`, `user: AuthUserDto`).
+- `getMeApi()` → `GET /auth/me` (protegido). Lee el JWT desde `lib/authToken`
+  mediante `buildAuthHeaders()` (la capa `api` no conoce el store).
+- Los errores no-2xx se normalizan a `ApiError` con el `message` del backend.
 
 ## Nota sobre el alias `@/`
 

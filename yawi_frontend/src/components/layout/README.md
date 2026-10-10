@@ -7,7 +7,7 @@ Aloja la estructura global y los componentes de shell visual de la aplicación w
 ## Contenido
 
 - `AppLayout/`: Envoltorio principal que renderiza la barra de navegación superior, el `<Outlet />` de enrutamiento y el pie de página global.
-- `Navbar/`: Barra de navegación responsive con logo, links navegables (`NAV_ITEMS`), control de cambio de idioma, estado de login y menú lateral deslizable (`MobileMenu`).
+- `Navbar/`: Barra de navegación responsive con logo, links navegables (`NAV_ITEMS`), control de cambio de idioma, estado de login, menú de perfil desplegable (`ProfileMenu`) y menú lateral deslizable (`MobileMenu`).
 - `Footer/`: Pie de página con información institucional, enlaces rápidos, contacto, redes sociales y copyright dinámico.
 - `index.ts`: Barrel export de los componentes del layout.
 

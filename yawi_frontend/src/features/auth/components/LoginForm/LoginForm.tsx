@@ -44,8 +44,9 @@ export const LoginForm: React.FC = () => {
         // o la ruta que corresponda cuando se implementen esas páginas.
         navigate('/');
       } else {
-        // No revelar si falla email o password (seguridad por oscuridad)
-        showToast.error(t('login.error_invalid_credentials'));
+        // El backend devuelve 'Credenciales inválidas' y el servicio lo propaga.
+        // Si no hay mensaje (red/inesperado), se usa el fallback i18n.
+        showToast.error(result.error || t('login.error_invalid_credentials'));
       }
     } catch {
       showToast.error(t('login.error_invalid_credentials'));
