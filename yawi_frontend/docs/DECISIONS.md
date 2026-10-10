@@ -80,6 +80,22 @@ Este documento registra formalmente las decisiones de arquitectura, tecnologías
 
 ---
 
+## Milestone 4-2 — Integración del Login de Customers con la API
+
+| #      | Decisión                          | Opciones consideradas                                                              | Elección                                                 | Justificación                                                                                                                                             |
+| ------ | --------------------------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **42** | **Persistencia de sesión**        | Zustand `persist` (localStorage), solo memoria                                     | **`persist` en localStorage (`yawi-auth`)**              | El JWT y el usuario sobreviven a la recarga, permitiendo autorizar futuras operaciones sin re-login.                                                      |
+| **43** | **Transporte del token a `api/`** | Helper en `lib/`, token por parámetro, solo store                                  | **Helper `lib/authToken.ts`**                            | Respeta la dirección `store → services → api → lib`: `api/` es el único que hace HTTP y lee el token sin conocer el store.                                |
+| **44** | **Restaurar sesión al cargar**    | Diferir, bootstrap con `GET /auth/me`                                              | **Bootstrap con `GET /auth/me`**                         | Valida el token persistido al arrancar y limpia la sesión si es inválido/expirado.                                                                        |
+| **45** | **Modelo `AuthUser`**             | `country`/`address` opcionales, completar con `GET /customers/:id`, mapear a vacío | **`country`/`address` opcionales + `userType`**          | El login solo devuelve id/email/name/lastname/userType; no se añaden llamadas extra ni se inventan datos.                                                 |
+| **46** | **Redirección post-login**        | Mantener `/`, redirigir a otra ruta                                                | **Mantener `/`**                                         | Aún no existe dashboard de Customer; se cambia cuando exista la página de cuenta.                                                                         |
+| **47** | **`AuthContext`**                 | Crear `src/context/AuthContext.tsx`, no crear                                      | **No crear**                                             | Zustand es la única fuente de sesión (consistente con Decisión #1). No se introduce una estructura inexistente.                                           |
+| **48** | **Error de login**                | Mostrar mensaje del backend + fallback, mapear status→i18n                         | **Mensaje del backend + fallback i18n**                  | Cumple el RF "notificación de error enviado desde el backend"; el fallback `login.error_invalid_credentials` cubre red/inesperado (mismo patrón que #35). |
+| **49** | **Ubicación del login real**      | Reemplazar mock en `api/auth.api.ts`, nueva capa                                   | **Reemplazar el mock de `loginApi` + añadir `getMeApi`** | Reutiliza `ApiError`/`extractErrorMessage` existentes y mantiene el patrón inline de `artisans.api.ts` (Decisión #38).                                    |
+| **50** | **Tests sin Testing Library**     | Instalar RTL, mantener patrón de export                                            | **Mantener patrón actual (sin RTL)**                     | No hay Testing Library en el proyecto; se priorizan tests de lógica (servicio/store/helper) y se conserva el test trivial de componente.                  |
+
+---
+
 ## Decisiones Diferidas a Futuros Milestones
 
 - **Supabase Client Setup (`src/lib/supabase.ts`)**: Integración con autenticación real de usuarios/vendedores.

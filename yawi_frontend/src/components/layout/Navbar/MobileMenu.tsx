@@ -109,7 +109,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                 }}
                 className="text-xs text-peach-accent font-medium hover:underline cursor-pointer"
               >
-                Salir
+                {t('logout')}
               </button>
             </div>
           ) : (

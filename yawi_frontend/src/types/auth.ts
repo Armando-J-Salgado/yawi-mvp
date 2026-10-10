@@ -7,8 +7,9 @@ export interface AuthUser {
   email: string;
   name: string;
   lastname: string;
-  country: string;
-  address: string;
+  userType?: 'customer';
+  country?: string; // opcional: el login no lo devuelve
+  address?: string; // opcional: el login no lo devuelve
   avatarUrl?: string;
 }
 
@@ -41,4 +42,7 @@ export interface AuthResponse {
   success: boolean;
   error?: string;
   user?: AuthUser;
+  token?: string;
+  tokenType?: string;
+  expiresIn?: string;
 }

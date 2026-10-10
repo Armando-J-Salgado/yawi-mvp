@@ -1,12 +1,17 @@
-import { ApiError, loginApi, registerApi } from '../api/auth.api';
-import type { CreateCustomerPayload, CustomerDto } from '../api/auth.api';
-import { resolveCountryName } from '../utils/countryName';
+import { ApiError, getMeApi, loginApi, registerApi } from '@/api/auth.api';
+import type {
+  AuthUserDto,
+  CreateCustomerPayload,
+  CustomerDto,
+  LoginResponseDto,
+} from '@/api/auth.api';
+import { resolveCountryName } from '@/utils/countryName';
 import type {
   AuthResponse,
   AuthUser,
   CustomerRegistrationData,
   LoginCredentials,
-} from '../types/auth';
+} from '@/types/auth';
 
 /**
  * Servicio de autenticación.
@@ -14,9 +19,45 @@ import type {
  * Los componentes y el store consumen este servicio, nunca la API directamente.
  */
 
+/** Mapea la identidad pública del backend (`POST /auth/login`, `GET /auth/me`) al modelo de sesión. */
+function mapAuthUserDtoToAuthUser(dto: AuthUserDto): AuthUser {
+  return {
+    id: dto.id,
+    email: dto.email,
+    name: dto.name,
+    lastname: dto.lastname,
+    userType: dto.userType,
+  };
+}
+
+/** Normaliza la respuesta de login a `AuthResponse` con los datos de sesión. */
+function mapLoginResponse(dto: LoginResponseDto): AuthResponse {
+  return {
+    success: true,
+    user: mapAuthUserDtoToAuthUser(dto.user),
+    token: dto.access_token,
+    tokenType: dto.token_type,
+    expiresIn: dto.expires_in,
+  };
+}
+
 export async function loginUser(credentials: LoginCredentials): Promise<AuthResponse> {
-  // Login permanece mockeado (fuera de alcance de M4-1).
-  return loginApi(credentials);
+  try {
+    return mapLoginResponse(await loginApi(credentials));
+  } catch (error) {
+    // Mensaje del backend si es un ApiError; si no (red/inesperado), sin mensaje
+    // para que el componente aplique el fallback i18n `login.error_invalid_credentials`.
+    if (error instanceof ApiError) return { success: false, error: error.message };
+    return { success: false };
+  }
+}
+
+/**
+ * Valida el token actual (leído por `api/` desde `lib/authToken`) y devuelve el usuario.
+ * Usado por el bootstrap de sesión del store al cargar la app.
+ */
+export async function fetchCurrentUser(): Promise<AuthUser> {
+  return mapAuthUserDtoToAuthUser(await getMeApi());
 }
 
 /** Mapea la respuesta pública del backend al modelo de sesión del frontend. */
