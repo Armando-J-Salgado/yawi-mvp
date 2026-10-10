@@ -7,6 +7,7 @@ Centraliza los stores de estado global de la aplicación web utilizando Zustand 
 ## Contenido
 
 - `authStore.ts`: Store global del estado de sesión del usuario. Estado: `isAuthenticated`, `user`, `token`. Acciones: `setAuthenticated`, `setUser`, `login`, `logout`, `restoreSession`.
+- `cartStore.ts`: Store global del carrito. Estado: `items`, `isOpen`. Acciones: `addToCart`, `increment`, `decrement`, `remove`, `clear`, `openCart`, `closeCart`, `toggleCart`. Selectores: `selectTotalItems`, `selectSubtotal`. Persistencia local (`localStorage`, clave `yawi-cart`, solo `items`). La lógica pura vive en `services/cart.service.ts`.
 
 ## Sesión y persistencia
 
@@ -27,4 +28,4 @@ Centraliza los stores de estado global de la aplicación web utilizando Zustand 
 ## Dependencias
 
 - Importa de: `zustand`.
-- Importado por: `components/layout/Navbar/`, y futuros componentes con estado autenticado.
+- Importado por: `components/layout/Navbar/`, `features/cart/` y futuros componentes con estado autenticado o de carrito.

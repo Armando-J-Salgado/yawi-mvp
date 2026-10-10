@@ -7,13 +7,13 @@ Gestiona la configuración del sistema de internacionalización (i18n) de Yawi, 
 ## Contenido
 
 - `i18n.ts`: Inicialización de la instancia de `i18next` y `react-i18next` con detección de idioma del navegador.
-- `locales/es/`: Archivos JSON de traducción en Español (`common.json`, `landing.json`, `nav.json`, `footer.json`).
-- `locales/en/`: Archivos JSON de traducción en Inglés (`common.json`, `landing.json`, `nav.json`, `footer.json`).
+- `locales/es/`: Archivos JSON de traducción en Español (`common.json`, `landing.json`, `nav.json`, `footer.json`, `seller.json`, `auth.json`, `artisans.json`, `catalog.json`, `cart.json`).
+- `locales/en/`: Archivos JSON de traducción en Inglés (mismos namespaces).
 
 ## Reglas
 
 - **Estructura idéntica**: Los archivos JSON de cada idioma deben mantener exactamente la misma jerarquía y nombres de claves.
-- **Namespaces modulares**: Separar traducciones por dominio/feature (`landing`, `nav`, `footer`, `common`).
+- **Namespaces modulares**: Separar traducciones por dominio/feature (`common`, `landing`, `nav`, `footer`, `seller`, `auth`, `artisans`, `catalog`, `cart`).
 - **Cero strings hardcoded**: Todo texto presentado al usuario en la UI debe obtenerse mediante `useTranslation()`.
 
 ## Dependencias

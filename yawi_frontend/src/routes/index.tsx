@@ -9,6 +9,9 @@ import { Skeleton } from '../components/ui';
 
 const ArtisansPage = lazy(() => import('../pages/ArtisansPage/ArtisansPage'));
 const BusinessDetailPage = lazy(() => import('../pages/BusinessDetailPage/BusinessDetailPage'));
+const CatalogPage = lazy(() => import('../pages/CatalogPage/CatalogPage'));
+const ProductDetailPage = lazy(() => import('../pages/ProductDetailPage/ProductDetailPage'));
+const CartPage = lazy(() => import('../pages/CartPage/CartPage'));
 
 function PageFallback() {
   return (
@@ -34,6 +37,9 @@ export function AppRoutes() {
           <Route path="/vender" element={<SellerLandingPage />} />
           <Route path="/artisans" element={<ArtisansPage />} />
           <Route path="/artisans/:id" element={<BusinessDetailPage />} />
+          <Route path="/products" element={<CatalogPage />} />
+          <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Route>
 
         {/* Rutas con layout de autenticación (solo logo, sin Navbar/Footer) */}

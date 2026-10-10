@@ -1,0 +1,23 @@
+{
+  "title": "Tu carrito",
+  "open": "Abrir carrito",
+  "close": "Cerrar carrito",
+  "items": "{{count}} artículos",
+  "empty_title": "Tu carrito está vacío",
+  "empty_message": "Explora el catálogo y agrega tus productos favoritos.",
+  "empty_cta": "Explorar productos",
+  "increase": "Aumentar cantidad",
+  "decrease": "Reducir cantidad",
+  "remove": "Eliminar",
+  "clear": "Vaciar carrito",
+  "quantity": "Cantidad",
+  "subtotal": "Subtotal",
+  "total": "Total",
+  "unit_price": "Precio unitario",
+  "view_full_cart": "Ver carrito completo",
+  "continue_shopping": "Seguir comprando",
+  "checkout": "Finalizar compra",
+  "checkout_coming_soon": "Checkout próximamente",
+  "added": "Producto agregado al carrito",
+  "view_cart": "Ver carrito"
+}

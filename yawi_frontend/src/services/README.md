@@ -17,6 +17,8 @@ Lógica de dominio **pura** (sin React): mapea DTOs del backend a modelos de dom
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `auth.service.ts`     | `loginUser` (real, `POST /auth/login`), `registerUser` (real, `POST /customers`) y `fetchCurrentUser` (`GET /auth/me`, bootstrap). Mapea DTOs ↔ `AuthUser`/`AuthResponse` y normaliza errores a `AuthResponse`. |
 | `artisans.service.ts` | Mapea `BusinessDto` → `Business`, sanea datos públicos del vendor (`PublicVendor`).                                                                                                                             |
+| `products.service.ts` | Mapea `ProductDto` → `Product`; `filterProducts` (búsqueda por nombre/tags + filtro por tags OR), `extractAvailableTags`, `selectFeaturedProducts`.                                                             |
+| `cart.service.ts`     | Lógica pura del carrito: `toCartItem`, `addItem`, `incrementItem`, `decrementItem`, `removeItem`, `computeTotalItems`, `computeSubtotal`.                                                                       |
 
 ## Nota sobre imports (`@/` vs relativos)
 

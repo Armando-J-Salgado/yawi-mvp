@@ -12,6 +12,9 @@ Representa las vistas de nivel superior asociadas a rutas de la aplicación web.
 - `RegisterPage/`: Página de registro de clientes (`/register`) que orquesta el feature `auth` en 2 pasos (usa `AuthLayout`).
 - `ArtisansPage/`: Página de exploración de artesanos (`/artisans`) que orquesta el feature `artisans` (usa `AppLayout`).
 - `BusinessDetailPage/`: Página de detalle de negocio/artesano (`/artisans/:id`) que orquesta el feature `artisans` (usa `AppLayout`).
+- `CatalogPage/`: Página de catálogo de productos (`/products`) que orquesta el feature `catalog` (usa `AppLayout`).
+- `ProductDetailPage/`: Página de detalle de producto (`/products/:id`) que orquesta el feature `catalog` (usa `AppLayout`).
+- `CartPage/`: Página del carrito (`/cart`) que orquesta el feature `cart` (usa `AppLayout`).
 - `README.md`: Este archivo descriptivo.
 
 ## Reglas
@@ -22,5 +25,5 @@ Representa las vistas de nivel superior asociadas a rutas de la aplicación web.
 
 ## Dependencias
 
-- Importa de: `features/landing/`, `features/seller/`, `features/auth/`, `features/artisans/`.
+- Importa de: `features/landing/`, `features/seller/`, `features/auth/`, `features/artisans/`, `features/catalog/`, `features/cart/`.
 - Importado por: `routes/index.tsx`.

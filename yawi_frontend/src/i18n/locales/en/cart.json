@@ -1,0 +1,23 @@
+{
+  "title": "Your cart",
+  "open": "Open cart",
+  "close": "Close cart",
+  "items": "{{count}} items",
+  "empty_title": "Your cart is empty",
+  "empty_message": "Explore the catalog and add your favorite products.",
+  "empty_cta": "Explore products",
+  "increase": "Increase quantity",
+  "decrease": "Decrease quantity",
+  "remove": "Remove",
+  "clear": "Clear cart",
+  "quantity": "Quantity",
+  "subtotal": "Subtotal",
+  "total": "Total",
+  "unit_price": "Unit price",
+  "view_full_cart": "View full cart",
+  "continue_shopping": "Continue shopping",
+  "checkout": "Checkout",
+  "checkout_coming_soon": "Checkout coming soon",
+  "added": "Product added to cart",
+  "view_cart": "View cart"
+}

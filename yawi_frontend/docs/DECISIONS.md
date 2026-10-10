@@ -96,6 +96,28 @@ Este documento registra formalmente las decisiones de arquitectura, tecnologías
 
 ---
 
+## Milestone 6 — Catálogo de Productos, Detalle y Carrito
+
+| #      | Decisión                              | Opciones consideradas                                              | Elección                                                               | Justificación                                                                                                             |
+| ------ | ------------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| **51** | **Modelo de precio**                  | Sin precio, `price` + `currency` variable, `price` con moneda fija | **`price: number`; moneda fija `USD`**                                 | El producto mínimo no define moneda. El carrito requiere subtotal. Se fija USD como moneda única del MVP.                 |
+| **52** | **Fuente de datos de productos**      | Mocks en componentes, mocks tras `api/`+`services/`, diferir       | **Mocks tras `api/products.api.ts` + `services/products.service.ts`**  | Respeta la arquitectura de capas. La integración real solo reemplaza el cuerpo de `api/`.                                 |
+| **53** | **Ubicación del store del carrito**   | `features/cart/store/`, `src/store/cartStore.ts`                   | **`src/store/cartStore.ts`**                                           | Consistente con `authStore.ts` y con `src/store/README.md`. Permite que el Navbar lea el contador sin invertir capas.     |
+| **54** | **Rutas**                             | `/catalog`+`/catalog/:id`, `/products`+`/products/:id`             | **`/products`, `/products/:id`, `/cart`**                              | Convención de URLs en inglés del proyecto; catálogo y detalle con prefijo de recurso.                                     |
+| **55** | **UI del carrito**                    | Página, drawer, ambos                                              | **Drawer global + página `/cart`**                                     | El drawer da acceso rápido; la página ofrece resumen amplio en escritorio.                                                |
+| **56** | **Persistencia del carrito**          | Memoria, `persist` localStorage                                    | **Zustand `persist` en `localStorage` (`yawi-cart`)**                  | El carrito sobrevive recargas. La persistencia remota queda fuera de alcance.                                             |
+| **57** | **Búsqueda y filtrado**               | Filtrado en API, filtrado en cliente                               | **Filtrado en cliente**                                                | No hay endpoint real. Búsqueda por nombre **y** tags; filtro por tags con semántica **OR**.                               |
+| **58** | **Reutilización de tarjeta**          | Extender `common/ProductCard`, crear nueva en feature              | **Extender `components/common/ProductCard`**                           | Ya es un componente de dominio compartido. Se agregan `tags` y `businessName` opcionales sin romper la landing.           |
+| **59** | **Resolución de imágenes**            | URL tal cual, helper, forzar absolutas                             | **`utils/resolveImageUrl`**                                            | Compatibilidad con rutas relativas `/uploads/...` (local) y absolutas (Supabase).                                         |
+| **60** | **Namespaces i18n**                   | `catalog`+`cart`, `catalog`+`product`+`cart`, `shop`               | **`catalog` + `cart`**                                                 | Separación por dominio consistente con `landing`/`artisans`/`seller`.                                                     |
+| **61** | **"Adaptadores" (NFR)**               | Crear carpeta `adapters/`, usar capas existentes                   | **`api/` = adaptador de transporte; mapeo DTO→dominio en `services/`** | `ARCHITECTURE.md` no define carpeta `adapters/`; crearla sería una estructura paralela (prohibida).                       |
+| **62** | **Estrategia de pruebas**             | RTL+jsdom, lógica pura (patrón actual)                             | **Lógica pura (Vitest node)**                                          | Ni `@testing-library` ni `jsdom` están instalados (Decisión #50). Se testean servicios, store, utils y el adaptador mock. |
+| **63** | **Formato de moneda**                 | `.toFixed` disperso, `utils/formatCurrency`                        | **`utils/formatCurrency`**                                             | Centraliza el formato USD.                                                                                                |
+| **64** | **Contador del carrito en el layout** | Navbar importa el feature, Navbar lee el store global              | **Navbar lee `src/store/cartStore.ts`**                                | Mismo patrón ya usado con `authStore`. Evita inversión `components/layout → features`.                                    |
+| **65** | **Tags como contenido**               | Traducir tags, mostrar tags crudos                                 | **Tags crudos (datos de producto)**                                    | Los tags son datos, no chrome de UI. El texto de interfaz asociado sí se traduce.                                         |
+
+---
+
 ## Decisiones Diferidas a Futuros Milestones
 
 - **Supabase Client Setup (`src/lib/supabase.ts`)**: Integración con autenticación real de usuarios/vendedores.
