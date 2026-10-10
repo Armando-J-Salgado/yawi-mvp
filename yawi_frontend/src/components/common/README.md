@@ -6,7 +6,7 @@ Aloja componentes con lógica o modelos de dominio de negocio compartidos por do
 
 ## Contenido
 
-- `ProductCard/`: Tarjeta visual de producto artesanal con imagen, nombre, país de origen, artesano, precio y botón de acción.
+- `ProductCard/`: Tarjeta visual de producto artesanal con imagen, nombre, negocio/artesano (opcional), tags (opcional, hasta 3), país (opcional), precio y botón de acción. Reutilizada por la landing y el catálogo. Resuelve imágenes/`null` con `utils/`.
 - `index.ts`: Barrel export de los componentes comunes.
 
 ## Reglas

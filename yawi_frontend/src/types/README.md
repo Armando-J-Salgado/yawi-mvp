@@ -10,6 +10,8 @@ Tipos de **dominio compartidos** por varias capas (componentes, servicios, store
 | ------------ | --------------------------------------------------------------------------- |
 | `auth.ts`    | `AuthUser`, `CustomerRegistrationData`, `LoginCredentials`, `AuthResponse`. |
 | `artisan.ts` | `Business`, `BusinessDto`, `PublicVendor`, etc.                             |
+| `product.ts` | `Product`, `ProductDto`, `ProductFilters` (catálogo).                       |
+| `cart.ts`    | `CartItem`.                                                                 |
 
 ## Distinción importante
 

@@ -10,6 +10,8 @@ import esFooter from './locales/es/footer.json';
 import esSeller from './locales/es/seller.json';
 import esAuth from './locales/es/auth.json';
 import esArtisans from './locales/es/artisans.json';
+import esCatalog from './locales/es/catalog.json';
+import esCart from './locales/es/cart.json';
 import enCommon from './locales/en/common.json';
 import enLanding from './locales/en/landing.json';
 import enNav from './locales/en/nav.json';
@@ -17,6 +19,8 @@ import enFooter from './locales/en/footer.json';
 import enSeller from './locales/en/seller.json';
 import enAuth from './locales/en/auth.json';
 import enArtisans from './locales/en/artisans.json';
+import enCatalog from './locales/en/catalog.json';
+import enCart from './locales/en/cart.json';
 
 i18n
   .use(LanguageDetector)
@@ -31,6 +35,8 @@ i18n
         seller: esSeller,
         auth: esAuth,
         artisans: esArtisans,
+        catalog: esCatalog,
+        cart: esCart,
       },
       en: {
         common: enCommon,
@@ -40,6 +46,8 @@ i18n
         seller: enSeller,
         auth: enAuth,
         artisans: enArtisans,
+        catalog: enCatalog,
+        cart: enCart,
       },
     },
     lng: 'es', // Idioma por defecto: español

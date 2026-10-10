@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import { X, Globe, User as UserIcon } from 'lucide-react';
+import { X, Globe, User as UserIcon, ShoppingBag } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { NavLinks } from './NavLinks';
 import { useAuthStore } from '../../../store/authStore';
@@ -90,6 +90,15 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
 
         {/* Footer actions: Auth + Language */}
         <div className="pt-6 border-t border-border flex flex-col gap-4">
+          <Link
+            to="/cart"
+            onClick={onClose}
+            className="flex items-center gap-2 px-3 py-2 text-sm font-semibold text-primary-navy hover:text-primary-indigo hover:bg-border/40 rounded-xl transition-colors"
+          >
+            <ShoppingBag className="w-4 h-4" />
+            <span>{t('view_cart', { ns: 'cart' })}</span>
+          </Link>
+
           {isAuthenticated ? (
             <div className="flex items-center gap-3 p-2 bg-soft-lavender/20 rounded-xl">
               <div className="w-9 h-9 rounded-full bg-primary-indigo text-white flex items-center justify-center font-bold">

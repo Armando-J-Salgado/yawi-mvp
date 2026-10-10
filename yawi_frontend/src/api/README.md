@@ -22,10 +22,11 @@ const res = await fetch(`${API_BASE}/<recurso>`, {/* ... */});
 
 ## Recursos
 
-| Archivo           | Recurso                                                                           | Consumido por                  |
-| ----------------- | --------------------------------------------------------------------------------- | ------------------------------ |
-| `auth.api.ts`     | `POST /customers` (registro), `POST /auth/login` (login), `GET /auth/me` (sesión) | `services/auth.service.ts`     |
-| `artisans.api.ts` | `GET /businesses`, `GET /businesses/:id`                                          | `services/artisans.service.ts` |
+| Archivo           | Recurso                                                                                             | Consumido por                  |
+| ----------------- | --------------------------------------------------------------------------------------------------- | ------------------------------ |
+| `auth.api.ts`     | `POST /customers` (registro), `POST /auth/login` (login), `GET /auth/me` (sesión)                   | `services/auth.service.ts`     |
+| `artisans.api.ts` | `GET /businesses`, `GET /businesses/:id`                                                            | `services/artisans.service.ts` |
+| `products.api.ts` | **MOCK** de `GET /products`, `GET /products/:id` (reemplazar por `fetch` cuando exista el endpoint) | `services/products.service.ts` |
 
 ## Auth (`auth.api.ts`)
 
@@ -35,6 +36,12 @@ const res = await fetch(`${API_BASE}/<recurso>`, {/* ... */});
 - `getMeApi()` → `GET /auth/me` (protegido). Lee el JWT desde `lib/authToken`
   mediante `buildAuthHeaders()` (la capa `api` no conoce el store).
 - Los errores no-2xx se normalizan a `ApiError` con el `message` del backend.
+
+## Products (`products.api.ts`)
+
+- **Adaptador mock temporal**: `yawi_api` aún no expone `Product`. `getProducts()` y `getProductById(id)` devuelven el dataset `src/data/mock-products.ts` con la MISMA firma que tendrá la implementación HTTP real.
+- Al existir el endpoint, reemplazar el cuerpo de ambas funciones por `fetch(`${API_BASE}/products`)` / `fetch(`${API_BASE}/products/${id}`)`; eliminar `src/data/mock-products.ts`. No se tocan componentes ni servicios.
+- El DTO `ProductDto` **se declara en `@/types/product`** (no en el `.api.ts`) y se re-exporta desde aquí, para romper el ciclo `api ↔ data` (regla de capas: `data → types`).
 
 ## Nota sobre el alias `@/`
 

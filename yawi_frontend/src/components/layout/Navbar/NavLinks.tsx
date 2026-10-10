@@ -10,7 +10,7 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   { labelKey: 'home', href: '/', type: 'route' },
-  { labelKey: 'explore', href: '/#categories', type: 'hash' },
+  { labelKey: 'explore', href: '/products', type: 'route' },
   { labelKey: 'artisans', href: '/artisans', type: 'route' },
   { labelKey: 'about', href: '/#story', type: 'hash' },
   { labelKey: 'sell', href: '/vender', type: 'route' },

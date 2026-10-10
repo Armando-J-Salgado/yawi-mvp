@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Menu, Globe, User as UserIcon } from 'lucide-react';
+import { Menu, Globe, User as UserIcon, ShoppingBag } from 'lucide-react';
 import { NavLinks } from './NavLinks';
 import { MobileMenu } from './MobileMenu';
 import { ProfileMenu } from './ProfileMenu';
 import { useAuthStore } from '../../../store/authStore';
+import { useCartStore, selectTotalItems } from '../../../store/cartStore';
 
 const yawiLogo = '/images/yawi-logo.svg';
 
@@ -13,6 +14,8 @@ export const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation('nav');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isAuthenticated } = useAuthStore();
+  const totalItems = useCartStore(selectTotalItems);
+  const openCart = useCartStore((state) => state.openCart);
 
   const toggleLanguage = () => {
     const nextLang = i18n.language.startsWith('es') ? 'en' : 'es';
@@ -65,6 +68,21 @@ export const Navbar: React.FC = () => {
               <span>{t('login')}</span>
             </Link>
           )}
+
+          {/* Cart button (Mobile + Desktop) */}
+          <button
+            type="button"
+            onClick={openCart}
+            aria-label={t('open', { ns: 'cart' })}
+            className="relative p-2 rounded-xl text-primary-navy hover:bg-border/60 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-indigo cursor-pointer"
+          >
+            <ShoppingBag className="w-6 h-6" />
+            {totalItems > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-peach-accent text-primary-navy text-[10px] font-bold flex items-center justify-center">
+                {totalItems}
+              </span>
+            )}
+          </button>
 
           {/* Hamburger toggle button (Mobile) */}
           <button
