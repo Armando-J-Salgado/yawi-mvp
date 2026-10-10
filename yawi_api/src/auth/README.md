@@ -64,7 +64,7 @@ Content-Type: application/json
 
 {
   "email": "cliente@example.com",
-  "password": "<customer-password>"
+  "password": "<YOUR-CUSTOMER-PASSWORD>"
 }
 ```
 
@@ -72,7 +72,7 @@ Content-Type: application/json
 
 ```json
 {
-  "access_token": "<example-jwt-access-token>",
+  "access_token": "<YOUR--JWT-TOKEN>",
   "token_type": "Bearer",
   "expires_in": "1d",
   "user": {
@@ -85,7 +85,7 @@ Content-Type: application/json
 }
 ```
 
-`<example-jwt-access-token>` es un marcador de posición y no representa un
+`<YOUR--JWT-TOKEN>` es un marcador de posición y no representa un
 token real.
 
 ### 2. Consultar usuario autenticado (`GET /auth/me`)
@@ -94,7 +94,7 @@ token real.
 
 ```http
 GET /auth/me
-Authorization: Bearer <example-jwt-access-token>
+Authorization: Bearer <YOUR--JWT-TOKEN>
 ```
 
 **Response (200 OK):**
