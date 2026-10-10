@@ -42,7 +42,9 @@ async function bootstrap() {
     .setDescription(
       'Documentación interactiva de la API de YAWI — Módulos Vendors, Phone Numbers, Businesses y Payment Preferences.',
     )
-    .setVersion('1.0')
+    .addBearerAuth()
+    .addTag('Auth', 'Operaciones de autenticación de clientes (Customer)')
+    .addTag('Customers', 'Operaciones para la gestión de clientes')
     .addTag('Vendors', 'Operaciones para la gestión de vendedores')
     .addTag(
       'Phone Numbers',
