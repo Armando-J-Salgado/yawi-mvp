@@ -7,6 +7,9 @@ import { Business } from '../businesses/entities/business.entity';
 import { Product } from '../products/entities/product.entity';
 import { PaymentPreference } from '../payment-preferences/entities/payment-preference.entity';
 import { Customer } from '../customers/entities/customer.entity';
+import { Order } from '../orders/entities/order.entity';
+import { OrderProduct } from '../orders/entities/order-product.entity';
+import { OrderStatus } from '../orders/interfaces/order-status.interface';
 
 @Injectable()
 export class DatabaseService {
@@ -345,10 +348,107 @@ export class DatabaseService {
           await customerRepo.save(customer);
         }
       }
+
+      // --- Seed de Orders y OrderProducts ---
+      const allCustomers = await manager.getRepository(Customer).find();
+      const allProducts = await manager.getRepository(Product).find();
+      const allBusinesses = await manager.getRepository(Business).find();
+      const orderRepo = manager.getRepository(Order);
+      const orderProductRepo = manager.getRepository(OrderProduct);
+
+      if (
+        allCustomers.length >= 2 &&
+        allProducts.length >= 4 &&
+        allBusinesses.length >= 2
+      ) {
+        const existingOrders = await orderRepo.count({ withDeleted: true });
+        if (existingOrders === 0) {
+          // Order 1: Customer 0 compra Products de Business 0 y Business 1 (multi-business)
+          const order1Products = [
+            { product: allProducts[0], quantity: 2 },
+            { product: allProducts[2], quantity: 3 },
+          ];
+          let subtotal1 = 0;
+          const items1: Partial<OrderProduct>[] = [];
+          for (const op of order1Products) {
+            const unitPrice = Number(op.product.price);
+            const lineSubtotal =
+              Math.round(unitPrice * op.quantity * 100) / 100;
+            items1.push({
+              product_id: op.product.id,
+              business_id: op.product.business_id,
+              product_name: op.product.name,
+              unit_price: unitPrice,
+              quantity: op.quantity,
+              subtotal: lineSubtotal,
+            });
+            subtotal1 = Math.round((subtotal1 + lineSubtotal) * 100) / 100;
+          }
+          const shippingFee = 10.0;
+          const total1 = Math.round((subtotal1 + shippingFee) * 100) / 100;
+
+          const savedOrder1 = await orderRepo.save(
+            orderRepo.create({
+              customer_id: allCustomers[0].id,
+              delivery_address: allCustomers[0].personal_address,
+              status: OrderStatus.PENDING,
+              subtotal: subtotal1,
+              shipping_fee: shippingFee,
+              total: total1,
+            }),
+          );
+          for (const item of items1) {
+            await orderProductRepo.save(
+              orderProductRepo.create({ ...item, order_id: savedOrder1.id }),
+            );
+          }
+
+          // Order 2: Customer 1 compra Products de Business 2
+          const order2Products = [
+            { product: allProducts[4], quantity: 1 },
+            { product: allProducts[5], quantity: 2 },
+          ];
+          let subtotal2 = 0;
+          const items2: Partial<OrderProduct>[] = [];
+          for (const op of order2Products) {
+            const unitPrice = Number(op.product.price);
+            const lineSubtotal =
+              Math.round(unitPrice * op.quantity * 100) / 100;
+            items2.push({
+              product_id: op.product.id,
+              business_id: op.product.business_id,
+              product_name: op.product.name,
+              unit_price: unitPrice,
+              quantity: op.quantity,
+              subtotal: lineSubtotal,
+            });
+            subtotal2 = Math.round((subtotal2 + lineSubtotal) * 100) / 100;
+          }
+          const total2 = Math.round((subtotal2 + shippingFee) * 100) / 100;
+
+          const savedOrder2 = await orderRepo.save(
+            orderRepo.create({
+              customer_id: allCustomers[1].id,
+              delivery_address: allCustomers[1].personal_address,
+              status: OrderStatus.CONFIRMED,
+              subtotal: subtotal2,
+              shipping_fee: shippingFee,
+              total: total2,
+            }),
+          );
+          for (const item of items2) {
+            await orderProductRepo.save(
+              orderProductRepo.create({ ...item, order_id: savedOrder2.id }),
+            );
+          }
+
+          this.logger.log('✅ Orders seeded: 2 orders with varied products.');
+        }
+      }
     });
 
     this.logger.log(
-      '✅ Database seeded successfully with vendors, customers, phone numbers, businesses, products, and payment preferences.',
+      '✅ Database seeded successfully with vendors, customers, phone numbers, businesses, products, payment preferences, and orders.',
     );
   }
 
@@ -364,16 +464,20 @@ export class DatabaseService {
       const dbType = this.dataSource.options.type;
       if (dbType === 'postgres') {
         await queryRunner.query(
-          'TRUNCATE TABLE "products", "payment_preferences", "businesses", "phone_numbers", "vendors", "customers" RESTART IDENTITY CASCADE;',
+          'TRUNCATE TABLE "order_products", "orders", "products", "payment_preferences", "businesses", "phone_numbers", "vendors", "customers" RESTART IDENTITY CASCADE;',
         );
       } else {
-        // SQLite o fallback genérico
+        // SQLite o fallback genérico — respetar dependencias
+        const orderProductRepo = this.dataSource.getRepository(OrderProduct);
+        const orderRepo = this.dataSource.getRepository(Order);
         const productRepo = this.dataSource.getRepository(Product);
         const prefRepo = this.dataSource.getRepository(PaymentPreference);
         const businessRepo = this.dataSource.getRepository(Business);
         const phoneRepo = this.dataSource.getRepository(PhoneNumber);
         const vendorRepo = this.dataSource.getRepository(Vendor);
         const customerRepo = this.dataSource.getRepository(Customer);
+        await orderProductRepo.createQueryBuilder().delete().execute();
+        await orderRepo.createQueryBuilder().delete().execute();
         await productRepo.createQueryBuilder().delete().execute();
         await prefRepo.createQueryBuilder().delete().execute();
         await businessRepo.createQueryBuilder().delete().execute();

@@ -52,6 +52,7 @@ async function bootstrap() {
     )
     .addTag('Businesses', 'Operaciones para la gestión de negocios')
     .addTag('Products', 'Operaciones para la gestión de productos')
+    .addTag('Orders', 'Operaciones para la gestión de órdenes de compra')
     .addTag(
       'Payment Preferences',
       'Operaciones para la gestión de preferencias de pago',
