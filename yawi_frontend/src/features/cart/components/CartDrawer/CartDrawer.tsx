@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { X, ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui';
@@ -15,6 +15,7 @@ import { CartEmptyState } from '../CartEmptyState';
  */
 export const CartDrawer: React.FC = () => {
   const { t } = useTranslation('cart');
+  const navigate = useNavigate();
   const { items, subtotal, isOpen, closeCart, increment, decrement, remove, clear } = useCart();
 
   useEffect(() => {
@@ -96,10 +97,17 @@ export const CartDrawer: React.FC = () => {
         {items.length > 0 && (
           <div className="px-6 py-5 border-t border-border shrink-0 space-y-4">
             <CartSummary subtotal={subtotal}>
-              <Button variant="primary" size="md" disabled className="w-full">
+              <Button
+                variant="primary"
+                size="md"
+                className="w-full"
+                onClick={() => {
+                  closeCart();
+                  navigate('/checkout');
+                }}
+              >
                 {t('checkout')}
               </Button>
-              <p className="text-center text-xs text-muted-text">{t('checkout_coming_soon')}</p>
               <Link
                 to="/cart"
                 onClick={closeCart}

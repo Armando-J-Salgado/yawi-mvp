@@ -19,10 +19,16 @@ Lógica de dominio **pura** (sin React): mapea DTOs del backend a modelos de dom
 | `artisans.service.ts` | Mapea `BusinessDto` → `Business`, sanea datos públicos del vendor (`PublicVendor`).                                                                                                                                                                                    |
 | `products.service.ts` | Mapea `ProductDto` → `Product` (deriva `businessName` de `business.name` y coerciona `price` con `toNumber`, por el `decimal`→string de Postgres); `filterProducts` (búsqueda por nombre/tags + filtro por tags OR), `extractAvailableTags`, `selectFeaturedProducts`. |
 | `cart.service.ts`     | Lógica pura del carrito: `toCartItem`, `addItem`, `incrementItem`, `decrementItem`, `removeItem`, `computeTotalItems`, `computeSubtotal`.                                                                                                                              |
+| `order.service.ts`    | Mapea `OrderDto`/`OrderItemDto` → `Order`/`OrderItem` (coerciona `subtotal`/`shipping_fee`/`total`/`unit_price` con `toNumber`); `buildOrderPayload` (SOLO `product_id` + `quantity` desde el carrito); `fetchOrders`, `fetchOrderById`, `submitOrder`.                |
+| `customer.service.ts` | Mapea `CustomerDto` → `CustomerProfile` (`personal_address` → `address`) para prellenar la dirección de entrega del checkout.                                                                                                                                          |
 
 ## Nota sobre imports (`@/` vs relativos)
 
 El alias `@/` está configurado tanto en `vite.config.ts` como en `vitest.config.ts` (`resolve.alias`), así que resuelve en build y en tests. Los archivos de `auth` conservan imports relativos por historia; los nuevos pueden usar `@/`.
+
+## Nota sobre `toNumber`
+
+`toNumber` vive en `@/utils/toNumber.ts` (Decisión #92) y es compartido por `products.service` y `order.service`. `products.service` lo re-exporta por compatibilidad con consumidores previos.
 
 ## Dependencias
 

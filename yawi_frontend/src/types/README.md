@@ -6,12 +6,13 @@ Tipos de **dominio compartidos** por varias capas (componentes, servicios, store
 
 ## Inventario
 
-| Archivo      | Contenido                                                                                                                                                                                |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `auth.ts`    | `AuthUser`, `CustomerRegistrationData`, `LoginCredentials`, `AuthResponse`.                                                                                                              |
-| `artisan.ts` | `Business`, `BusinessDto`, `PublicVendor`, etc.                                                                                                                                          |
-| `product.ts` | `Product`, `ProductDto`, `ProductBusinessDto`, `ProductFilters` (catálogo). `ProductDto` refleja el contrato real (`images_urls` plural, `business` anidado, `price: number \| string`). |
-| `cart.ts`    | `CartItem`.                                                                                                                                                                              |
+| Archivo      | Contenido                                                                                                                                                                                                                  |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `auth.ts`    | `AuthUser`, `CustomerRegistrationData`, `LoginCredentials`, `AuthResponse`.                                                                                                                                                |
+| `artisan.ts` | `Business`, `BusinessDto`, `PublicVendor`, etc.                                                                                                                                                                            |
+| `product.ts` | `Product`, `ProductDto`, `ProductBusinessDto`, `ProductFilters` (catálogo). `ProductDto` refleja el contrato real (`images_urls` plural, `business` anidado, `price: number \| string`).                                   |
+| `cart.ts`    | `CartItem`.                                                                                                                                                                                                                |
+| `order.ts`   | `Order`, `OrderItem`, `OrderStatus`, `OrderDto`, `OrderItemDto`, `CreateOrderPayload` (checkout/órdenes). Los totales del DTO son `number \| string` (decimal de Postgres) y se coercionan en `services/order.service.ts`. |
 
 ## Distinción importante
 

@@ -1,0 +1,43 @@
+{
+  "title": "Mis órdenes",
+  "subtitle": "Historial de tus compras en Yawi.",
+  "list": {
+    "loading": "Cargando órdenes...",
+    "error": "No pudimos cargar tus órdenes.",
+    "retry": "Reintentar",
+    "empty_title": "Aún no tienes órdenes",
+    "empty_message": "Cuando realices una compra aparecerá aquí.",
+    "empty_cta": "Explorar productos"
+  },
+  "card": {
+    "order": "Orden",
+    "date": "Fecha",
+    "total": "Total",
+    "view": "Ver detalle",
+    "items_count": "{{count}} artículos"
+  },
+  "detail": {
+    "title": "Detalle de la orden",
+    "order_id": "Número de orden",
+    "date": "Fecha de creación",
+    "status": "Estado",
+    "delivery_address": "Dirección de entrega",
+    "items_title": "Productos",
+    "quantity": "Cantidad",
+    "unit_price": "Precio unitario",
+    "subtotal": "Subtotal",
+    "shipping": "Envío",
+    "total": "Total",
+    "back": "Volver a mis órdenes",
+    "loading": "Cargando orden...",
+    "error": "No pudimos cargar la orden.",
+    "not_found": "Orden no encontrada."
+  },
+  "status": {
+    "pending": "Pendiente",
+    "confirmed": "Confirmada",
+    "preparing": "En preparación",
+    "delivered": "Entregada",
+    "cancelled": "Cancelada"
+  }
+}

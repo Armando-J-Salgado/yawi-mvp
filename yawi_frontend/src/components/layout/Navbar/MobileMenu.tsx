@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import { X, Globe, User as UserIcon, ShoppingBag } from 'lucide-react';
+import { X, Globe, User as UserIcon, ShoppingBag, Package } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { NavLinks } from './NavLinks';
 import { useAuthStore } from '../../../store/authStore';
@@ -98,6 +98,17 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
             <ShoppingBag className="w-4 h-4" />
             <span>{t('view_cart', { ns: 'cart' })}</span>
           </Link>
+
+          {isAuthenticated && (
+            <Link
+              to="/orders"
+              onClick={onClose}
+              className="flex items-center gap-2 px-3 py-2 text-sm font-semibold text-primary-navy hover:text-primary-indigo hover:bg-border/40 rounded-xl transition-colors"
+            >
+              <Package className="w-4 h-4" />
+              <span>{t('my_orders')}</span>
+            </Link>
+          )}
 
           {isAuthenticated ? (
             <div className="flex items-center gap-3 p-2 bg-soft-lavender/20 rounded-xl">

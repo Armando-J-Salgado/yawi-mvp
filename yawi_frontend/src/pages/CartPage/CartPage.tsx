@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui';
 import { useCart, CartItemRow, CartSummary, CartEmptyState } from '@/features/cart';
 
 export default function CartPage() {
   const { t } = useTranslation('cart');
+  const navigate = useNavigate();
   const { items, subtotal, increment, decrement, remove, clear } = useCart();
 
   return (
@@ -51,10 +52,14 @@ export default function CartPage() {
             <aside className="lg:col-span-1">
               <div className="bg-surface rounded-card border border-border shadow-card p-6 lg:sticky lg:top-24">
                 <CartSummary subtotal={subtotal}>
-                  <Button variant="primary" size="md" disabled className="w-full">
+                  <Button
+                    variant="primary"
+                    size="md"
+                    className="w-full"
+                    onClick={() => navigate('/checkout')}
+                  >
                     {t('checkout')}
                   </Button>
-                  <p className="text-center text-xs text-muted-text">{t('checkout_coming_soon')}</p>
                 </CartSummary>
               </div>
             </aside>

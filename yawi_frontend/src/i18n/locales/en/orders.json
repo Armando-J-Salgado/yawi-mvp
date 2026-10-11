@@ -1,0 +1,43 @@
+{
+  "title": "My orders",
+  "subtitle": "Your purchase history on Yawi.",
+  "list": {
+    "loading": "Loading orders...",
+    "error": "We could not load your orders.",
+    "retry": "Retry",
+    "empty_title": "You have no orders yet",
+    "empty_message": "Your purchases will appear here.",
+    "empty_cta": "Explore products"
+  },
+  "card": {
+    "order": "Order",
+    "date": "Date",
+    "total": "Total",
+    "view": "View detail",
+    "items_count": "{{count}} items"
+  },
+  "detail": {
+    "title": "Order detail",
+    "order_id": "Order number",
+    "date": "Created at",
+    "status": "Status",
+    "delivery_address": "Delivery address",
+    "items_title": "Products",
+    "quantity": "Quantity",
+    "unit_price": "Unit price",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "total": "Total",
+    "back": "Back to my orders",
+    "loading": "Loading order...",
+    "error": "We could not load the order.",
+    "not_found": "Order not found."
+  },
+  "status": {
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "preparing": "Preparing",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled"
+  }
+}
