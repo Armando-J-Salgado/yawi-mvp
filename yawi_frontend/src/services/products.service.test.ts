@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import type { Product, ProductDto } from '@/types/product';
+import type { Product, ProductBusinessDto, ProductDto } from '@/types/product';
 
 vi.mock('@/api/products.api', () => ({
   getProducts: vi.fn(),
@@ -11,20 +11,38 @@ import {
   mapProductDtoToDomain,
   fetchProducts,
   fetchProductById,
+  toNumber,
   filterProducts,
   extractAvailableTags,
   selectFeaturedProducts,
 } from './products.service';
 
+function buildBusiness(overrides: Partial<ProductBusinessDto> = {}): ProductBusinessDto {
+  return {
+    id: 'b-001',
+    name: 'Familia Mendoza',
+    description: 'Taller de textiles',
+    address: 'San Salvador',
+    balance: '0.00',
+    imagesUrls: null,
+    owner_id: 'v-001',
+    createdAt: '2026-10-01T00:00:00.000Z',
+    updatedAt: '2026-10-01T00:00:00.000Z',
+    deletedAt: null,
+    ...overrides,
+  };
+}
+
 function buildProductDto(overrides: Partial<ProductDto> = {}): ProductDto {
   return {
     id: 'p-001',
     business_id: 'b-001',
-    business_name: 'Familia Mendoza',
     name: 'Tapiz Zapoteco',
     tags: ['textiles', 'decoracion'],
-    image_urls: ['/images/producto1.webp'],
+    images_urls: ['/uploads/products/a.webp'],
+    properties: {},
     price: 120,
+    business: buildBusiness(),
     ...overrides,
   };
 }
@@ -36,7 +54,7 @@ function buildProduct(overrides: Partial<Product> = {}): Product {
     businessName: 'Familia Mendoza',
     name: 'Tapiz Zapoteco',
     tags: ['textiles', 'decoracion'],
-    imageUrls: ['/images/producto1.webp'],
+    imageUrls: ['/uploads/products/a.webp'],
     price: 120,
     ...overrides,
   };
@@ -47,6 +65,25 @@ describe('products.service', () => {
     vi.clearAllMocks();
   });
 
+  describe('toNumber', () => {
+    it('passes finite numbers through', () => {
+      expect(toNumber(120)).toBe(120);
+      expect(toNumber(12.5)).toBe(12.5);
+    });
+
+    it('parses decimal strings returned by Postgres', () => {
+      expect(toNumber('120.00')).toBe(120);
+      expect(toNumber('12.50')).toBe(12.5);
+    });
+
+    it('falls back to 0 for invalid or missing values', () => {
+      expect(toNumber('abc')).toBe(0);
+      expect(toNumber(null)).toBe(0);
+      expect(toNumber(undefined)).toBe(0);
+      expect(toNumber(Number.NaN)).toBe(0);
+    });
+  });
+
   describe('mapProductDtoToDomain', () => {
     it('maps a DTO to the domain model', () => {
       const product = mapProductDtoToDomain(buildProductDto());
@@ -54,14 +91,25 @@ describe('products.service', () => {
       expect(product.id).toBe('p-001');
       expect(product.businessId).toBe('b-001');
       expect(product.businessName).toBe('Familia Mendoza');
+      expect(product.imageUrls).toEqual(['/uploads/products/a.webp']);
       expect(product.price).toBe(120);
     });
 
-    it('normalizes null tags and image_urls to empty arrays', () => {
-      const product = mapProductDtoToDomain(buildProductDto({ tags: null, image_urls: null }));
+    it('coerces a decimal-string price to a number', () => {
+      expect(mapProductDtoToDomain(buildProductDto({ price: '85.50' })).price).toBe(85.5);
+    });
+
+    it('normalizes null tags and images_urls to empty arrays', () => {
+      const product = mapProductDtoToDomain(buildProductDto({ tags: null, images_urls: null }));
 
       expect(product.tags).toEqual([]);
       expect(product.imageUrls).toEqual([]);
+    });
+
+    it('leaves businessName undefined when the business relation is missing', () => {
+      expect(
+        mapProductDtoToDomain(buildProductDto({ business: null })).businessName,
+      ).toBeUndefined();
     });
   });
 
@@ -73,6 +121,7 @@ describe('products.service', () => {
 
       expect(products).toHaveLength(1);
       expect(products[0].businessId).toBe('b-001');
+      expect(products[0].price).toBe(120);
     });
 
     it('returns an empty array when the API returns none', async () => {

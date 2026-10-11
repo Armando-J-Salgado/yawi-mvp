@@ -1,12 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { SectionContainer } from '../../../../components/ui';
+import { SectionContainer } from '@/components/ui';
+import { useErrorToast } from '@/hooks/useErrorToast';
 import { ProductCarousel } from './ProductCarousel';
 import { useFeaturedProducts } from '../../hooks/useFeaturedProducts';
 
 export const FeaturedProductsSection: React.FC = () => {
   const { t } = useTranslation('landing');
-  const { data: products, isLoading, isError } = useFeaturedProducts();
+  const { products, businessNameById, countryByBusinessId, isLoading, isError, error } =
+    useFeaturedProducts();
+
+  useErrorToast(isError, error, t('featured_products.error_message'));
 
   return (
     <SectionContainer id="featured-products" background="surface">
@@ -19,7 +23,13 @@ export const FeaturedProductsSection: React.FC = () => {
         </div>
       </div>
 
-      <ProductCarousel products={products} isLoading={isLoading} isError={isError} />
+      <ProductCarousel
+        products={products}
+        businessNameById={businessNameById}
+        countryByBusinessId={countryByBusinessId}
+        isLoading={isLoading}
+        isError={isError}
+      />
     </SectionContainer>
   );
 };

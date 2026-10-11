@@ -11,3 +11,4 @@ Funciones utilitarias puras y helpers sin estado ni dependencias directas del DO
 - `formatCurrency.ts`: Formatea montos en USD (moneda fija del MVP), p. ej. `120` → `"$120.00 USD"`.
 - `resolveImageUrl.ts`: Resuelve URLs de imagen del backend (rutas `/uploads/...` relativas → prefijadas con `VITE_API_URL`; absolutas y assets públicos → intactas).
 - `validation.ts`: Validadores puros de campos para formularios de login y registro.
+- `apiErrorMessage.ts`: Extrae un mensaje mostrable de un error desconocido (prioriza el `message` del backend, p. ej. `ApiError`); usa un fallback i18n si no hay mensaje útil. Alimenta las notificaciones de error (`useErrorToast`).

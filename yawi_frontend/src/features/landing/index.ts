@@ -13,4 +13,4 @@ export { FinalCtaSection } from './components/FinalCtaSection';
 export { useFeaturedProducts } from './hooks/useFeaturedProducts';
 
 // Types
-export type { Product, LatamCountry } from './types';
+export type { LatamCountry } from './types';

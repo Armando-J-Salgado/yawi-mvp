@@ -1,21 +1,41 @@
 /**
- * DTO crudo equivalente al futuro contrato `GET /products` de `yawi_api`.
+ * Relación `business` tal como la devuelve `GET /products` / `GET /products/:id`
+ * (cargada con `relations: { business: true }`). NO incluye `owner`.
+ */
+export interface ProductBusinessDto {
+  id: string;
+  name: string;
+  description: string;
+  address: string;
+  balance: number | string;
+  imagesUrls: string[] | null;
+  owner_id: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+}
+
+/**
+ * DTO crudo del contrato real de `yawi_api` (`GET /products`, `GET /products/:id`).
  *
- * Propiedades mínimas del producto: `id`, `business_id`, `name`, `tags`, `image_urls`
- * (más `price` requerido por el MVP). `tags` e `image_urls` son JSON (lista de strings)
- * y pueden llegar `null`.
- *
- * `business_name` es un enriquecimiento opcional (algunos endpoints devuelven el nombre
- * del negocio denormalizado). La UI lo usa solo como fallback del join con `GET /businesses`.
+ * - `images_urls` es JSON (lista de strings) y puede llegar `null`. ⚠️ Plural.
+ * - `tags` puede llegar `null` de forma defensiva (la columna tiene default `[]`).
+ * - `price` es `decimal(10,2)`: Postgres lo entrega como string (`"12.50"`).
+ * - `properties` existe en el contrato pero NO se usa en la UI (fuera de alcance).
+ * - `business` siempre viene en la respuesta; se tipa opcional por robustez del mapper.
  */
 export interface ProductDto {
   id: string;
   business_id: string;
-  business_name?: string;
   name: string;
   tags: string[] | null;
-  image_urls: string[] | null;
-  price: number;
+  images_urls: string[] | null;
+  properties?: Record<string, unknown> | null;
+  price: number | string;
+  business?: ProductBusinessDto | null;
+  createdAt?: string;
+  updatedAt?: string;
+  deletedAt?: string | null;
 }
 
 /**
@@ -25,7 +45,7 @@ export interface ProductDto {
 export interface Product {
   id: string;
   businessId: string; // FK → Business.id
-  businessName?: string; // enriquecimiento opcional (fallback del join)
+  businessName?: string; // derivado de `business.name`
   name: string;
   tags: string[]; // nunca null (array vacío si no tiene)
   imageUrls: string[]; // nunca null (array vacío si no tiene)

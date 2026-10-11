@@ -22,11 +22,11 @@ const res = await fetch(`${API_BASE}/<recurso>`, {/* ... */});
 
 ## Recursos
 
-| Archivo           | Recurso                                                                                             | Consumido por                  |
-| ----------------- | --------------------------------------------------------------------------------------------------- | ------------------------------ |
-| `auth.api.ts`     | `POST /customers` (registro), `POST /auth/login` (login), `GET /auth/me` (sesión)                   | `services/auth.service.ts`     |
-| `artisans.api.ts` | `GET /businesses`, `GET /businesses/:id`                                                            | `services/artisans.service.ts` |
-| `products.api.ts` | **MOCK** de `GET /products`, `GET /products/:id` (reemplazar por `fetch` cuando exista el endpoint) | `services/products.service.ts` |
+| Archivo           | Recurso                                                                           | Consumido por                  |
+| ----------------- | --------------------------------------------------------------------------------- | ------------------------------ |
+| `auth.api.ts`     | `POST /customers` (registro), `POST /auth/login` (login), `GET /auth/me` (sesión) | `services/auth.service.ts`     |
+| `artisans.api.ts` | `GET /businesses`, `GET /businesses/:id`                                          | `services/artisans.service.ts` |
+| `products.api.ts` | `GET /products`, `GET /products/:id` (contrato real)                              | `services/products.service.ts` |
 
 ## Auth (`auth.api.ts`)
 
@@ -39,9 +39,11 @@ const res = await fetch(`${API_BASE}/<recurso>`, {/* ... */});
 
 ## Products (`products.api.ts`)
 
-- **Adaptador mock temporal**: `yawi_api` aún no expone `Product`. `getProducts()` y `getProductById(id)` devuelven el dataset `src/data/mock-products.ts` con la MISMA firma que tendrá la implementación HTTP real.
-- Al existir el endpoint, reemplazar el cuerpo de ambas funciones por `fetch(`${API_BASE}/products`)` / `fetch(`${API_BASE}/products/${id}`)`; eliminar `src/data/mock-products.ts`. No se tocan componentes ni servicios.
-- El DTO `ProductDto` **se declara en `@/types/product`** (no en el `.api.ts`) y se re-exporta desde aquí, para romper el ciclo `api ↔ data` (regla de capas: `data → types`).
+- **HTTP real**: `getProducts()` → `GET /products` y `getProductById(id)` → `GET /products/:id` de `yawi_api`.
+- Ambas funciones lanzan `ApiError` (con el `message` del backend) si la respuesta no es 2xx. `ApiError` y `extractErrorMessage` **se reutilizan desde `auth.api.ts`** (importación lateral dentro de la capa `api/`, no se invierten capas). Ver Decisión #69.
+- El contrato real (ver `yawi_api/src/products/entities/product.entity.ts`) usa `images_urls` (**plural**), `properties` y `price` como `decimal` (Postgres lo entrega como string). El DTO `ProductDto` vive en `@/types/product` y se re-exporta desde aquí.
+- La coerción de `price` (`string` → `number`) y el mapeo a dominio ocurren en `services/products.service.ts`, nunca aquí.
+- No se asume ninguna estructura alternativa a la del backend.
 
 ## Nota sobre el alias `@/`
 
