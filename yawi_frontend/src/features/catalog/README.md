@@ -18,25 +18,28 @@ Cubre: explorar, buscar (nombre + tags), filtrar por tags, ver detalle, y agrega
 
 ## Dependencias clave
 
-- `@/types/product` — `Product`, `ProductDto`, `ProductFilters`.
-- `@/services/products.service` — mapping DTO→dominio, `filterProducts`, `extractAvailableTags`, `selectFeaturedProducts`.
-- `@/api/products.api` — adaptador de datos (MOCK hoy; `fetch` mañana).
+- `@/types/product` — `Product`, `ProductDto`, `ProductBusinessDto`, `ProductFilters`.
+- `@/services/products.service` — mapping DTO→dominio (`business.name` → `businessName`, coerción de `price`), `filterProducts`, `extractAvailableTags`, `selectFeaturedProducts`.
+- `@/api/products.api` — `GET /products` y `GET /products/:id` (HTTP real).
 - `@/components/common` — `ProductCard` (reutilizada por la landing).
-- `@/features/artisans` — `useBusinesses` / `useBusinessDetail` (API pública) para el join best-effort con negocios.
+- `@/features/artisans` — `useBusinessDetail` (API pública) en `ProductDetailPage` para el bloque de artesano (el producto no trae `owner`).
 - `@/features/cart` — `useCart` para "Agregar al carrito".
+- `@/hooks/useErrorToast` — notificación del error del backend.
 - `@tanstack/react-query` — server state.
 
 ## Contrato de datos
 
 El dominio `Product` es: `id`, `businessId`, `businessName?`, `name`, `tags[]`, `imageUrls[]`, `price` (USD).
 
-`ProductDto` (contrato crudo, snake_case) es: `id`, `business_id`, `business_name?`, `name`, `tags[]|null`, `image_urls[]|null`, `price`.
+`ProductDto` (contrato crudo real de `yawi_api`, snake_case) es: `id`, `business_id`, `name`, `tags[]|null`, `images_urls[]|null` (**plural**), `properties`, `price: number | string`, `business` (relación anidada con `name`), `createdAt`, `updatedAt`, `deletedAt`.
 
-`business_name` es un enriquecimiento opcional: la UI prefiere el nombre del negocio del join con `GET /businesses` y usa `business_name` como fallback (los `business_id` del mock pueden no existir en el backend).
+- No viene `business_name` plano: `businessName` se deriva de `dto.business.name`.
+- `price` es `decimal(10,2)`: Postgres lo entrega como **string**, por lo que el servicio lo coerciona con `toNumber`.
+- El catálogo **no** hace join con `GET /businesses`: `business.name` ya viene denormalizado en el producto (Decisión #72).
 
-## Integración futura con backend
+## Integración con el backend
 
-Hoy los datos son mock (`src/data/mock-products.ts`). Para conectar la API real, reemplazar el cuerpo de `getProducts`/`getProductById` en `src/api/products.api.ts` por `fetch`. No se toca ningún componente, hook ni página.
+Los datos son reales (`GET /products`, `GET /products/:id`). Los errores del backend se muestran con `useErrorToast` (toast) manteniendo el estado inline con "Reintentar" (Decisión #70).
 
 ## Extensión de filtros
 

@@ -118,6 +118,25 @@ Este documento registra formalmente las decisiones de arquitectura, tecnologías
 
 ---
 
+## Milestone 7 — Integración real de Productos (Catálogo + Landing)
+
+| #      | Decisión                              | Opciones consideradas                                            | Elección                                                               | Justificación                                                                                                   |
+| ------ | ------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **66** | **Fuente de datos de productos**      | Mantener mock, mock con fallback, `fetch` real                   | **`fetch` real a `GET /products` y `GET /products/:id`**               | El endpoint ya existe; la app debe pedir datos reales y mostrar error si falla. Se elimina el mock.             |
+| **67** | **Forma del `ProductDto`**            | Mantener `image_urls`/`business_name`, alinear al contrato real  | **Alinear al contrato real** (`images_urls`, `properties`, `business`) | "Sin asumir estructuras alternativas". El nombre del negocio se deriva de `business.name`.                      |
+| **68** | **Tipo de `price`**                   | Asumir `number`, tipar `number \| string` y coerción en servicio | **`number \| string` + coerción en el servicio**                       | Postgres/pg devuelve `decimal(10,2)` como string; coercionar evita romper `formatCurrency`/subtotales.          |
+| **69** | **Capa de errores HTTP**              | Nuevo `api/http.ts`, duplicar inline, reutilizar `auth.api`      | **Exportar `ApiError` + `extractErrorMessage` desde `@/api/auth.api`** | Importación lateral dentro de la capa `api/` (sin invertir capas). Cero carpetas nuevas. Continúa Decisión #38. |
+| **70** | **Notificación de error del backend** | Solo inline, solo toast, toast + inline                          | **`useErrorToast` + `showToast` + estado inline con reintentar**       | Cumple el RF "notificación de error enviado desde el backend" y conserva el estado de error con recuperación.   |
+| **71** | **Landing "Productos Destacados"**    | API sin enriquecer, API + join negocios, dejar estático          | **API + join `GET /businesses`**                                       | Conserva el país (`owner.country`) y el nombre de negocio del diseño actual.                                    |
+| **72** | **Join de negocios en el catálogo**   | Mantener `useBusinesses`, eliminar                               | **Eliminar el join redundante en `CatalogPage`**                       | `product.business.name` ya viene denormalizado en la respuesta; se ahorra una petición.                         |
+| **73** | **Mocks obsoletos**                   | Conservar, conservar como fallback, eliminar                     | **Eliminar `mock-products.ts` y `featured-products.ts`**               | Ya no reflejan el contrato real; mantenerlos induce a error.                                                    |
+| **74** | **Filtrado/búsqueda**                 | Filtrar en API, filtrar en cliente                               | **Filtrar en cliente (sin cambios)**                                   | La API solo filtra por `name`/`price` exactos y no por tags; el dataset cabe en memoria. Continúa Decisión #57. |
+| **75** | **Tests del adaptador `api/`**        | MSW, mockear módulo, `vi.stubGlobal('fetch')`                    | **`vi.stubGlobal('fetch', ...)`**                                      | Valida el contrato HTTP real sin dependencias nuevas. Continúa Decisión #36.                                    |
+
+> **Decisión diferida:** extraer `ApiError`/`extractErrorMessage` a un `api/http.ts` compartido y migrar `artisans.api.ts`. Se pospone para no ampliar el alcance de M7.
+
+---
+
 ## Decisiones Diferidas a Futuros Milestones
 
 - **Supabase Client Setup (`src/lib/supabase.ts`)**: Integración con autenticación real de usuarios/vendedores.

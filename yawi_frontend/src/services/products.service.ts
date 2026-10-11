@@ -1,16 +1,25 @@
 import { getProducts, getProductById } from '@/api/products.api';
 import type { Product, ProductDto, ProductFilters } from '@/types/product';
 
-/** DTO → dominio. Normaliza `null` a arrays vacíos. */
+/**
+ * Coerciona el `decimal` del backend a número seguro.
+ * Postgres/TypeORM entrega las columnas `decimal(10,2)` como string (`"12.50"`).
+ */
+export function toNumber(value: number | string | null | undefined): number {
+  const n = typeof value === 'string' ? Number(value) : value;
+  return typeof n === 'number' && Number.isFinite(n) ? n : 0;
+}
+
+/** DTO → dominio. Normaliza `null` a arrays vacíos y deriva el nombre del negocio. */
 export function mapProductDtoToDomain(dto: ProductDto): Product {
   return {
     id: dto.id,
     businessId: dto.business_id,
-    businessName: dto.business_name,
+    businessName: dto.business?.name,
     name: dto.name,
     tags: dto.tags ?? [],
-    imageUrls: dto.image_urls ?? [],
-    price: dto.price,
+    imageUrls: dto.images_urls ?? [],
+    price: toNumber(dto.price),
   };
 }
 

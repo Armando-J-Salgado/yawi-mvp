@@ -7,11 +7,16 @@ Encapsula todos los componentes, hooks, tipos y configuraciones de datos asociad
 ## Contenido
 
 - `components/`: Implementación modular de las 9 secciones visuales de la landing page.
-- `data/`: Datos estáticos simulados (productos destacados).
 - `hooks/`: Hooks de consumo de datos y lógica del feature (`useFeaturedProducts`).
 - `landing-images.json`: Archivo centralizado de configuración de imágenes y placeholders de la landing.
-- `types.ts`: Interfaces y tipos de TypeScript para los modelos de datos del feature.
+- `types.ts`: Tipos locales del feature (`LatamCountry`). El producto destacado usa el dominio `Product` de `@/types/product`.
 - `index.ts`: Barrel export público del feature.
+
+### Productos destacados
+
+- La sección "Productos Destacados" (`FeaturedProductsSection`) se sirve desde la **API real** vía `useFeaturedProducts`: `GET /products` (comparte `queryKey: ['products']` con el catálogo) + `GET /businesses` (join best-effort para conservar país y nombre de negocio). Decisión #71.
+- Se eliminó el dataset estático `data/featured-products.ts` (Decisión #73).
+- Los errores del backend se notifican con `useErrorToast` y el estado de error inline del carrusel.
 
 ## Reglas
 
@@ -22,5 +27,5 @@ Encapsula todos los componentes, hooks, tipos y configuraciones de datos asociad
 
 ## Dependencias
 
-- Importa de: `components/ui/`, `components/common/`, `i18n/`.
+- Importa de: `components/ui/`, `components/common/`, `i18n/`, `features/artisans/` (API pública `useBusinesses`), `services/products.service`, `hooks/useErrorToast`, `types/product`.
 - Importado por: `pages/LandingPage/`.

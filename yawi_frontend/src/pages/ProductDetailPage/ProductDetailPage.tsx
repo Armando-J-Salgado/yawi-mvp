@@ -10,6 +10,7 @@ import {
   ProductCultureSection,
 } from '@/features/catalog';
 import { useBusinessDetail } from '@/features/artisans';
+import { useErrorToast } from '@/hooks/useErrorToast';
 import { Button, Skeleton } from '@/components/ui';
 
 export default function ProductDetailPage() {
@@ -17,8 +18,10 @@ export default function ProductDetailPage() {
   const { t } = useTranslation('catalog');
   const navigate = useNavigate();
 
-  const { data: product, isLoading, isError } = useProductDetail(id);
+  const { data: product, isLoading, isError, error } = useProductDetail(id);
   const { data: business } = useBusinessDetail(product?.businessId ?? '');
+
+  useErrorToast(isError, error, t('detail.error'));
 
   if (isLoading) {
     return (

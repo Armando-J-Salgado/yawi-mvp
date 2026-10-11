@@ -6,23 +6,15 @@ Contenido estático **no traducible** (constantes, listas de opciones, datasets 
 
 ## Contenido
 
-- `mock-products.ts`: dataset mock que simula el futuro `GET /products` de `yawi_api`. Expone `MOCK_PRODUCTS: ProductDto[]`.
-
-## Cómo sustituir el mock por la API real
-
-1. Abrir `src/api/products.api.ts`.
-2. Reemplazar el cuerpo de `getProducts()` y `getProductById()` por llamadas `fetch(`${API_BASE}/products`)` / `fetch(`${API_BASE}/products/${id}`)`.
-3. Eliminar `mock-products.ts`.
-
-No se deben modificar componentes, hooks, servicios, tiendas ni pantallas.
+- **Actualmente sin datasets.** El antiguo `mock-products.ts` se eliminó al integrar la API real de productos (Decisión #73). Los productos ahora se obtienen vía `src/api/products.api.ts` (`GET /products`).
 
 ## Reglas
 
 - Sin React, sin `fetch`, sin efectos secundarios.
-- Datos de producto (tags, nombres) **no** se traducen: son contenido, no interfaz (Decisión #65).
+- Datos estáticos (tags, nombres) **no** se traducen: son contenido, no interfaz (Decisión #65).
 - Los textos de UI viven en `src/i18n/locales/`.
 
 ## Dependencias
 
 - Importa de: `types/`.
-- Importado por: `api/`.
+- Importado por: `api/`, `features/`.

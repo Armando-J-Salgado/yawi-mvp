@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   useProducts,
   CatalogHero,
@@ -9,22 +10,20 @@ import {
   FeaturedProductsSection,
   CatalogCultureSection,
 } from '@/features/catalog';
-import { useBusinesses } from '@/features/artisans';
 import { filterProducts, extractAvailableTags } from '@/services/products.service';
+import { useErrorToast } from '@/hooks/useErrorToast';
 import type { ProductFilters as ProductFiltersState } from '@/types/product';
 
 export default function CatalogPage() {
   const navigate = useNavigate();
-  const { data: products = [], isLoading, isError, refetch } = useProducts();
-  const { data: businesses = [] } = useBusinesses();
+  const { t } = useTranslation('catalog');
+  const { data: products = [], isLoading, isError, error, refetch } = useProducts();
 
   const [filters, setFilters] = useState<ProductFiltersState>({ search: '', tags: [] });
 
+  useErrorToast(isError, error, t('grid.error'));
+
   const availableTags = useMemo(() => extractAvailableTags(products), [products]);
-  const businessNameById = useMemo(
-    () => new Map(businesses.map((business) => [business.id, business.name])),
-    [businesses],
-  );
   const filteredProducts = useMemo(() => filterProducts(products, filters), [products, filters]);
 
   const handleViewProduct = (id: string) => navigate(`/products/${id}`);
@@ -42,11 +41,7 @@ export default function CatalogPage() {
       <CatalogHero />
 
       {!isLoading && !isError && products.length > 0 && (
-        <FeaturedProductsSection
-          products={products}
-          onViewProduct={handleViewProduct}
-          businessNameById={businessNameById}
-        />
+        <FeaturedProductsSection products={products} onViewProduct={handleViewProduct} />
       )}
 
       <section id="catalog-discovery" className="py-16 md:py-24 bg-background">
@@ -70,7 +65,6 @@ export default function CatalogPage() {
             isError={isError}
             onRetry={() => void refetch()}
             onViewProduct={handleViewProduct}
-            businessNameById={businessNameById}
           />
         </div>
       </section>

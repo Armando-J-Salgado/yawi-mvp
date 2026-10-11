@@ -1,18 +1,22 @@
 import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight, AlertCircle } from 'lucide-react';
-import { ProductCard } from '../../../../components/common/ProductCard';
-import { Skeleton } from '../../../../components/ui';
-import type { Product } from '../../types';
+import { ProductCard } from '@/components/common';
+import { Skeleton } from '@/components/ui';
+import type { Product } from '@/types/product';
 
 export interface ProductCarouselProps {
   products: Product[];
+  businessNameById?: Map<string, string>;
+  countryByBusinessId?: Map<string, string>;
   isLoading?: boolean;
   isError?: boolean;
 }
 
 export const ProductCarousel: React.FC<ProductCarouselProps> = ({
   products,
+  businessNameById,
+  countryByBusinessId,
   isLoading = false,
   isError = false,
 }) => {
@@ -97,12 +101,12 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({
         {products.map((product) => (
           <div key={product.id} className="w-[280px] sm:w-[320px] shrink-0 snap-start">
             <ProductCard
-              imageSrc={product.imageSrc}
+              imageSrc={product.imageUrls[0]}
               name={product.name}
-              country={product.country}
-              artisan={product.artisan}
+              country={countryByBusinessId?.get(product.businessId)}
+              businessName={businessNameById?.get(product.businessId) ?? product.businessName}
+              tags={product.tags}
               price={product.price}
-              currency={product.currency}
               priceLabel={t('featured_products.price_label')}
               ctaLabel={t('featured_products.view_product')}
             />

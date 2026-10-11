@@ -55,7 +55,7 @@ export class ApiError extends Error {
 }
 
 /** Extrae el mensaje del body de error NestJS ({ message: string | string[] }). */
-async function extractErrorMessage(res: Response): Promise<string> {
+export async function extractErrorMessage(res: Response): Promise<string> {
   try {
     const body = (await res.json()) as { message?: string | string[] };
     if (Array.isArray(body.message)) return body.message.join(' ');
