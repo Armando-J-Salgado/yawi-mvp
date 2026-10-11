@@ -15,6 +15,9 @@ Representa las vistas de nivel superior asociadas a rutas de la aplicación web.
 - `CatalogPage/`: Página de catálogo de productos (`/products`) que orquesta el feature `catalog` (usa `AppLayout`).
 - `ProductDetailPage/`: Página de detalle de producto (`/products/:id`) que orquesta el feature `catalog` (usa `AppLayout`).
 - `CartPage/`: Página del carrito (`/cart`) que orquesta el feature `cart` (usa `AppLayout`).
+- `CheckoutPage/`: Página de checkout (`/checkout`, **protegida**) que orquesta el feature `checkout` (usa `AppLayout`).
+- `OrdersPage/`: Listado de órdenes del cliente (`/orders`, **protegida**) que orquesta el feature `orders` (usa `AppLayout`).
+- `OrderDetailPage/`: Detalle de una orden (`/orders/:id`, **protegida**, solo lectura) que orquesta el feature `orders` (usa `AppLayout`).
 - `README.md`: Este archivo descriptivo.
 
 ## Reglas
@@ -25,5 +28,5 @@ Representa las vistas de nivel superior asociadas a rutas de la aplicación web.
 
 ## Dependencias
 
-- Importa de: `features/landing/`, `features/seller/`, `features/auth/`, `features/artisans/`, `features/catalog/`, `features/cart/`.
+- Importa de: `features/landing/`, `features/seller/`, `features/auth/`, `features/artisans/`, `features/catalog/`, `features/cart/`, `features/checkout/`, `features/orders/`.
 - Importado por: `routes/index.tsx`.

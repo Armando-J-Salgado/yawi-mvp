@@ -22,11 +22,13 @@ const res = await fetch(`${API_BASE}/<recurso>`, {/* ... */});
 
 ## Recursos
 
-| Archivo           | Recurso                                                                           | Consumido por                  |
-| ----------------- | --------------------------------------------------------------------------------- | ------------------------------ |
-| `auth.api.ts`     | `POST /customers` (registro), `POST /auth/login` (login), `GET /auth/me` (sesión) | `services/auth.service.ts`     |
-| `artisans.api.ts` | `GET /businesses`, `GET /businesses/:id`                                          | `services/artisans.service.ts` |
-| `products.api.ts` | `GET /products`, `GET /products/:id` (contrato real)                              | `services/products.service.ts` |
+| Archivo            | Recurso                                                                           | Consumido por                  |
+| ------------------ | --------------------------------------------------------------------------------- | ------------------------------ |
+| `auth.api.ts`      | `POST /customers` (registro), `POST /auth/login` (login), `GET /auth/me` (sesión) | `services/auth.service.ts`     |
+| `artisans.api.ts`  | `GET /businesses`, `GET /businesses/:id`                                          | `services/artisans.service.ts` |
+| `products.api.ts`  | `GET /products`, `GET /products/:id` (contrato real)                              | `services/products.service.ts` |
+| `orders.api.ts`    | `POST /orders`, `GET /orders?customer_id`, `GET /orders/:id`                      | `services/order.service.ts`    |
+| `customers.api.ts` | `GET /customers/:id` (prefill de dirección del checkout)                          | `services/customer.service.ts` |
 
 ## Auth (`auth.api.ts`)
 
@@ -44,6 +46,18 @@ const res = await fetch(`${API_BASE}/<recurso>`, {/* ... */});
 - El contrato real (ver `yawi_api/src/products/entities/product.entity.ts`) usa `images_urls` (**plural**), `properties` y `price` como `decimal` (Postgres lo entrega como string). El DTO `ProductDto` vive en `@/types/product` y se re-exporta desde aquí.
 - La coerción de `price` (`string` → `number`) y el mapeo a dominio ocurren en `services/products.service.ts`, nunca aquí.
 - No se asume ninguna estructura alternativa a la del backend.
+
+## Orders (`orders.api.ts`)
+
+- **HTTP real** contra `yawi_api`: `createOrder(payload)` → `POST /orders`, `getOrders(customerId)` → `GET /orders?customer_id=<id>`, `getOrderById(id)` → `GET /orders/:id`.
+- `POST /orders` SOLO envía `customer_id`, `delivery_address` e `items[{product_id, quantity}]`. Los totales, `shipping_fee` ($10.00 fijo) y `subtotal` los calcula el backend.
+- Se envían cabeceras de autorización con `buildAuthHeaders()` (aunque `yawi_api` aún no aplique guards a `/orders`; deuda registrada, Decisión #81).
+- Reutiliza `ApiError`/`extractErrorMessage` de `auth.api.ts` (import lateral permitido).
+
+## Customers (`customers.api.ts`)
+
+- `getCustomerById(id)` → `GET /customers/:id`. Se usa solo para prellenar la dirección de entrega en el checkout.
+- Reutiliza el tipo `CustomerDto` de `auth.api.ts` y `ApiError`/`extractErrorMessage`.
 
 ## Nota sobre el alias `@/`
 

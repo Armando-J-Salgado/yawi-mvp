@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LogOut } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { LogOut, Package } from 'lucide-react';
 import { useAuthStore } from '../../../store/authStore';
 
 /**
@@ -63,6 +64,16 @@ export const ProfileMenu: React.FC = () => {
             </p>
             {user?.email && <p className="text-xs text-muted-text truncate">{user.email}</p>}
           </div>
+
+          <Link
+            to="/orders"
+            role="menuitem"
+            onClick={() => setIsOpen(false)}
+            className="mt-1 w-full flex items-center gap-2 px-3 py-2 text-sm font-medium text-primary-navy hover:bg-border/40 rounded-xl transition-colors"
+          >
+            <Package className="w-4 h-4" />
+            <span>{t('my_orders')}</span>
+          </Link>
 
           <button
             type="button"

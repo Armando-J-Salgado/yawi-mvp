@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AppLayout, AuthLayout } from '../components/layout';
+import { RequireAuth } from './guards';
 import { LandingPage } from '../pages/LandingPage';
 import { SellerLandingPage } from '../pages/SellerLandingPage';
 import { LoginPage } from '../pages/LoginPage';
@@ -12,6 +13,9 @@ const BusinessDetailPage = lazy(() => import('../pages/BusinessDetailPage/Busine
 const CatalogPage = lazy(() => import('../pages/CatalogPage/CatalogPage'));
 const ProductDetailPage = lazy(() => import('../pages/ProductDetailPage/ProductDetailPage'));
 const CartPage = lazy(() => import('../pages/CartPage/CartPage'));
+const CheckoutPage = lazy(() => import('../pages/CheckoutPage/CheckoutPage'));
+const OrdersPage = lazy(() => import('../pages/OrdersPage/OrdersPage'));
+const OrderDetailPage = lazy(() => import('../pages/OrderDetailPage/OrderDetailPage'));
 
 function PageFallback() {
   return (
@@ -40,6 +44,13 @@ export function AppRoutes() {
           <Route path="/products" element={<CatalogPage />} />
           <Route path="/products/:id" element={<ProductDetailPage />} />
           <Route path="/cart" element={<CartPage />} />
+
+          {/* Rutas privadas (requieren sesión de cliente) */}
+          <Route element={<RequireAuth />}>
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/orders" element={<OrdersPage />} />
+            <Route path="/orders/:id" element={<OrderDetailPage />} />
+          </Route>
         </Route>
 
         {/* Rutas con layout de autenticación (solo logo, sin Navbar/Footer) */}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Input, Button } from '../../../../components/ui';
 import { showToast } from '../../../../components/ui/Toast/useToast';
 import { validateLoginForm } from '../../../../utils/validation';
@@ -10,6 +10,7 @@ import type { LoginCredentials } from '../../../../types/auth';
 export const LoginForm: React.FC = () => {
   const { t } = useTranslation('auth');
   const navigate = useNavigate();
+  const location = useLocation();
   const login = useAuthStore((state) => state.login);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,10 +40,9 @@ export const LoginForm: React.FC = () => {
 
       if (result.success) {
         showToast.success(t('login.success'));
-        // TODO [POST-M3]: Actualizar esta redirección a la página deseada.
-        // Actualmente redirige al landing page. Cambiar a '/dashboard', '/cuenta',
-        // o la ruta que corresponda cuando se implementen esas páginas.
-        navigate('/');
+        // Vuelve al destino solicitado por `RequireAuth` (state.from) o al landing.
+        const from = (location.state as { from?: string } | null)?.from ?? '/';
+        navigate(from, { replace: true });
       } else {
         // El backend devuelve 'Credenciales inválidas' y el servicio lo propaga.
         // Si no hay mensaje (red/inesperado), se usa el fallback i18n.

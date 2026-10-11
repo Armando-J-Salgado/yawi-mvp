@@ -1,0 +1,47 @@
+{
+  "title": "Finalizar compra",
+  "subtitle": "Revisa tu pedido antes de confirmar la compra.",
+  "back_to_cart": "Volver al carrito",
+  "delivery": {
+    "title": "Dirección de entrega",
+    "label": "Dirección de entrega",
+    "placeholder": "Calle, número, ciudad, país",
+    "required": "La dirección de entrega es obligatoria."
+  },
+  "items": { "title": "Tu pedido" },
+  "payment": {
+    "title": "Método de pago",
+    "subtitle": "Elige cómo deseas pagar (simulación por transferencia).",
+    "stripe": "Stripe",
+    "wompi": "Wompi",
+    "transfer_note": "Pago simulado por transferencia bancaria",
+    "selected": "Seleccionado"
+  },
+  "summary": {
+    "subtotal": "Subtotal",
+    "shipping": "Envío",
+    "shipping_note": "El envío es de $10.00. El total final se confirma al generar la orden.",
+    "total": "Total estimado"
+  },
+  "submit": "Confirmar compra",
+  "submitting": "Procesando...",
+  "empty_cart": {
+    "title": "No hay productos para pagar",
+    "message": "Tu carrito está vacío.",
+    "cta": "Explorar productos"
+  },
+  "error": { "generic": "No pudimos completar tu compra. Intenta de nuevo." },
+  "confirmation": {
+    "title": "¡Orden creada!",
+    "message": "Tu orden fue registrada. Completa el pago por transferencia con los datos de abajo.",
+    "order_id": "Número de orden",
+    "total": "Total",
+    "instructions_title": "Datos para la transferencia",
+    "beneficiary": "Beneficiario",
+    "bank": "Banco",
+    "account": "Cuenta",
+    "reference": "Referencia",
+    "view_order": "Ver mi orden",
+    "go_to_orders": "Ir a mis órdenes"
+  }
+}
