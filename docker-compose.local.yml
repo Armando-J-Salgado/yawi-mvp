@@ -28,3 +28,12 @@ services:
       - ./yawi_n8n/.env
     ports:
       - "5678:5678"
+  
+  yawi_tunnel:
+    image: ngrok/ngrok:latest
+    container_name: yawi_tunnel
+    command: http --url=radiation-hungrily-relieving.ngrok-free.dev yawi_n8n:5678
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+    depends_on:
+      - yawi_n8n
