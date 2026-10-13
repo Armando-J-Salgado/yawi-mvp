@@ -1,0 +1,47 @@
+{
+  "title": "Checkout",
+  "subtitle": "Review your order before confirming the purchase.",
+  "back_to_cart": "Back to cart",
+  "delivery": {
+    "title": "Delivery address",
+    "label": "Delivery address",
+    "placeholder": "Street, number, city, country",
+    "required": "Delivery address is required."
+  },
+  "items": { "title": "Your order" },
+  "payment": {
+    "title": "Payment method",
+    "subtitle": "Choose how you want to pay (bank transfer simulation).",
+    "stripe": "Stripe",
+    "wompi": "Wompi",
+    "transfer_note": "Simulated bank transfer payment",
+    "selected": "Selected"
+  },
+  "summary": {
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "shipping_note": "Shipping is $10.00. The final total is confirmed when the order is created.",
+    "total": "Estimated total"
+  },
+  "submit": "Confirm purchase",
+  "submitting": "Processing...",
+  "empty_cart": {
+    "title": "No products to pay for",
+    "message": "Your cart is empty.",
+    "cta": "Explore products"
+  },
+  "error": { "generic": "We could not complete your purchase. Please try again." },
+  "confirmation": {
+    "title": "Order created!",
+    "message": "Your order was registered. Complete the payment by bank transfer using the details below.",
+    "order_id": "Order number",
+    "total": "Total",
+    "instructions_title": "Transfer details",
+    "beneficiary": "Beneficiary",
+    "bank": "Bank",
+    "account": "Account",
+    "reference": "Reference",
+    "view_order": "View my order",
+    "go_to_orders": "Go to my orders"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "hero": {
+    "badge": "Productos Auténticos",
+    "title": "Descubre el alma de Latinoamérica",
+    "subtitle": "Explora piezas hechas a mano por artesanos de toda la región y conecta con culturas únicas.",
+    "cta_primary": "Explorar catálogo",
+    "cta_secondary": "Conocer Yawi",
+    "made_in_latam": "Hecho en Latinoamérica",
+    "fair_trade": "Comercio justo"
+  },
+  "search": {
+    "label": "Buscar productos",
+    "placeholder": "Buscar por nombre o etiqueta..."
+  },
+  "filters": {
+    "title": "Filtrar por etiquetas",
+    "all": "Todas",
+    "clear": "Limpiar filtros"
+  },
+  "grid": {
+    "loading": "Cargando productos...",
+    "empty": "No encontramos productos con esos criterios.",
+    "error": "No pudimos cargar los productos. Intenta de nuevo.",
+    "retry": "Reintentar"
+  },
+  "card": {
+    "view_product": "Ver producto",
+    "artisan_label": "Artesano",
+    "price_label": "Precio"
+  },
+  "featured": {
+    "title": "Productos Destacados",
+    "subtitle": "Una selección de piezas que representan lo mejor de la artesanía latinoamericana."
+  },
+  "culture": {
+    "title": "Cada compra apoya a un artesano",
+    "text": "Al comprar en Yawi apoyas directamente a emprendedores y artesanos latinoamericanos, ayudando a preservar tradiciones y a crear oportunidades justas para sus comunidades.",
+    "footer": "Yawi · Marketplace artesanal"
+  },
+  "detail": {
+    "back": "Volver al catálogo",
+    "gallery_title": "Galería",
+    "tags_title": "Etiquetas",
+    "price_label": "Precio",
+    "artisan_title": "Sobre el artesano",
+    "artisan_country": "País",
+    "add_to_cart": "Agregar al carrito",
+    "no_images": "Este producto no tiene imágenes disponibles.",
+    "culture_title": "El impacto de tu compra",
+    "culture_text": "Comprar {{name}} apoya a artesanos latinoamericanos y ayuda a preservar técnicas tradicionales.",
+    "culture_badge": "Comercio Justo y Sostenible",
+    "culture_footer": "Cada compra genera un impacto real en las comunidades artesanas",
+    "loading": "Cargando producto...",
+    "error": "No pudimos cargar el producto.",
+    "not_found": "Producto no encontrado."
+  }
+}

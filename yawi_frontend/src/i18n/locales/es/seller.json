@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "title": "Vender con Yawi — Lleva tu negocio al mundo",
+    "description": "Vende internacionalmente sin necesidad de una página web, conocimientos técnicos o sistemas complicados."
+  },
+  "hero": {
+    "title": "Lleva tu negocio local al mundo",
+    "subtitle": "Vende internacionalmente sin necesidad de una página web, conocimientos técnicos o sistemas complicados.",
+    "cta_primary": "Quiero vender con Yawi",
+    "image_alt": "Artesana con sus productos"
+  },
+  "problem": {
+    "title": "Muchos artesanos enfrentan:",
+    "image_alt": "Artesano trabajando",
+    "cards": [
+      { "text": "Clientes limitados a su zona" },
+      { "text": "Dificultades para exportar" },
+      { "text": "Falta de visibilidad" },
+      { "text": "Procesos tecnológicos complejos" },
+      { "text": "Dificultades para recibir pagos internacionales" }
+    ]
+  },
+  "how_yawi_helps": {
+    "title": "Cómo ayuda Yawi",
+    "blocks": [
+      {
+        "heading": "Más clientes",
+        "text": "Acceso a compradores internacionales.",
+        "image_alt": "Clientes internacionales"
+      },
+      {
+        "heading": "Más ingresos",
+        "text": "Aumenta el alcance de tus productos y mejora tus oportunidades de venta.",
+        "image_alt": "Ingresos crecientes"
+      },
+      {
+        "heading": "Más simple",
+        "text": "Gestiona tu negocio utilizando canales familiares como WhatsApp.",
+        "image_alt": "Gestión sencilla por WhatsApp"
+      }
+    ]
+  },
+  "promise": {
+    "title": "Crecimiento real para tu negocio.",
+    "benefits": [
+      "Alcance internacional",
+      "Gestión sencilla",
+      "Soporte logístico",
+      "Recepción de ingresos simplificada",
+      "Más visibilidad para tus productos"
+    ]
+  },
+  "early_allies": {
+    "title": "Beneficios para los primeros aliados",
+    "launch_badge": "Oferta de lanzamiento",
+    "tiers": [
+      {
+        "label": "Primeros 50 emprendedores",
+        "benefit": "Prioridad en recomendaciones durante 1 año."
+      },
+      {
+        "label": "Nuevos emprendedores",
+        "benefit": "Una semana de prioridad en recomendaciones."
+      },
+      {
+        "label": "Lanzamiento",
+        "benefit": "Primer mes con 50% de descuento en comisión."
+      }
+    ]
+  },
+  "how_it_works": {
+    "title": "Cómo funciona",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Regístrate",
+        "description": "Crea tu cuenta en minutos. Sin formularios complicados."
+      },
+      {
+        "number": "02",
+        "title": "Comparte información de tus productos",
+        "description": "Envíanos fotos y detalles de tus productos por WhatsApp."
+      },
+      {
+        "number": "03",
+        "title": "Yawi publica y promociona",
+        "description": "Nos encargamos de publicar, traducir y promocionar tus productos."
+      },
+      {
+        "number": "04",
+        "title": "Recibe pedidos e ingresos",
+        "description": "Te notificamos los pedidos y recibes tus ingresos directamente."
+      }
+    ]
+  },
+  "markets": {
+    "title": "Mercados disponibles",
+    "active_label": "Activo",
+    "coming_soon_label": "Próximamente",
+    "items": [
+      { "flag": "🇺🇸", "name": "Estados Unidos", "status": "active" },
+      { "flag": "🇪🇸", "name": "España", "status": "coming_soon" },
+      { "flag": "🇬🇧", "name": "Reino Unido", "status": "coming_soon" }
+    ]
+  },
+  "story": {
+    "title": "¿Qué significa Yawi?",
+    "text": "Yawi nace de una palabra de origen náhuat asociada al movimiento y al acto de llevar algo de un lugar a otro. Nuestro propósito es llevar el talento, la cultura y el trabajo de los artesanos latinoamericanos hacia nuevos mercados y nuevas oportunidades.",
+    "image_alt": "Artesana trabajando en su taller"
+  },
+  "final_cta": {
+    "title": "Únete a los artesanos que están llevando Latinoamérica al mundo",
+    "button": "Comenzar ahora"
+  }
+}

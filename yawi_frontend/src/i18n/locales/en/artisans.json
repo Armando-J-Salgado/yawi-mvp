@@ -1,0 +1,55 @@
+{
+  "hero": {
+    "badge": "Meet the Artisans",
+    "title": "Handcrafted with Purpose",
+    "subtitle": "Discover the entrepreneurs and artisans behind each piece. Every business has a story worth knowing.",
+    "cta_primary": "Explore artisans",
+    "cta_secondary": "Learn about Yawi"
+  },
+  "search": {
+    "placeholder": "Search by business or artisan name...",
+    "label": "Search artisans"
+  },
+  "filters": {
+    "title": "Filter by country",
+    "all": "All countries",
+    "el_salvador": "El Salvador",
+    "guatemala": "Guatemala (coming soon)",
+    "honduras": "Honduras (coming soon)"
+  },
+  "grid": {
+    "loading": "Loading artisans...",
+    "empty": "No artisans found with those criteria.",
+    "error": "We couldn't load the artisans. Please try again.",
+    "retry": "Retry"
+  },
+  "card": {
+    "joined": "Member since",
+    "view_profile": "View profile",
+    "artisan_label": "Artisan",
+    "location_label": "Location"
+  },
+  "featured": {
+    "title": "Featured Artisans",
+    "subtitle": "A selection of inspiring creators who represent the best of Latin American craftsmanship."
+  },
+  "culture": {
+    "title": "Countries in Yawi",
+    "subtitle": "We are building a community of artisans across Latin America.",
+    "active_label": "Active",
+    "coming_soon": "Coming soon"
+  },
+  "detail": {
+    "back": "Back to artisans",
+    "gallery_title": "Gallery",
+    "meet_artisan": "Meet the artisan",
+    "country_label": "Country",
+    "member_since": "Member since",
+    "impact_title": "Why supporting this business matters",
+    "impact_text": "By purchasing from {{name}}, you directly support a Latin American artisan, helping preserve cultural traditions and creating fair economic opportunities for their community.",
+    "no_images": "This business has not uploaded images yet.",
+    "loading": "Loading business details...",
+    "error": "We couldn't load the business information.",
+    "not_found": "Business not found."
+  }
+}

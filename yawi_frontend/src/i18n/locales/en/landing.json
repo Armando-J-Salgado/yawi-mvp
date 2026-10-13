@@ -1,0 +1,110 @@
+{
+  "hero": {
+    "badge": "Yawi Cultural Market",
+    "title": "From Latin America to the World",
+    "subtitle": "Discover handcrafted products made by Latin American entrepreneurs and receive at your door things that connect you with your culture, your memories, and your roots.",
+    "cta_primary": "Explore products",
+    "cta_secondary": "Meet artisans",
+    "collage_1_alt": "Traditional handwoven textile",
+    "collage_2_alt": "Artisan shaping clay on a pottery wheel",
+    "collage_3_alt": "Handcrafted jewelry with native stones",
+    "collage_4_alt": "Detail of fine wood carving"
+  },
+  "why_yawi": {
+    "title": "Why choose Yawi?",
+    "subtitle": "A direct bridge between ancestral talent and fair global trade.",
+    "cards": [
+      {
+        "title": "Cultural connection",
+        "subtitle": "Find authentic products that represent Latin American identity and traditions."
+      },
+      {
+        "title": "Direct support",
+        "subtitle": "Your purchase directly benefits entrepreneurs and artisan families."
+      },
+      {
+        "title": "International reach",
+        "subtitle": "Shop from anywhere and receive products from Latin America."
+      },
+      {
+        "title": "Unique discoveries",
+        "subtitle": "Items that you’ll hardly find on traditional platforms."
+      }
+    ]
+  },
+  "categories": {
+    "title": "Explore by category",
+    "subtitle": "Find the perfect piece crafted with centuries-old craftsmanship.",
+    "items": {
+      "textiles": "Textiles & Weaving",
+      "ceramics": "Ceramics & Clay",
+      "jewelry": "Traditional Jewelry",
+      "wood": "Wood Carving",
+      "accesories": "Accesories",
+      "paintings": "Artisanal Paintings"
+    }
+  },
+  "story": {
+    "badge": "Our Philosophy",
+    "title": "Each piece has a story",
+    "text": "The products on Yawi are made by entrepreneurs and artisans who preserve techniques, knowledge, and traditions passed down through generations.",
+    "image_alt": "Master artisan sharing traditional technique",
+    "metrics": {
+      "handmade": "Handmade",
+      "communities": "Communities",
+      "middlemen": "Middlemen"
+    }
+  },
+  "explore_latam": {
+    "title": "Explore Latin America",
+    "subtitle": "Journey through the artisanal richness and cultural diversity of our region.",
+    "active_label": "Active",
+    "coming_soon": "Coming soon",
+    "available_collection": "Collection available",
+    "coming_soon_collection": "Available soon",
+    "countries": {
+      "elsalvador": "El Salvador",
+      "guatemala": "Guatemala",
+      "honduras": "Honduras",
+      "peru": "Peru",
+      "ecuador": "Ecuador"
+    }
+  },
+  "featured_products": {
+    "title": "Featured products",
+    "subtitle": "A curated selection of exclusive handmade creations freshly arrived in our gallery.",
+    "price_label": "Price",
+    "view_product": "View product",
+    "empty_message": "No products available at this time.",
+    "error_message": "Could not load products.",
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "culture": {
+    "title": "Taking culture further",
+    "text": "Thousands of Latin Americans live in other countries keeping their memories, customs, and traditions alive. Yawi brings them closer again to those elements that are part of their identity.",
+    "quote": "“The perfect opportunity for those far from home”"
+  },
+  "testimonials": {
+    "title": "Community Testimonials",
+    "subtitle": "Real stories from those who buy with purpose and those who create from the heart.",
+    "buyer_label": "Buyer",
+    "artisan_label": "Artisan",
+    "buyer": {
+      "name": "Camila Fernández",
+      "location": "New Jersey, USA",
+      "quote": "I was able to find products that remind me of my childhood in El Salvador."
+    },
+    "artisan": {
+      "name": "Don Mateo Choc",
+      "location": "Santiago Atitlan, Guatemala",
+      "craft": "Master Weaver",
+      "quote": "Now my products reach customers I would never have been able to reach on my own."
+    }
+  },
+  "final_cta": {
+    "title": "Be part of the cultural movement",
+    "description": "Join a global community passionate about authentic art, conscious design, and positive social impact.",
+    "button": "Explore the gallery"
+  }
+}

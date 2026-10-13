@@ -1,0 +1,9 @@
+export { SellerHeroSection } from './components/SellerHeroSection';
+export { SellerProblemSection } from './components/SellerProblemSection';
+export { SellerHowYawiHelpsSection } from './components/SellerHowYawiHelpsSection';
+export { SellerPromiseSection } from './components/SellerPromiseSection';
+export { SellerEarlyAlliesSection } from './components/SellerEarlyAlliesSection';
+export { SellerHowItWorksSection } from './components/SellerHowItWorksSection';
+export { SellerMarketsSection } from './components/SellerMarketsSection';
+export { SellerStorySection } from './components/SellerStorySection';
+export { SellerFinalCtaSection } from './components/SellerFinalCtaSection';

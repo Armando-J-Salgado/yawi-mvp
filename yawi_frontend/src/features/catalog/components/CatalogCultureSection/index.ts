@@ -1,0 +1,1 @@
+export { CatalogCultureSection } from './CatalogCultureSection';

@@ -1,13 +1,34 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { DatabaseModule } from './database/database.module';
+import { VendorsModule } from './vendors/vendors.module';
+import { PhoneNumbersModule } from './phone-numbers/phone-numbers.module';
+import { BusinessesModule } from './businesses/businesses.module';
+import { PaymentPreferencesModule } from './payment-preferences/payment-preferences.module';
+import { UploaderModule } from './uploader/uploader.module';
+import { CustomersModule } from './customers/customers.module';
+import { AuthModule } from './auth/auth.module';
+import { ProductsModule } from './products/products.module';
+import { OrdersModule } from './orders/orders.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: ['.env.local', '.env'],
     }),
+    DatabaseModule,
+    VendorsModule,
+    PhoneNumbersModule,
+    BusinessesModule,
+    PaymentPreferencesModule,
+    UploaderModule,
+    CustomersModule,
+    AuthModule,
+    ProductsModule,
+    OrdersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

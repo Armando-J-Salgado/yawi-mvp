@@ -1,0 +1,55 @@
+{
+  "hero": {
+    "badge": "Conoce a los Artesanos",
+    "title": "Hecho a Mano con Propósito",
+    "subtitle": "Descubre los emprendedores y artesanos detrás de cada pieza. Cada negocio tiene una historia que vale la pena conocer.",
+    "cta_primary": "Explorar artesanos",
+    "cta_secondary": "Conocer Yawi"
+  },
+  "search": {
+    "placeholder": "Buscar por nombre del negocio o artesano...",
+    "label": "Buscar artesanos"
+  },
+  "filters": {
+    "title": "Filtrar por país",
+    "all": "Todos los países",
+    "el_salvador": "El Salvador",
+    "guatemala": "Guatemala (próximamente)",
+    "honduras": "Honduras (próximamente)"
+  },
+  "grid": {
+    "loading": "Cargando artesanos...",
+    "empty": "No se encontraron artesanos con esos criterios.",
+    "error": "No pudimos cargar los artesanos. Por favor intenta de nuevo.",
+    "retry": "Reintentar"
+  },
+  "card": {
+    "joined": "Miembro desde",
+    "view_profile": "Ver perfil",
+    "artisan_label": "Artesano",
+    "location_label": "Ubicación"
+  },
+  "featured": {
+    "title": "Artesanos Destacados",
+    "subtitle": "Una selección de creadores inspiradores que representan lo mejor de la artesanía latinoamericana."
+  },
+  "culture": {
+    "title": "Países en Yawi",
+    "subtitle": "Estamos construyendo una comunidad de artesanos en toda Latinoamérica.",
+    "active_label": "Activo",
+    "coming_soon": "Próximamente"
+  },
+  "detail": {
+    "back": "Volver a artesanos",
+    "gallery_title": "Galería",
+    "meet_artisan": "Conoce al artesano",
+    "country_label": "País",
+    "member_since": "Miembro desde",
+    "impact_title": "Por qué importa apoyar este negocio",
+    "impact_text": "Al comprar en {{name}}, apoyas directamente a un artesano latinoamericano, ayudando a preservar tradiciones culturales y creando oportunidades económicas justas para su comunidad.",
+    "no_images": "Este negocio aún no ha subido imágenes.",
+    "loading": "Cargando detalles del negocio...",
+    "error": "No pudimos cargar la información del negocio.",
+    "not_found": "Negocio no encontrado."
+  }
+}
