@@ -7,9 +7,7 @@ export class VendorLoginDto {
     description: 'Username o DUI del Vendor',
     example: 'jperez',
   })
-  @Transform(({ value }) =>
-    typeof value === 'string' ? value.trim() : value,
-  )
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
   @IsString({ message: 'El username o DUI debe ser una cadena de texto' })
   @IsNotEmpty({ message: 'El username o DUI es obligatorio' })
   identifier: string;

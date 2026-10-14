@@ -77,9 +77,7 @@ export class AuthService {
     };
   }
 
-  async vendorLogin(
-    loginDto: VendorLoginDto,
-  ): Promise<AuthResponseDto> {
+  async vendorLogin(loginDto: VendorLoginDto): Promise<AuthResponseDto> {
     const identifier = loginDto.identifier.trim();
     const vendor = await this.vendorRepository
       .createQueryBuilder('vendor')

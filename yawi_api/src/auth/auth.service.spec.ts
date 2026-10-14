@@ -210,7 +210,6 @@ describe('AuthService', () => {
         name: mockCustomer.name,
         lastname: mockCustomer.lastname,
       });
-
     });
 
     it('debe rechazar payload con sub que no es UUID', async () => {
