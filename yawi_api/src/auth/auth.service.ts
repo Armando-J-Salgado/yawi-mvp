@@ -5,7 +5,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Customer } from '../customers/entities/customer.entity';
+import { Vendor } from '../vendors/entities/vendor.entity';
 import { LoginDto } from './dto/login.dto';
+import { VendorLoginDto } from './dto/vendor-login.dto';
 import { AuthResponseDto } from './dto/auth-response.dto';
 import {
   AuthenticatedUser,
@@ -20,6 +22,8 @@ export class AuthService {
   constructor(
     @InjectRepository(Customer)
     private readonly customerRepository: Repository<Customer>,
+    @InjectRepository(Vendor)
+    private readonly vendorRepository: Repository<Vendor>,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
   ) {
@@ -73,33 +77,92 @@ export class AuthService {
     };
   }
 
+  async vendorLogin(loginDto: VendorLoginDto): Promise<AuthResponseDto> {
+    const identifier = loginDto.identifier.trim();
+    const vendor = await this.vendorRepository
+      .createQueryBuilder('vendor')
+      .where(
+        'TRIM(vendor.username) = :identifier OR TRIM(vendor.DUI) = :identifier',
+        { identifier },
+      )
+      .addSelect('vendor.password')
+      .getOne();
+
+    if (!vendor || vendor.deletedAt) {
+      throw new UnauthorizedException('Credenciales inválidas');
+    }
+
+    const isPasswordValid = await bcrypt.compare(
+      loginDto.password,
+      vendor.password,
+    );
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Credenciales inválidas');
+    }
+
+    const payload: JwtPayload = {
+      sub: vendor.id,
+      userType: 'vendor',
+      username: vendor.username,
+    };
+
+    return {
+      access_token: this.jwtService.sign(payload),
+      token_type: 'Bearer',
+      expires_in: this.configService.get<string>('JWT_EXPIRES_IN', '1d'),
+      user: {
+        id: vendor.id,
+        userType: 'vendor',
+        username: vendor.username,
+        name: vendor.name,
+        surname: vendor.surname,
+        lastname: vendor.lastname,
+        second_lastname: vendor.second_lastname,
+      },
+    };
+  }
+
   async validateTokenPayload(payload: JwtPayload): Promise<AuthenticatedUser> {
     if (!payload || !payload.sub || !UUID_REGEX.test(payload.sub)) {
       throw new UnauthorizedException('Token inválido');
     }
 
-    if (payload.userType !== 'customer') {
-      throw new UnauthorizedException('Tipo de usuario inválido');
+    if (payload.userType === 'customer') {
+      if (!payload.email || typeof payload.email !== 'string') {
+        throw new UnauthorizedException('Token inválido');
+      }
+      const customer = await this.customerRepository.findOne({
+        where: { id: payload.sub },
+      });
+      if (!customer || customer.deletedAt) {
+        throw new UnauthorizedException('Usuario no encontrado o inactivo');
+      }
+      return {
+        id: customer.id,
+        userType: 'customer',
+        email: customer.email,
+        name: customer.name,
+        lastname: customer.lastname,
+      };
     }
 
-    if (!payload.email || typeof payload.email !== 'string') {
+    if (!payload.username || typeof payload.username !== 'string') {
       throw new UnauthorizedException('Token inválido');
     }
-
-    const customer = await this.customerRepository.findOne({
+    const vendor = await this.vendorRepository.findOne({
       where: { id: payload.sub },
     });
-
-    if (!customer || customer.deletedAt) {
+    if (!vendor || vendor.deletedAt) {
       throw new UnauthorizedException('Usuario no encontrado o inactivo');
     }
-
     return {
-      id: customer.id,
-      userType: 'customer',
-      email: customer.email,
-      name: customer.name,
-      lastname: customer.lastname,
+      id: vendor.id,
+      userType: 'vendor',
+      username: vendor.username,
+      name: vendor.name,
+      surname: vendor.surname,
+      lastname: vendor.lastname,
+      second_lastname: vendor.second_lastname,
     };
   }
 }

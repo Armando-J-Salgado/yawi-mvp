@@ -17,7 +17,9 @@ import {
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { AuthResponseDto, AuthUserDto } from './dto/auth-response.dto';
+import { VendorLoginDto } from './dto/vendor-login.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { VendorAuthGuard } from './guards/vendor-auth.guard';
 import type { RequestWithUser } from './guards/jwt-auth.guard';
 import type { AuthenticatedUser } from './interfaces/jwt-payload.interface';
 
@@ -51,6 +53,23 @@ export class AuthController {
     return this.authService.login(loginDto);
   }
 
+  @Post('vendor/login')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: 'Iniciar sesión como Vendor',
+    description: 'Autentica un Vendor mediante username o DUI y contraseña.',
+  })
+  @ApiResponse({ status: HttpStatus.OK, type: AuthResponseDto })
+  @ApiResponse({
+    status: HttpStatus.UNAUTHORIZED,
+    description: 'Credenciales inválidas.',
+  })
+  async vendorLogin(
+    @Body() loginDto: VendorLoginDto,
+  ): Promise<AuthResponseDto> {
+    return this.authService.vendorLogin(loginDto);
+  }
+
   @Get('me')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
@@ -69,6 +88,19 @@ export class AuthController {
     description: 'Token no provisto, inválido, expirado o usuario inactivo.',
   })
   getMe(@Req() req: RequestWithUser): AuthenticatedUser {
+    return req.user;
+  }
+
+  @Get('vendor/me')
+  @UseGuards(VendorAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Obtener el Vendor autenticado' })
+  @ApiResponse({ status: HttpStatus.OK, type: AuthUserDto })
+  @ApiResponse({
+    status: HttpStatus.UNAUTHORIZED,
+    description: 'Token ausente, inválido o no perteneciente a un Vendor.',
+  })
+  getVendorMe(@Req() req: RequestWithUser): AuthenticatedUser {
     return req.user;
   }
 }
