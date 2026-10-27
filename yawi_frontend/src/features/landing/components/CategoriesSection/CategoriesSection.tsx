@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { SectionContainer } from '../../../../components/ui';
 import { CategoryCard } from './CategoryCard';
+import { CATEGORIES } from '@/data/categories';
 import imagesData from '../../landing-images.json';
 
 export const CategoriesSection: React.FC = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation('landing');
   const categories = imagesData.categories;
 
@@ -19,7 +22,17 @@ export const CategoriesSection: React.FC = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
         {categories.map((cat) => (
-          <CategoryCard key={cat.id} imageSrc={cat.src} title={t(cat.titleKey)} />
+          <CategoryCard
+            key={cat.id}
+            imageSrc={cat.src}
+            title={t(cat.titleKey)}
+            onClick={() => {
+              const matchedCategory = CATEGORIES.find((c) => c.id === cat.id);
+              if (matchedCategory) {
+                navigate(`/artesanias/${matchedCategory.slug}`);
+              }
+            }}
+          />
         ))}
       </div>
     </SectionContainer>

@@ -34,7 +34,7 @@ export const FinalCtaSection: React.FC = () => {
             variant="cta"
             size="lg"
             as="a"
-            href="#categories"
+            href="/artesanias"
             className="gap-2 group shadow-xl hover:scale-105 transition-all text-primary-navy font-bold"
           >
             <span>{t('final_cta.button')}</span>

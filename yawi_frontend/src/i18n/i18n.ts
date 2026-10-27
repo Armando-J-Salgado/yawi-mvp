@@ -14,6 +14,7 @@ import esCatalog from './locales/es/catalog.json';
 import esCart from './locales/es/cart.json';
 import esCheckout from './locales/es/checkout.json';
 import esOrders from './locales/es/orders.json';
+import esArtesanias from './locales/es/artesanias.json';
 import enCommon from './locales/en/common.json';
 import enLanding from './locales/en/landing.json';
 import enNav from './locales/en/nav.json';
@@ -25,6 +26,7 @@ import enCatalog from './locales/en/catalog.json';
 import enCart from './locales/en/cart.json';
 import enCheckout from './locales/en/checkout.json';
 import enOrders from './locales/en/orders.json';
+import enArtesanias from './locales/en/artesanias.json';
 
 i18n
   .use(LanguageDetector)
@@ -43,6 +45,7 @@ i18n
         cart: esCart,
         checkout: esCheckout,
         orders: esOrders,
+        artesanias: esArtesanias,
       },
       en: {
         common: enCommon,
@@ -56,6 +59,7 @@ i18n
         cart: enCart,
         checkout: enCheckout,
         orders: enOrders,
+        artesanias: enArtesanias,
       },
     },
     lng: 'es', // Idioma por defecto: español

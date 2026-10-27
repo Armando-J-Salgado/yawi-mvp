@@ -36,12 +36,12 @@
     "title": "Explore by category",
     "subtitle": "Find the perfect piece crafted with centuries-old craftsmanship.",
     "items": {
-      "textiles": "Textiles & Weaving",
-      "ceramics": "Ceramics & Clay",
-      "jewelry": "Traditional Jewelry",
-      "wood": "Wood Carving",
-      "accesories": "Accesories",
-      "paintings": "Artisanal Paintings"
+      "barro_ceramica": "Clay & Ceramics",
+      "maderas": "Woodwork",
+      "textiles_tejidos": "Textiles & Weaving",
+      "joyeria": "Jewelry",
+      "pinturas_arte": "Paintings & Art",
+      "accesorios": "Accessories"
     }
   },
   "story": {

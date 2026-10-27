@@ -159,12 +159,13 @@ export class DatabaseService {
 
         const createdBusinesses = await businessRepo.find();
 
-        // Seed de Products (2 por cada business creado)
+        // Seed de Products (existentes + 12 adicionales cubriendo las 6 categorías)
         const productsData = [
           {
             name: 'Juego de Sábanas King Size',
             price: 45.0,
-            tags: ['hogar', 'dormitorio', 'textil'],
+            tags: ['textiles-tejidos', 'hogar', 'dormitorio'],
+            images_urls: ['/images/textiles.webp'],
             properties: {
               material: '100% algodón',
               thread_count: 300,
@@ -175,7 +176,8 @@ export class DatabaseService {
           {
             name: 'Lámpara de Mesa LED',
             price: 22.5,
-            tags: ['hogar', 'iluminación', 'led'],
+            tags: ['maderas', 'hogar', 'iluminación'],
+            images_urls: ['/images/maderas.webp'],
             properties: {
               power: '12W',
               color_temp: '3000K',
@@ -187,6 +189,7 @@ export class DatabaseService {
             name: 'Café Pacamara Especial 500g',
             price: 12.0,
             tags: ['café', 'artesanal', 'especialidad'],
+            images_urls: ['/images/accesorios.webp'],
             properties: {
               origin: 'Apaneca, El Salvador',
               roast: 'medio',
@@ -198,6 +201,7 @@ export class DatabaseService {
             name: 'Café Bourbon Miel 500g',
             price: 14.5,
             tags: ['café', 'artesanal', 'gourmet'],
+            images_urls: ['/images/accesorios.webp'],
             properties: {
               origin: 'Santa Ana, El Salvador',
               roast: 'claro',
@@ -209,6 +213,7 @@ export class DatabaseService {
             name: 'Ramo de Rosas Rojas x12',
             price: 25.0,
             tags: ['flores', 'rosas', 'regalos'],
+            images_urls: ['/images/pinturas.webp'],
             properties: {
               quantity: 12,
               flower_type: 'rosa ecuatoriana',
@@ -220,11 +225,114 @@ export class DatabaseService {
             name: 'Arreglo Floral Primaveral',
             price: 35.0,
             tags: ['flores', 'arreglos', 'eventos'],
+            images_urls: ['/images/pinturas.webp'],
             properties: {
               size: 'mediano',
               vase_included: true,
             },
             business_id: createdBusinesses[2].id,
+          },
+          // Barro & Cerámica
+          {
+            name: 'Jarrón de barro artesanal',
+            price: 28.0,
+            tags: ['barro-ceramica', 'decoración'],
+            images_urls: ['/images/alfareria.webp'],
+            properties: { material: 'barro', origin: 'El Salvador' },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Plato decorativo de cerámica pintada',
+            price: 18.5,
+            tags: ['barro-ceramica', 'decoración'],
+            images_urls: ['/images/alfareria.webp'],
+            properties: { material: 'cerámica', technique: 'pintado a mano' },
+            business_id: createdBusinesses[0].id,
+          },
+          // Maderas
+          {
+            name: 'Máscara ceremonial tallada en madera',
+            price: 55.0,
+            tags: ['maderas', 'decoración', 'cultural'],
+            images_urls: ['/images/maderas.webp'],
+            properties: { wood: 'cedro', origin: 'Guatemala' },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Cucharas artesanales de madera (set de 4)',
+            price: 15.0,
+            tags: ['maderas', 'cocina'],
+            images_urls: ['/images/maderas.webp'],
+            properties: { wood: 'palo blanco', pieces: 4 },
+            business_id: createdBusinesses[1].id,
+          },
+          // Textiles & Tejidos
+          {
+            name: 'Hamaca de algodón tejida a mano',
+            price: 75.0,
+            tags: ['textiles-tejidos', 'hogar'],
+            images_urls: ['/images/textiles.webp'],
+            properties: { material: 'algodón', size: 'familiar' },
+            business_id: createdBusinesses[1].id,
+          },
+          {
+            name: 'Huipil bordado tradicional',
+            price: 120.0,
+            tags: ['textiles-tejidos', 'ropa', 'cultural'],
+            images_urls: ['/images/textiles.webp'],
+            properties: { origin: 'Guatemala', technique: 'telar de cintura' },
+            business_id: createdBusinesses[2].id,
+          },
+          // Joyería
+          {
+            name: 'Collar de jade guatemalteco',
+            price: 85.0,
+            tags: ['joyeria', 'piedras'],
+            images_urls: ['/images/joyeria.webp'],
+            properties: { stone: 'jade', origin: 'Guatemala' },
+            business_id: createdBusinesses[2].id,
+          },
+          {
+            name: 'Aretes de semillas naturales',
+            price: 12.0,
+            tags: ['joyeria', 'semillas'],
+            images_urls: ['/images/joyeria.webp'],
+            properties: { material: 'semillas de tagua', origin: 'Ecuador' },
+            business_id: createdBusinesses[2].id,
+          },
+          // Pinturas y Arte
+          {
+            name: 'Cuadro naif de pueblo salvadoreño',
+            price: 95.0,
+            tags: ['pinturas-arte', 'cuadros'],
+            images_urls: ['/images/pinturas.webp'],
+            properties: { technique: 'acrílico sobre lienzo', size: '40x60cm' },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Miniatura pintada en madera',
+            price: 22.0,
+            tags: ['pinturas-arte', 'decoración'],
+            images_urls: ['/images/pinturas.webp'],
+            properties: { technique: 'óleo', size: '10x15cm' },
+            business_id: createdBusinesses[1].id,
+          },
+          // Accesorios
+          {
+            name: 'Bolso de henequén tejido',
+            price: 35.0,
+            tags: ['accesorios', 'bolsos'],
+            images_urls: ['/images/accesorios.webp'],
+            properties: { material: 'henequén', origin: 'El Salvador' },
+            business_id: createdBusinesses[2].id,
+          },
+          {
+            name: 'Sombrero de palma artesanal',
+            price: 20.0,
+            tags: ['accesorios', 'sombreros'],
+            images_urls: ['/images/accesorios.webp'],
+            properties: { material: 'palma', origin: 'El Salvador' },
+            business_id: createdBusinesses[0].id,
           },
         ];
 
@@ -491,6 +599,155 @@ export class DatabaseService {
       throw error;
     } finally {
       await queryRunner.release();
+    }
+  }
+
+  /**
+   * Asegura que los productos de las 6 categorías canónicas estén disponibles,
+   * incluso si la base de datos ya contenía datos previos.
+   */
+  async ensureArtisanalProducts(): Promise<void> {
+    const productRepo = this.dataSource.getRepository(Product);
+    const businessRepo = this.dataSource.getRepository(Business);
+
+    const existingProducts = await productRepo.find();
+    const canonicalCategories = [
+      'barro-ceramica',
+      'maderas',
+      'textiles-tejidos',
+      'joyeria',
+      'pinturas-arte',
+      'accesorios',
+    ];
+
+    const hasCategoryProducts = existingProducts.some(
+      (p) => p.tags && p.tags.some((t) => canonicalCategories.includes(t)),
+    );
+
+    if (hasCategoryProducts && existingProducts.length >= 10) {
+      return;
+    }
+
+    const businesses = await businessRepo.find();
+    if (businesses.length === 0) {
+      return;
+    }
+
+    this.logger.log(
+      '🌱 Populating missing artisanal products into database...',
+    );
+
+    const productsToSeed = [
+      // Barro & Cerámica
+      {
+        name: 'Jarrón de barro artesanal',
+        price: 28.0,
+        tags: ['barro-ceramica', 'decoración', 'barro'],
+        images_urls: ['/images/alfareria.webp'],
+        properties: { material: 'barro', origin: 'El Salvador' },
+        business_id: businesses[0].id,
+      },
+      {
+        name: 'Plato decorativo de cerámica pintada',
+        price: 18.5,
+        tags: ['barro-ceramica', 'decoración', 'cerámica'],
+        images_urls: ['/images/alfareria.webp'],
+        properties: { material: 'cerámica', technique: 'pintado a mano' },
+        business_id: businesses[0].id,
+      },
+      // Maderas
+      {
+        name: 'Máscara ceremonial tallada en madera',
+        price: 55.0,
+        tags: ['maderas', 'decoración', 'cultural'],
+        images_urls: ['/images/maderas.webp'],
+        properties: { wood: 'cedro', origin: 'Guatemala' },
+        business_id: businesses[0].id,
+      },
+      {
+        name: 'Cucharas artesanales de madera (set de 4)',
+        price: 15.0,
+        tags: ['maderas', 'cocina'],
+        images_urls: ['/images/maderas.webp'],
+        properties: { wood: 'palo blanco', pieces: 4 },
+        business_id: businesses[1 % businesses.length].id,
+      },
+      // Textiles & Tejidos
+      {
+        name: 'Hamaca de algodón tejida a mano',
+        price: 75.0,
+        tags: ['textiles-tejidos', 'hogar', 'hamacas'],
+        images_urls: ['/images/textiles.webp'],
+        properties: { material: 'algodón', size: 'familiar' },
+        business_id: businesses[1 % businesses.length].id,
+      },
+      {
+        name: 'Huipil bordado tradicional',
+        price: 120.0,
+        tags: ['textiles-tejidos', 'ropa', 'cultural'],
+        images_urls: ['/images/textiles.webp'],
+        properties: { origin: 'Guatemala', technique: 'telar de cintura' },
+        business_id: businesses[2 % businesses.length].id,
+      },
+      // Joyería
+      {
+        name: 'Collar de jade guatemalteco',
+        price: 85.0,
+        tags: ['joyeria', 'piedras', 'collares'],
+        images_urls: ['/images/joyeria.webp'],
+        properties: { stone: 'jade', origin: 'Guatemala' },
+        business_id: businesses[2 % businesses.length].id,
+      },
+      {
+        name: 'Aretes de semillas naturales',
+        price: 12.0,
+        tags: ['joyeria', 'semillas', 'aretes'],
+        images_urls: ['/images/joyeria.webp'],
+        properties: { material: 'semillas de tagua', origin: 'Ecuador' },
+        business_id: businesses[2 % businesses.length].id,
+      },
+      // Pinturas y Arte
+      {
+        name: 'Cuadro naif de pueblo salvadoreño',
+        price: 95.0,
+        tags: ['pinturas-arte', 'cuadros', 'decoración'],
+        images_urls: ['/images/pinturas.webp'],
+        properties: { technique: 'acrílico sobre lienzo', size: '40x60cm' },
+        business_id: businesses[0].id,
+      },
+      {
+        name: 'Miniatura pintada en madera',
+        price: 22.0,
+        tags: ['pinturas-arte', 'decoración', 'miniaturas'],
+        images_urls: ['/images/pinturas.webp'],
+        properties: { technique: 'óleo', size: '10x15cm' },
+        business_id: businesses[1 % businesses.length].id,
+      },
+      // Accesorios
+      {
+        name: 'Bolso de henequén tejido',
+        price: 35.0,
+        tags: ['accesorios', 'bolsos', 'henequén'],
+        images_urls: ['/images/accesorios.webp'],
+        properties: { material: 'henequén', origin: 'El Salvador' },
+        business_id: businesses[2 % businesses.length].id,
+      },
+      {
+        name: 'Sombrero de palma artesanal',
+        price: 20.0,
+        tags: ['accesorios', 'sombreros', 'palma'],
+        images_urls: ['/images/accesorios.webp'],
+        properties: { material: 'palma', origin: 'El Salvador' },
+        business_id: businesses[0].id,
+      },
+    ];
+
+    for (const pData of productsToSeed) {
+      const alreadyExists = existingProducts.some((p) => p.name === pData.name);
+      if (!alreadyExists) {
+        const product = productRepo.create(pData);
+        await productRepo.save(product);
+      }
     }
   }
 }
