@@ -30,3 +30,12 @@ If you are developing a production application, we recommend enabling type-aware
 ```
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+
+## Arquitectura de Rutas y SEO Transaccional
+
+- `/` → Redirección a `/artesanias` (nueva landing transaccional por defecto).
+- `/artesanias` → Catálogo principal con banner compacto, categorías visibles y productos destacados (diseño orientado a conversión y acceso directo a productos).
+- `/artesanias/:slug` → Vista filtrada por categoría canónica (`barro-ceramica`, `maderas`, `textiles-tejidos`, `joyeria`, `pinturas-arte`, `accesorios`).
+- `/cultura-yawi` → Landing cultural original con la narrativa de marca y filosofía comunitaria.
+- `/products` → Catálogo general (ruta de compatibilidad legacy).
+- `/products/:id` → Detalle de producto.

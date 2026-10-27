@@ -62,7 +62,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
 
-  // Auto-seeding si la base de datos se encuentra vacía
+  // Auto-seeding si la base de datos se encuentra vacía o faltan productos artesanales
   try {
     const databaseService = app.get(DatabaseService);
     const isEmpty = await databaseService.isDatabaseEmpty();
@@ -71,6 +71,8 @@ async function bootstrap() {
         '🌱 Database is empty on start. Executing automatic seeding...',
       );
       await databaseService.seed();
+    } else {
+      await databaseService.ensureArtisanalProducts();
     }
   } catch (err) {
     logger.warn('Could not execute auto-seeding check during bootstrap:', err);

@@ -6,7 +6,7 @@ Contenido estático **no traducible** (constantes, listas de opciones, datasets 
 
 ## Contenido
 
-- **Actualmente sin datasets.** El antiguo `mock-products.ts` se eliminó al integrar la API real de productos (Decisión #73). Los productos ahora se obtienen vía `src/api/products.api.ts` (`GET /products`).
+- `categories.ts`: Definición canónica de las 6 categorías de artesanías (`Category` interface y array `CATEGORIES`) con sus slugs, tags para filtrado de productos, rutas de imágenes y claves i18n.
 
 ## Reglas
 

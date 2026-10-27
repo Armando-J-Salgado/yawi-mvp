@@ -5,5 +5,22 @@
   "view_all": "Ver todo",
   "learn_more": "Conoce más",
   "back_to_top": "Volver arriba",
-  "price": "Precio"
+  "price": "Precio",
+  "artesanias": {
+    "categories": {
+      "section_title": "Comprar por categoría",
+      "barro_ceramica": "Barro & Cerámica",
+      "barro_ceramica_desc": "Piezas de cerámica y barro hechas a mano con técnicas ancestrales por artesanos latinoamericanos.",
+      "maderas": "Maderas",
+      "maderas_desc": "Tallados, esculturas y objetos decorativos en maderas nobles trabajadas artesanalmente.",
+      "textiles_tejidos": "Textiles & Tejidos",
+      "textiles_tejidos_desc": "Hamacas, mantas, huipiles y tejidos elaborados con técnicas tradicionales transmitidas por generaciones.",
+      "joyeria": "Joyería",
+      "joyeria_desc": "Collares, pulseras, aretes y accesorios únicos creados con materiales autóctonos.",
+      "pinturas_arte": "Pinturas y Arte",
+      "pinturas_arte_desc": "Obras pictóricas y arte visual que capturan la identidad cultural latinoamericana.",
+      "accesorios": "Accesorios",
+      "accesorios_desc": "Bolsos, carteras, sombreros y complementos artesanales con identidad cultural."
+    }
+  }
 }

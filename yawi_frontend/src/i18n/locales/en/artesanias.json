@@ -1,0 +1,77 @@
+{
+  "hero": {
+    "title": "Latin American Handicrafts",
+    "subtitle": "Find unique handmade pieces crafted by artisans across the region.",
+    "search_placeholder": "Search handicrafts..."
+  },
+  "artesanias": {
+    "categories": {
+      "section_title": "Shop by category",
+      "barro_ceramica": "Clay & Ceramics",
+      "barro_ceramica_desc": "Handmade ceramic and pottery pieces made with ancestral techniques by Latin American artisans.",
+      "maderas": "Woodwork",
+      "maderas_desc": "Carvings, sculptures, and decorative objects made from fine woods crafted by hand.",
+      "textiles_tejidos": "Textiles & Weaving",
+      "textiles_tejidos_desc": "Hammocks, blankets, huipiles, and woven textiles crafted using traditional techniques passed down through generations.",
+      "joyeria": "Jewelry",
+      "joyeria_desc": "Necklaces, bracelets, earrings, and unique accessories created with indigenous materials.",
+      "pinturas_arte": "Paintings & Art",
+      "pinturas_arte_desc": "Paintings and visual art capturing the Latin American cultural identity.",
+      "accesorios": "Accessories",
+      "accesorios_desc": "Handcrafted bags, purses, hats, and accessories with cultural identity."
+    }
+  },
+  "categories": {
+    "section_title": "Shop by category",
+    "barro_ceramica": "Clay & Ceramics",
+    "barro_ceramica_desc": "Handmade ceramic and pottery pieces made with ancestral techniques by Latin American artisans.",
+    "maderas": "Woodwork",
+    "maderas_desc": "Carvings, sculptures, and decorative objects made from fine woods crafted by hand.",
+    "textiles_tejidos": "Textiles & Weaving",
+    "textiles_tejidos_desc": "Hammocks, blankets, huipiles, and woven textiles crafted using traditional techniques passed down through generations.",
+    "joyeria": "Jewelry",
+    "joyeria_desc": "Necklaces, bracelets, earrings, and unique accessories created with indigenous materials.",
+    "pinturas_arte": "Paintings & Art",
+    "pinturas_arte_desc": "Paintings and visual art capturing the Latin American cultural identity.",
+    "accesorios": "Accessories",
+    "accesorios_desc": "Handcrafted bags, purses, hats, and accessories with cultural identity."
+  },
+  "category_details": {
+    "about_title": "About this craft",
+    "materials_label": "Traditional materials",
+    "techniques_label": "Ancestral techniques",
+    "origin_label": "Represented regions",
+    "filters_title": "Category filters",
+    "subcategories_title": "Piece type",
+    "price_range_title": "Price range",
+    "all_prices": "All prices",
+    "under_25": "Under $25",
+    "between_25_50": "$25 to $50",
+    "between_50_100": "$50 to $100",
+    "over_100": "Over $100",
+    "clear_filters": "Clear filters",
+    "active_filters": "Active filters",
+    "filter_by_tag": "Filter by tag",
+    "search_in_category": "Search in this category...",
+    "results_count": "{{count}} product found",
+    "results_count_plural": "{{count}} products found",
+    "back_to_categories": "All handicrafts",
+    "toggle_filters": "Details & Filters"
+  },
+  "breadcrumb": {
+    "home": "Handicrafts"
+  },
+  "sidebar": {
+    "title": "Filters and Details"
+  },
+  "empty": {
+    "title": "No products in this category",
+    "text": "We will be adding more products soon. Explore other categories in the meantime.",
+    "cta": "View all handicrafts"
+  },
+  "meta": {
+    "home_title": "Latin American Handicrafts | Yawi",
+    "home_description": "Shop handmade crafts: clay, ceramics, textiles, jewelry, woodwork, and more. Direct from Latin American artisans.",
+    "category_title_suffix": "— Handicrafts | Yawi"
+  }
+}

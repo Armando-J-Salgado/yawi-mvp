@@ -36,12 +36,12 @@
     "title": "Explora por categoría",
     "subtitle": "Encuentra la pieza perfecta elaborada con técnicas centenarias.",
     "items": {
-      "textiles": "Textiles & Tejidos",
-      "ceramics": "Cerámica & Barro",
-      "jewelry": "Joyería Tradicional",
-      "wood": "Talla en Madera",
-      "accesories": "Accesorios",
-      "paintings": "Pinturas Artesanales"
+      "barro_ceramica": "Barro & Cerámica",
+      "maderas": "Maderas",
+      "textiles_tejidos": "Textiles & Tejidos",
+      "joyeria": "Joyería",
+      "pinturas_arte": "Pinturas y Arte",
+      "accesorios": "Accesorios"
     }
   },
   "story": {
