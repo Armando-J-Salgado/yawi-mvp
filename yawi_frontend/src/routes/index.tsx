@@ -10,6 +10,7 @@ import { Skeleton } from '../components/ui';
 
 const ArtesaniasPage = lazy(() => import('../pages/ArtesaniasPage/ArtesaniasPage'));
 const CategoryPage = lazy(() => import('../pages/CategoryPage/CategoryPage'));
+const SearchResultsPage = lazy(() => import('../pages/SearchResultsPage/SearchResultsPage'));
 const ArtisansPage = lazy(() => import('../pages/ArtisansPage/ArtisansPage'));
 const BusinessDetailPage = lazy(() => import('../pages/BusinessDetailPage/BusinessDetailPage'));
 const CatalogPage = lazy(() => import('../pages/CatalogPage/CatalogPage'));
@@ -42,6 +43,7 @@ export function AppRoutes() {
           <Route path="/" element={<Navigate to="/artesanias" replace />} />
           <Route path="/artesanias" element={<ArtesaniasPage />} />
           <Route path="/artesanias/:slug" element={<CategoryPage />} />
+          <Route path="/buscar" element={<SearchResultsPage />} />
           <Route path="/cultura-yawi" element={<LandingPage />} />
           <Route path="/vender" element={<SellerLandingPage />} />
           <Route path="/artisans" element={<ArtisansPage />} />

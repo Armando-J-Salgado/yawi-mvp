@@ -45,6 +45,7 @@ export default function ArtesaniasPage() {
       <ArtesaniasHeroBanner
         search={filters.search}
         onSearchChange={(search) => setFilters((current) => ({ ...current, search }))}
+        onSubmit={(query) => navigate(`/buscar?q=${encodeURIComponent(query)}`)}
       />
 
       {/* 2. Grid de categorías — PRIMER contenido visible */}
