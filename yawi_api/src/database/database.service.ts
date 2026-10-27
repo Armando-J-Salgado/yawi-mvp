@@ -238,7 +238,11 @@ export class DatabaseService {
             price: 18.5,
             tags: ['barro-ceramica', 'decoración', 'cerámica'],
             images_urls: ['/images/alfareria.webp'],
-            properties: { material: 'cerámica', technique: 'pintado a mano', origin: 'Ilobasco' },
+            properties: {
+              material: 'cerámica',
+              technique: 'pintado a mano',
+              origin: 'Ilobasco',
+            },
             business_id: createdBusinesses[0].id,
           },
           {
@@ -246,7 +250,11 @@ export class DatabaseService {
             price: 12.0,
             tags: ['barro-ceramica', 'vajilla', 'barro'],
             images_urls: ['/images/producto1.webp'],
-            properties: { material: 'barro bruñido', capacity: '350ml', origin: 'Guatajiagua' },
+            properties: {
+              material: 'barro bruñido',
+              capacity: '350ml',
+              origin: 'Guatajiagua',
+            },
             business_id: createdBusinesses[1].id,
           },
           {
@@ -254,7 +262,11 @@ export class DatabaseService {
             price: 28.0,
             tags: ['barro-ceramica', 'decoración', 'barro'],
             images_urls: ['/images/alfareria.webp'],
-            properties: { material: 'barro rojo', finish: 'natural', origin: 'El Salvador' },
+            properties: {
+              material: 'barro rojo',
+              finish: 'natural',
+              origin: 'El Salvador',
+            },
             business_id: createdBusinesses[0].id,
           },
           {
@@ -262,7 +274,11 @@ export class DatabaseService {
             price: 42.0,
             tags: ['barro-ceramica', 'vajilla', 'cerámica', 'barro'],
             images_urls: ['/images/producto3.webp'],
-            properties: { pieces: 4, material: 'arcilla horneada', origin: 'San Antonio Palopó' },
+            properties: {
+              pieces: 4,
+              material: 'arcilla horneada',
+              origin: 'San Antonio Palopó',
+            },
             business_id: createdBusinesses[2].id,
           },
           {
@@ -270,7 +286,11 @@ export class DatabaseService {
             price: 68.0,
             tags: ['barro-ceramica', 'decoración', 'barro'],
             images_urls: ['/images/alfareria.webp'],
-            properties: { technique: 'tinte nacascolo', style: 'lenca tradicional', height: '45cm' },
+            properties: {
+              technique: 'tinte nacascolo',
+              style: 'lenca tradicional',
+              height: '45cm',
+            },
             business_id: createdBusinesses[1].id,
           },
           {
@@ -278,7 +298,11 @@ export class DatabaseService {
             price: 135.0,
             tags: ['barro-ceramica', 'vajilla', 'cerámica', 'decoración'],
             images_urls: ['/images/artesanias.webp'],
-            properties: { pieces: 16, glaze: 'mineral libre de plomo', dishwasherSafe: true },
+            properties: {
+              pieces: 16,
+              glaze: 'mineral libre de plomo',
+              dishwasherSafe: true,
+            },
             business_id: createdBusinesses[2].id,
           },
           // Maderas (al menos 6 productos cubriendo sub-tags y rangos de precio)
@@ -287,7 +311,11 @@ export class DatabaseService {
             price: 15.0,
             tags: ['maderas', 'cocina'],
             images_urls: ['/images/maderas.webp'],
-            properties: { wood: 'palo blanco', pieces: 4, finish: 'aceite mineral' },
+            properties: {
+              wood: 'palo blanco',
+              pieces: 4,
+              finish: 'aceite mineral',
+            },
             business_id: createdBusinesses[1].id,
           },
           {
@@ -311,7 +339,11 @@ export class DatabaseService {
             price: 55.0,
             tags: ['maderas', 'decoración', 'cultural'],
             images_urls: ['/images/maderas.webp'],
-            properties: { wood: 'cedro', origin: 'Guatemala', motif: 'danza tradicional' },
+            properties: {
+              wood: 'cedro',
+              origin: 'Guatemala',
+              motif: 'danza tradicional',
+            },
             business_id: createdBusinesses[0].id,
           },
           {
@@ -319,7 +351,10 @@ export class DatabaseService {
             price: 85.0,
             tags: ['maderas', 'esculturas', 'cultural', 'decoración'],
             images_urls: ['/images/producto6.webp'],
-            properties: { wood: 'cedro real', technique: 'tallado en relieve manual' },
+            properties: {
+              wood: 'cedro real',
+              technique: 'tallado en relieve manual',
+            },
             business_id: createdBusinesses[2].id,
           },
           {
@@ -327,7 +362,11 @@ export class DatabaseService {
             price: 120.0,
             tags: ['maderas', 'decoración', 'cultural', 'esculturas'],
             images_urls: ['/images/maderas.webp'],
-            properties: { wood: 'caoba', lock: 'hierro forjado', origin: 'Suchitoto' },
+            properties: {
+              wood: 'caoba',
+              lock: 'hierro forjado',
+              origin: 'Suchitoto',
+            },
             business_id: createdBusinesses[2].id,
           },
           // Textiles & Tejidos (al menos 6 productos cubriendo sub-tags y rangos de precio)
@@ -336,7 +375,11 @@ export class DatabaseService {
             price: 22.0,
             tags: ['textiles-tejidos', 'hogar', 'cultural'],
             images_urls: ['/images/textiles.webp'],
-            properties: { dye: 'añil puro', length: '1.80m', technique: 'telar de pedal' },
+            properties: {
+              dye: 'añil puro',
+              length: '1.80m',
+              technique: 'telar de pedal',
+            },
             business_id: createdBusinesses[0].id,
           },
           {
@@ -344,7 +387,11 @@ export class DatabaseService {
             price: 32.0,
             tags: ['textiles-tejidos', 'dormitorio', 'hogar'],
             images_urls: ['/images/textiles.webp'],
-            properties: { size: '45x45cm', material: 'manta de algodón', embroidery: 'hilo de seda' },
+            properties: {
+              size: '45x45cm',
+              material: 'manta de algodón',
+              embroidery: 'hilo de seda',
+            },
             business_id: createdBusinesses[1].id,
           },
           {
@@ -352,7 +399,10 @@ export class DatabaseService {
             price: 45.0,
             tags: ['textiles-tejidos', 'ropa', 'cultural'],
             images_urls: ['/images/ropa.webp'],
-            properties: { technique: 'shibori con añil', fabric: 'algodón 100%' },
+            properties: {
+              technique: 'shibori con añil',
+              fabric: 'algodón 100%',
+            },
             business_id: createdBusinesses[0].id,
           },
           {
@@ -360,7 +410,11 @@ export class DatabaseService {
             price: 75.0,
             tags: ['textiles-tejidos', 'hogar'],
             images_urls: ['/images/hamacas.webp'],
-            properties: { material: 'algodón hilado', size: 'matrimonial', capacity: '200kg' },
+            properties: {
+              material: 'algodón hilado',
+              size: 'matrimonial',
+              capacity: '200kg',
+            },
             business_id: createdBusinesses[1].id,
           },
           {
@@ -368,7 +422,11 @@ export class DatabaseService {
             price: 95.0,
             tags: ['textiles-tejidos', 'dormitorio', 'hogar', 'cultural'],
             images_urls: ['/images/textiles.webp'],
-            properties: { origin: 'San Sebastián', size: 'Queen', technique: 'doble urdimbre' },
+            properties: {
+              origin: 'San Sebastián',
+              size: 'Queen',
+              technique: 'doble urdimbre',
+            },
             business_id: createdBusinesses[2].id,
           },
           {
@@ -376,7 +434,10 @@ export class DatabaseService {
             price: 120.0,
             tags: ['textiles-tejidos', 'ropa', 'cultural'],
             images_urls: ['/images/ropa.webp'],
-            properties: { origin: 'Santiago Atitlán', technique: 'telar de cintura maya' },
+            properties: {
+              origin: 'Santiago Atitlán',
+              technique: 'telar de cintura maya',
+            },
             business_id: createdBusinesses[2].id,
           },
           // Joyería (al menos 6 productos cubriendo sub-tags y rangos de precio)
@@ -385,7 +446,10 @@ export class DatabaseService {
             price: 12.0,
             tags: ['joyeria', 'semillas', 'aretes'],
             images_urls: ['/images/joyeria.webp'],
-            properties: { material: 'semillas de tagua', hooks: 'acero quirúrgico' },
+            properties: {
+              material: 'semillas de tagua',
+              hooks: 'acero quirúrgico',
+            },
             business_id: createdBusinesses[2].id,
           },
           {
@@ -393,7 +457,10 @@ export class DatabaseService {
             price: 16.5,
             tags: ['joyeria', 'semillas'],
             images_urls: ['/images/productos4.webp'],
-            properties: { material: 'granos de café tostado barnizado', size: 'ajustable' },
+            properties: {
+              material: 'granos de café tostado barnizado',
+              size: 'ajustable',
+            },
             business_id: createdBusinesses[1].id,
           },
           {
@@ -401,7 +468,10 @@ export class DatabaseService {
             price: 38.0,
             tags: ['joyeria', 'aretes', 'piedras'],
             images_urls: ['/images/joyeria.webp'],
-            properties: { metal: 'plata esterlina 925', stones: 'circonia natural' },
+            properties: {
+              metal: 'plata esterlina 925',
+              stones: 'circonia natural',
+            },
             business_id: createdBusinesses[0].id,
           },
           {
@@ -409,7 +479,10 @@ export class DatabaseService {
             price: 46.0,
             tags: ['joyeria', 'collares', 'piedras'],
             images_urls: ['/images/productos5.webp'],
-            properties: { stone: 'lava volcánica y turquesa', clasp: 'cobre antiguo' },
+            properties: {
+              stone: 'lava volcánica y turquesa',
+              clasp: 'cobre antiguo',
+            },
             business_id: createdBusinesses[1].id,
           },
           {
@@ -417,7 +490,10 @@ export class DatabaseService {
             price: 85.0,
             tags: ['joyeria', 'piedras', 'collares'],
             images_urls: ['/images/joyeria.webp'],
-            properties: { stone: 'jade verde de Motagua', cord: 'cuero trenzado' },
+            properties: {
+              stone: 'jade verde de Motagua',
+              cord: 'cuero trenzado',
+            },
             business_id: createdBusinesses[2].id,
           },
           {
@@ -425,7 +501,11 @@ export class DatabaseService {
             price: 145.0,
             tags: ['joyeria', 'piedras', 'collares'],
             images_urls: ['/images/joyeria.webp'],
-            properties: { stone: 'jade imperial', metal: 'plata 925', certified: true },
+            properties: {
+              stone: 'jade imperial',
+              metal: 'plata 925',
+              certified: true,
+            },
             business_id: createdBusinesses[2].id,
           },
           // Pinturas y Arte (al menos 6 productos cubriendo sub-tags y rangos de precio)
@@ -434,7 +514,11 @@ export class DatabaseService {
             price: 14.0,
             tags: ['pinturas-arte', 'miniaturas', 'eventos', 'decoración'],
             images_urls: ['/images/productos2.webp'],
-            properties: { base: 'semilla de copinol', style: 'arte naíf', size: '5cm' },
+            properties: {
+              base: 'semilla de copinol',
+              style: 'arte naíf',
+              size: '5cm',
+            },
             business_id: createdBusinesses[0].id,
           },
           {
@@ -450,7 +534,10 @@ export class DatabaseService {
             price: 40.0,
             tags: ['pinturas-arte', 'decoración', 'eventos'],
             images_urls: ['/images/pinturas.webp'],
-            properties: { style: 'retablo tradicional', personalization: 'nombres y fecha' },
+            properties: {
+              style: 'retablo tradicional',
+              personalization: 'nombres y fecha',
+            },
             business_id: createdBusinesses[2].id,
           },
           {
@@ -458,7 +545,10 @@ export class DatabaseService {
             price: 78.0,
             tags: ['pinturas-arte', 'cuadros', 'decoración'],
             images_urls: ['/images/pinturas.webp'],
-            properties: { technique: 'acrílico espatulado', dimensions: '40x50cm' },
+            properties: {
+              technique: 'acrílico espatulado',
+              dimensions: '40x50cm',
+            },
             business_id: createdBusinesses[1].id,
           },
           {
@@ -466,7 +556,11 @@ export class DatabaseService {
             price: 95.0,
             tags: ['pinturas-arte', 'cuadros', 'decoración'],
             images_urls: ['/images/pinturas.webp'],
-            properties: { technique: 'acrílico sobre lienzo', size: '40x60cm', school: 'La Palma' },
+            properties: {
+              technique: 'acrílico sobre lienzo',
+              size: '40x60cm',
+              school: 'La Palma',
+            },
             business_id: createdBusinesses[0].id,
           },
           {
@@ -474,7 +568,11 @@ export class DatabaseService {
             price: 160.0,
             tags: ['pinturas-arte', 'cuadros', 'decoración', 'eventos'],
             images_urls: ['/images/artesanias.webp'],
-            properties: { pieces: 3, technique: 'óleo sobre lienzo en bastidor', total_size: '90x120cm' },
+            properties: {
+              pieces: 3,
+              technique: 'óleo sobre lienzo en bastidor',
+              total_size: '90x120cm',
+            },
             business_id: createdBusinesses[2].id,
           },
           // Accesorios (al menos 6 productos cubriendo sub-tags y rangos de precio)
@@ -483,7 +581,10 @@ export class DatabaseService {
             price: 11.5,
             tags: ['accesorios', 'bolsos', 'henequén'],
             images_urls: ['/images/producto6.webp'],
-            properties: { material: 'henequén teñido', closure: 'cremallera metálica' },
+            properties: {
+              material: 'henequén teñido',
+              closure: 'cremallera metálica',
+            },
             business_id: createdBusinesses[1].id,
           },
           {
@@ -499,7 +600,10 @@ export class DatabaseService {
             price: 35.0,
             tags: ['accesorios', 'bolsos', 'henequén'],
             images_urls: ['/images/accesorios.webp'],
-            properties: { material: 'henequén natural', handles: 'cuero curtido' },
+            properties: {
+              material: 'henequén natural',
+              handles: 'cuero curtido',
+            },
             business_id: createdBusinesses[2].id,
           },
           {
@@ -507,7 +611,10 @@ export class DatabaseService {
             price: 48.0,
             tags: ['accesorios', 'sombreros', 'palma'],
             images_urls: ['/images/accesorios.webp'],
-            properties: { material: 'palma jipi japa tejida en cueva', grade: 'fino' },
+            properties: {
+              material: 'palma jipi japa tejida en cueva',
+              grade: 'fino',
+            },
             business_id: createdBusinesses[0].id,
           },
           {
@@ -515,7 +622,10 @@ export class DatabaseService {
             price: 65.0,
             tags: ['accesorios', 'bolsos', 'palma'],
             images_urls: ['/images/accesorios.webp'],
-            properties: { material: 'palma trenzada y forro de manta', interiorPocket: true },
+            properties: {
+              material: 'palma trenzada y forro de manta',
+              interiorPocket: true,
+            },
             business_id: createdBusinesses[1].id,
           },
           {
@@ -523,7 +633,10 @@ export class DatabaseService {
             price: 110.0,
             tags: ['accesorios', 'bolsos', 'henequén'],
             images_urls: ['/images/accesorios.webp'],
-            properties: { strap: 'cuero ajustable', technique: 'telar y henequén entrelazado' },
+            properties: {
+              strap: 'cuero ajustable',
+              technique: 'telar y henequén entrelazado',
+            },
             business_id: createdBusinesses[2].id,
           },
         ];
@@ -836,7 +949,11 @@ export class DatabaseService {
         price: 18.5,
         tags: ['barro-ceramica', 'decoración', 'cerámica'],
         images_urls: ['/images/alfareria.webp'],
-        properties: { material: 'cerámica', technique: 'pintado a mano', origin: 'Ilobasco' },
+        properties: {
+          material: 'cerámica',
+          technique: 'pintado a mano',
+          origin: 'Ilobasco',
+        },
         business_id: b0,
       },
       {
@@ -844,7 +961,11 @@ export class DatabaseService {
         price: 12.0,
         tags: ['barro-ceramica', 'vajilla', 'barro'],
         images_urls: ['/images/producto1.webp'],
-        properties: { material: 'barro bruñido', capacity: '350ml', origin: 'Guatajiagua' },
+        properties: {
+          material: 'barro bruñido',
+          capacity: '350ml',
+          origin: 'Guatajiagua',
+        },
         business_id: b1,
       },
       {
@@ -852,7 +973,11 @@ export class DatabaseService {
         price: 28.0,
         tags: ['barro-ceramica', 'decoración', 'barro'],
         images_urls: ['/images/alfareria.webp'],
-        properties: { material: 'barro rojo', finish: 'natural', origin: 'El Salvador' },
+        properties: {
+          material: 'barro rojo',
+          finish: 'natural',
+          origin: 'El Salvador',
+        },
         business_id: b0,
       },
       {
@@ -860,7 +985,11 @@ export class DatabaseService {
         price: 42.0,
         tags: ['barro-ceramica', 'vajilla', 'cerámica', 'barro'],
         images_urls: ['/images/producto3.webp'],
-        properties: { pieces: 4, material: 'arcilla horneada', origin: 'San Antonio Palopó' },
+        properties: {
+          pieces: 4,
+          material: 'arcilla horneada',
+          origin: 'San Antonio Palopó',
+        },
         business_id: b2,
       },
       {
@@ -868,7 +997,11 @@ export class DatabaseService {
         price: 68.0,
         tags: ['barro-ceramica', 'decoración', 'barro'],
         images_urls: ['/images/alfareria.webp'],
-        properties: { technique: 'tinte nacascolo', style: 'lenca tradicional', height: '45cm' },
+        properties: {
+          technique: 'tinte nacascolo',
+          style: 'lenca tradicional',
+          height: '45cm',
+        },
         business_id: b1,
       },
       {
@@ -876,7 +1009,11 @@ export class DatabaseService {
         price: 135.0,
         tags: ['barro-ceramica', 'vajilla', 'cerámica', 'decoración'],
         images_urls: ['/images/artesanias.webp'],
-        properties: { pieces: 16, glaze: 'mineral libre de plomo', dishwasherSafe: true },
+        properties: {
+          pieces: 16,
+          glaze: 'mineral libre de plomo',
+          dishwasherSafe: true,
+        },
         business_id: b2,
       },
       // Maderas (al menos 6 productos cubriendo sub-tags y rangos de precio)
@@ -885,7 +1022,11 @@ export class DatabaseService {
         price: 15.0,
         tags: ['maderas', 'cocina'],
         images_urls: ['/images/maderas.webp'],
-        properties: { wood: 'palo blanco', pieces: 4, finish: 'aceite mineral' },
+        properties: {
+          wood: 'palo blanco',
+          pieces: 4,
+          finish: 'aceite mineral',
+        },
         business_id: b1,
       },
       {
@@ -909,7 +1050,11 @@ export class DatabaseService {
         price: 55.0,
         tags: ['maderas', 'decoración', 'cultural'],
         images_urls: ['/images/maderas.webp'],
-        properties: { wood: 'cedro', origin: 'Guatemala', motif: 'danza tradicional' },
+        properties: {
+          wood: 'cedro',
+          origin: 'Guatemala',
+          motif: 'danza tradicional',
+        },
         business_id: b0,
       },
       {
@@ -917,7 +1062,10 @@ export class DatabaseService {
         price: 85.0,
         tags: ['maderas', 'esculturas', 'cultural', 'decoración'],
         images_urls: ['/images/producto6.webp'],
-        properties: { wood: 'cedro real', technique: 'tallado en relieve manual' },
+        properties: {
+          wood: 'cedro real',
+          technique: 'tallado en relieve manual',
+        },
         business_id: b2,
       },
       {
@@ -925,7 +1073,11 @@ export class DatabaseService {
         price: 120.0,
         tags: ['maderas', 'decoración', 'cultural', 'esculturas'],
         images_urls: ['/images/maderas.webp'],
-        properties: { wood: 'caoba', lock: 'hierro forjado', origin: 'Suchitoto' },
+        properties: {
+          wood: 'caoba',
+          lock: 'hierro forjado',
+          origin: 'Suchitoto',
+        },
         business_id: b2,
       },
       // Textiles & Tejidos (al menos 6 productos cubriendo sub-tags y rangos de precio)
@@ -934,7 +1086,11 @@ export class DatabaseService {
         price: 22.0,
         tags: ['textiles-tejidos', 'hogar', 'cultural'],
         images_urls: ['/images/textiles.webp'],
-        properties: { dye: 'añil puro', length: '1.80m', technique: 'telar de pedal' },
+        properties: {
+          dye: 'añil puro',
+          length: '1.80m',
+          technique: 'telar de pedal',
+        },
         business_id: b0,
       },
       {
@@ -942,7 +1098,11 @@ export class DatabaseService {
         price: 32.0,
         tags: ['textiles-tejidos', 'dormitorio', 'hogar'],
         images_urls: ['/images/textiles.webp'],
-        properties: { size: '45x45cm', material: 'manta de algodón', embroidery: 'hilo de seda' },
+        properties: {
+          size: '45x45cm',
+          material: 'manta de algodón',
+          embroidery: 'hilo de seda',
+        },
         business_id: b1,
       },
       {
@@ -958,7 +1118,11 @@ export class DatabaseService {
         price: 75.0,
         tags: ['textiles-tejidos', 'hogar'],
         images_urls: ['/images/hamacas.webp'],
-        properties: { material: 'algodón hilado', size: 'matrimonial', capacity: '200kg' },
+        properties: {
+          material: 'algodón hilado',
+          size: 'matrimonial',
+          capacity: '200kg',
+        },
         business_id: b1,
       },
       {
@@ -966,7 +1130,11 @@ export class DatabaseService {
         price: 95.0,
         tags: ['textiles-tejidos', 'dormitorio', 'hogar', 'cultural'],
         images_urls: ['/images/textiles.webp'],
-        properties: { origin: 'San Sebastián', size: 'Queen', technique: 'doble urdimbre' },
+        properties: {
+          origin: 'San Sebastián',
+          size: 'Queen',
+          technique: 'doble urdimbre',
+        },
         business_id: b2,
       },
       {
@@ -974,7 +1142,10 @@ export class DatabaseService {
         price: 120.0,
         tags: ['textiles-tejidos', 'ropa', 'cultural'],
         images_urls: ['/images/ropa.webp'],
-        properties: { origin: 'Santiago Atitlán', technique: 'telar de cintura maya' },
+        properties: {
+          origin: 'Santiago Atitlán',
+          technique: 'telar de cintura maya',
+        },
         business_id: b2,
       },
       // Joyería (al menos 6 productos cubriendo sub-tags y rangos de precio)
@@ -983,7 +1154,10 @@ export class DatabaseService {
         price: 12.0,
         tags: ['joyeria', 'semillas', 'aretes'],
         images_urls: ['/images/joyeria.webp'],
-        properties: { material: 'semillas de tagua', hooks: 'acero quirúrgico' },
+        properties: {
+          material: 'semillas de tagua',
+          hooks: 'acero quirúrgico',
+        },
         business_id: b2,
       },
       {
@@ -991,7 +1165,10 @@ export class DatabaseService {
         price: 16.5,
         tags: ['joyeria', 'semillas'],
         images_urls: ['/images/productos4.webp'],
-        properties: { material: 'granos de café tostado barnizado', size: 'ajustable' },
+        properties: {
+          material: 'granos de café tostado barnizado',
+          size: 'ajustable',
+        },
         business_id: b1,
       },
       {
@@ -999,7 +1176,10 @@ export class DatabaseService {
         price: 38.0,
         tags: ['joyeria', 'aretes', 'piedras'],
         images_urls: ['/images/joyeria.webp'],
-        properties: { metal: 'plata esterlina 925', stones: 'circonia natural' },
+        properties: {
+          metal: 'plata esterlina 925',
+          stones: 'circonia natural',
+        },
         business_id: b0,
       },
       {
@@ -1007,7 +1187,10 @@ export class DatabaseService {
         price: 46.0,
         tags: ['joyeria', 'collares', 'piedras'],
         images_urls: ['/images/productos5.webp'],
-        properties: { stone: 'lava volcánica y turquesa', clasp: 'cobre antiguo' },
+        properties: {
+          stone: 'lava volcánica y turquesa',
+          clasp: 'cobre antiguo',
+        },
         business_id: b1,
       },
       {
@@ -1023,7 +1206,11 @@ export class DatabaseService {
         price: 145.0,
         tags: ['joyeria', 'piedras', 'collares'],
         images_urls: ['/images/joyeria.webp'],
-        properties: { stone: 'jade imperial', metal: 'plata 925', certified: true },
+        properties: {
+          stone: 'jade imperial',
+          metal: 'plata 925',
+          certified: true,
+        },
         business_id: b2,
       },
       // Pinturas y Arte (al menos 6 productos cubriendo sub-tags y rangos de precio)
@@ -1032,7 +1219,11 @@ export class DatabaseService {
         price: 14.0,
         tags: ['pinturas-arte', 'miniaturas', 'eventos', 'decoración'],
         images_urls: ['/images/productos2.webp'],
-        properties: { base: 'semilla de copinol', style: 'arte naíf', size: '5cm' },
+        properties: {
+          base: 'semilla de copinol',
+          style: 'arte naíf',
+          size: '5cm',
+        },
         business_id: b0,
       },
       {
@@ -1048,7 +1239,10 @@ export class DatabaseService {
         price: 40.0,
         tags: ['pinturas-arte', 'decoración', 'eventos'],
         images_urls: ['/images/pinturas.webp'],
-        properties: { style: 'retablo tradicional', personalization: 'nombres y fecha' },
+        properties: {
+          style: 'retablo tradicional',
+          personalization: 'nombres y fecha',
+        },
         business_id: b2,
       },
       {
@@ -1064,7 +1258,11 @@ export class DatabaseService {
         price: 95.0,
         tags: ['pinturas-arte', 'cuadros', 'decoración'],
         images_urls: ['/images/pinturas.webp'],
-        properties: { technique: 'acrílico sobre lienzo', size: '40x60cm', school: 'La Palma' },
+        properties: {
+          technique: 'acrílico sobre lienzo',
+          size: '40x60cm',
+          school: 'La Palma',
+        },
         business_id: b0,
       },
       {
@@ -1072,7 +1270,11 @@ export class DatabaseService {
         price: 160.0,
         tags: ['pinturas-arte', 'cuadros', 'decoración', 'eventos'],
         images_urls: ['/images/artesanias.webp'],
-        properties: { pieces: 3, technique: 'óleo sobre lienzo en bastidor', total_size: '90x120cm' },
+        properties: {
+          pieces: 3,
+          technique: 'óleo sobre lienzo en bastidor',
+          total_size: '90x120cm',
+        },
         business_id: b2,
       },
       // Accesorios (al menos 6 productos cubriendo sub-tags y rangos de precio)
@@ -1081,7 +1283,10 @@ export class DatabaseService {
         price: 11.5,
         tags: ['accesorios', 'bolsos', 'henequén'],
         images_urls: ['/images/producto6.webp'],
-        properties: { material: 'henequén teñido', closure: 'cremallera metálica' },
+        properties: {
+          material: 'henequén teñido',
+          closure: 'cremallera metálica',
+        },
         business_id: b1,
       },
       {
@@ -1105,7 +1310,10 @@ export class DatabaseService {
         price: 48.0,
         tags: ['accesorios', 'sombreros', 'palma'],
         images_urls: ['/images/accesorios.webp'],
-        properties: { material: 'palma jipi japa tejida en cueva', grade: 'fino' },
+        properties: {
+          material: 'palma jipi japa tejida en cueva',
+          grade: 'fino',
+        },
         business_id: b0,
       },
       {
@@ -1113,7 +1321,10 @@ export class DatabaseService {
         price: 65.0,
         tags: ['accesorios', 'bolsos', 'palma'],
         images_urls: ['/images/accesorios.webp'],
-        properties: { material: 'palma trenzada y forro de manta', interiorPocket: true },
+        properties: {
+          material: 'palma trenzada y forro de manta',
+          interiorPocket: true,
+        },
         business_id: b1,
       },
       {
@@ -1121,7 +1332,10 @@ export class DatabaseService {
         price: 110.0,
         tags: ['accesorios', 'bolsos', 'henequén'],
         images_urls: ['/images/accesorios.webp'],
-        properties: { strap: 'cuero ajustable', technique: 'telar y henequén entrelazado' },
+        properties: {
+          strap: 'cuero ajustable',
+          technique: 'telar y henequén entrelazado',
+        },
         business_id: b2,
       },
     ];
