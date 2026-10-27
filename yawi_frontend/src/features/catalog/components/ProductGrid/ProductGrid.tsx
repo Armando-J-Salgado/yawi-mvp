@@ -13,6 +13,8 @@ export interface ProductGridProps {
   onRetry: () => void;
   onViewProduct: (id: string) => void;
   businessNameById?: BusinessNameMap;
+  gridClassName?: string;
+  className?: string;
 }
 
 export const ProductGrid: React.FC<ProductGridProps> = ({
@@ -22,12 +24,14 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
   onRetry,
   onViewProduct,
   businessNameById,
+  gridClassName = 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
+  className = '',
 }) => {
   const { t } = useTranslation('catalog');
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className={`grid ${gridClassName} gap-6 ${className}`}>
         {Array.from({ length: 6 }).map((_, idx) => (
           <div
             key={idx}
@@ -71,7 +75,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div className={`grid ${gridClassName} gap-6 ${className}`}>
       {products.map((product) => (
         <ProductCard
           key={product.id}

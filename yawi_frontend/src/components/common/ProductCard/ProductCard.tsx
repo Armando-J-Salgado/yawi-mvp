@@ -91,12 +91,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           )}
         </div>
 
-        <div className="flex items-center justify-between pt-3 border-t border-border/80 gap-3">
+        <div className="flex flex-wrap items-end justify-between pt-3 border-t border-border/80 gap-x-2 gap-y-2">
           <div className="min-w-0">
             <span className="text-xs text-muted-text block uppercase tracking-wider">
               {priceLabel}
             </span>
-            <span className="text-lg font-extrabold text-primary-navy">
+            <span className="text-base sm:text-lg font-extrabold text-primary-navy whitespace-nowrap">
               {formatCurrency(price, currency)}
             </span>
           </div>
@@ -105,7 +105,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             variant="secondary"
             size="sm"
             onClick={onCtaClick}
-            className="group-hover:bg-primary-navy group-hover:text-white transition-all shrink-0"
+            className="group-hover:bg-primary-navy group-hover:text-white transition-all shrink-0 text-xs sm:text-sm px-3 sm:px-4"
           >
             {ctaLabel}
           </Button>
