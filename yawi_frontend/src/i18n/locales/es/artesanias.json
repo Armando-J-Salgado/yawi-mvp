@@ -1,0 +1,91 @@
+{
+  "hero": {
+    "title": "Artesanías de Latinoamérica",
+    "subtitle": "Encuentra piezas únicas hechas a mano por artesanos de toda la región.",
+    "search_placeholder": "Buscar artesanías...",
+    "search_aria_submit": "Buscar"
+  },
+  "artesanias": {
+    "categories": {
+      "section_title": "Comprar por categoría",
+      "barro_ceramica": "Barro & Cerámica",
+      "barro_ceramica_desc": "Piezas de cerámica y barro hechas a mano con técnicas ancestrales por artesanos latinoamericanos.",
+      "maderas": "Maderas",
+      "maderas_desc": "Tallados, esculturas y objetos decorativos en maderas nobles trabajadas artesanalmente.",
+      "textiles_tejidos": "Textiles & Tejidos",
+      "textiles_tejidos_desc": "Hamacas, mantas, huipiles y tejidos elaborados con técnicas tradicionales transmitidas por generaciones.",
+      "joyeria": "Joyería",
+      "joyeria_desc": "Collares, pulseras, aretes y accesorios únicos creados con materiales autóctonos.",
+      "pinturas_arte": "Pinturas y Arte",
+      "pinturas_arte_desc": "Obras pictóricas y arte visual que capturan la identidad cultural latinoamericana.",
+      "accesorios": "Accesorios",
+      "accesorios_desc": "Bolsos, carteras, sombreros y complementos artesanales con identidad cultural."
+    }
+  },
+  "categories": {
+    "section_title": "Comprar por categoría",
+    "barro_ceramica": "Barro & Cerámica",
+    "barro_ceramica_desc": "Piezas de cerámica y barro hechas a mano con técnicas ancestrales por artesanos latinoamericanos.",
+    "maderas": "Maderas",
+    "maderas_desc": "Tallados, esculturas y objetos decorativos en maderas nobles trabajadas artesanalmente.",
+    "textiles_tejidos": "Textiles & Tejidos",
+    "textiles_tejidos_desc": "Hamacas, mantas, huipiles y tejidos elaborados con técnicas tradicionales transmitidas por generaciones.",
+    "joyeria": "Joyería",
+    "joyeria_desc": "Collares, pulseras, aretes y accesorios únicos creados con materiales autóctonos.",
+    "pinturas_arte": "Pinturas y Arte",
+    "pinturas_arte_desc": "Obras pictóricas y arte visual que capturan la identidad cultural latinoamericana.",
+    "accesorios": "Accesorios",
+    "accesorios_desc": "Bolsos, carteras, sombreros y complementos artesanales con identidad cultural."
+  },
+  "category_details": {
+    "about_title": "Sobre esta artesanía",
+    "materials_label": "Materiales tradicionales",
+    "techniques_label": "Técnicas ancestrales",
+    "origin_label": "Regiones representadas",
+    "filters_title": "Filtros de categoría",
+    "subcategories_title": "Tipo de pieza",
+    "price_range_title": "Rango de precio",
+    "all_prices": "Todos los precios",
+    "under_25": "Menos de $25",
+    "between_25_50": "$25 a $50",
+    "between_50_100": "$50 a $100",
+    "over_100": "Más de $100",
+    "clear_filters": "Limpiar filtros",
+    "active_filters": "Filtros activos",
+    "filter_by_tag": "Filtrar por etiqueta",
+    "search_in_category": "Buscar en esta categoría...",
+    "results_count": "{{count}} producto encontrado",
+    "results_count_plural": "{{count}} productos encontrados",
+    "back_to_categories": "Todas las artesanías",
+    "toggle_filters": "Detalles y Filtros"
+  },
+  "breadcrumb": {
+    "home": "Artesanías"
+  },
+  "sidebar": {
+    "title": "Filtros y Detalles"
+  },
+  "empty": {
+    "title": "Sin productos en esta categoría",
+    "text": "Pronto agregaremos más productos. Explora otras categorías mientras tanto.",
+    "cta": "Ver todas las artesanías"
+  },
+  "meta": {
+    "home_title": "Artesanías de Latinoamérica | Yawi",
+    "home_description": "Compra artesanías hechas a mano: barro, cerámica, textiles, joyería, maderas y más. Directo de artesanos latinoamericanos.",
+    "category_title_suffix": "— Artesanías | Yawi"
+  },
+  "search": {
+    "meta_title": "Resultados para \"{{query}}\" — Artesanías | Yawi",
+    "meta_title_empty": "Búsqueda — Artesanías | Yawi",
+    "breadcrumb_label": "Resultados para \"{{query}}\"",
+    "heading": "Resultados para \"{{query}}\"",
+    "count_one": "{{count}} producto encontrado",
+    "count_other": "{{count}} productos encontrados",
+    "empty_title": "No se encontraron resultados para \"{{query}}\"",
+    "empty_text": "Intenta con otras palabras o explora nuestras categorías de artesanías.",
+    "suggestions_label": "Categorías sugeridas",
+    "empty_cta": "Ver todas las artesanías",
+    "error": "No se pudieron cargar los productos. Por favor intenta de nuevo."
+  }
+}

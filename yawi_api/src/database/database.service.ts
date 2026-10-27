@@ -159,12 +159,13 @@ export class DatabaseService {
 
         const createdBusinesses = await businessRepo.find();
 
-        // Seed de Products (2 por cada business creado)
+        // Seed de Products (existentes + 12 adicionales cubriendo las 6 categorías)
         const productsData = [
           {
             name: 'Juego de Sábanas King Size',
             price: 45.0,
-            tags: ['hogar', 'dormitorio', 'textil'],
+            tags: ['textiles-tejidos', 'hogar', 'dormitorio'],
+            images_urls: ['/images/textiles.webp'],
             properties: {
               material: '100% algodón',
               thread_count: 300,
@@ -175,7 +176,8 @@ export class DatabaseService {
           {
             name: 'Lámpara de Mesa LED',
             price: 22.5,
-            tags: ['hogar', 'iluminación', 'led'],
+            tags: ['maderas', 'hogar', 'iluminación'],
+            images_urls: ['/images/maderas.webp'],
             properties: {
               power: '12W',
               color_temp: '3000K',
@@ -187,6 +189,7 @@ export class DatabaseService {
             name: 'Café Pacamara Especial 500g',
             price: 12.0,
             tags: ['café', 'artesanal', 'especialidad'],
+            images_urls: ['/images/accesorios.webp'],
             properties: {
               origin: 'Apaneca, El Salvador',
               roast: 'medio',
@@ -198,6 +201,7 @@ export class DatabaseService {
             name: 'Café Bourbon Miel 500g',
             price: 14.5,
             tags: ['café', 'artesanal', 'gourmet'],
+            images_urls: ['/images/accesorios.webp'],
             properties: {
               origin: 'Santa Ana, El Salvador',
               roast: 'claro',
@@ -209,6 +213,7 @@ export class DatabaseService {
             name: 'Ramo de Rosas Rojas x12',
             price: 25.0,
             tags: ['flores', 'rosas', 'regalos'],
+            images_urls: ['/images/pinturas.webp'],
             properties: {
               quantity: 12,
               flower_type: 'rosa ecuatoriana',
@@ -220,9 +225,417 @@ export class DatabaseService {
             name: 'Arreglo Floral Primaveral',
             price: 35.0,
             tags: ['flores', 'arreglos', 'eventos'],
+            images_urls: ['/images/pinturas.webp'],
             properties: {
               size: 'mediano',
               vase_included: true,
+            },
+            business_id: createdBusinesses[2].id,
+          },
+          // Barro & Cerámica (al menos 6 productos cubriendo sub-tags y rangos de precio)
+          {
+            name: 'Plato decorativo de cerámica pintada',
+            price: 18.5,
+            tags: ['barro-ceramica', 'decoración', 'cerámica'],
+            images_urls: ['/images/alfareria.webp'],
+            properties: {
+              material: 'cerámica',
+              technique: 'pintado a mano',
+              origin: 'Ilobasco',
+            },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Taza artesanal de barro bruñido',
+            price: 12.0,
+            tags: ['barro-ceramica', 'vajilla', 'barro'],
+            images_urls: ['/images/producto1.webp'],
+            properties: {
+              material: 'barro bruñido',
+              capacity: '350ml',
+              origin: 'Guatajiagua',
+            },
+            business_id: createdBusinesses[1].id,
+          },
+          {
+            name: 'Jarrón de barro artesanal',
+            price: 28.0,
+            tags: ['barro-ceramica', 'decoración', 'barro'],
+            images_urls: ['/images/alfareria.webp'],
+            properties: {
+              material: 'barro rojo',
+              finish: 'natural',
+              origin: 'El Salvador',
+            },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Juego de cuencos de cerámica y barro',
+            price: 42.0,
+            tags: ['barro-ceramica', 'vajilla', 'cerámica', 'barro'],
+            images_urls: ['/images/producto3.webp'],
+            properties: {
+              pieces: 4,
+              material: 'arcilla horneada',
+              origin: 'San Antonio Palopó',
+            },
+            business_id: createdBusinesses[2].id,
+          },
+          {
+            name: 'Ámfora lenca de barro negro',
+            price: 68.0,
+            tags: ['barro-ceramica', 'decoración', 'barro'],
+            images_urls: ['/images/alfareria.webp'],
+            properties: {
+              technique: 'tinte nacascolo',
+              style: 'lenca tradicional',
+              height: '45cm',
+            },
+            business_id: createdBusinesses[1].id,
+          },
+          {
+            name: 'Vajilla completa de cerámica esmaltada',
+            price: 135.0,
+            tags: ['barro-ceramica', 'vajilla', 'cerámica', 'decoración'],
+            images_urls: ['/images/artesanias.webp'],
+            properties: {
+              pieces: 16,
+              glaze: 'mineral libre de plomo',
+              dishwasherSafe: true,
+            },
+            business_id: createdBusinesses[2].id,
+          },
+          // Maderas (al menos 6 productos cubriendo sub-tags y rangos de precio)
+          {
+            name: 'Cucharas artesanales de madera (set de 4)',
+            price: 15.0,
+            tags: ['maderas', 'cocina'],
+            images_urls: ['/images/maderas.webp'],
+            properties: {
+              wood: 'palo blanco',
+              pieces: 4,
+              finish: 'aceite mineral',
+            },
+            business_id: createdBusinesses[1].id,
+          },
+          {
+            name: 'Portavasos tallados en madera con motivos naíf',
+            price: 19.5,
+            tags: ['maderas', 'decoración', 'cocina'],
+            images_urls: ['/images/productos2.webp'],
+            properties: { wood: 'pino', pieces: 6, style: 'La Palma' },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Tabla para picar y servir en madera de teca',
+            price: 34.0,
+            tags: ['maderas', 'cocina', 'decoración'],
+            images_urls: ['/images/maderas.webp'],
+            properties: { wood: 'teca sostenible', dimensions: '30x45cm' },
+            business_id: createdBusinesses[1].id,
+          },
+          {
+            name: 'Máscara ceremonial tallada en madera',
+            price: 55.0,
+            tags: ['maderas', 'decoración', 'cultural'],
+            images_urls: ['/images/maderas.webp'],
+            properties: {
+              wood: 'cedro',
+              origin: 'Guatemala',
+              motif: 'danza tradicional',
+            },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Escultura de jaguar en relieve de cedro real',
+            price: 85.0,
+            tags: ['maderas', 'esculturas', 'cultural', 'decoración'],
+            images_urls: ['/images/producto6.webp'],
+            properties: {
+              wood: 'cedro real',
+              technique: 'tallado en relieve manual',
+            },
+            business_id: createdBusinesses[2].id,
+          },
+          {
+            name: 'Cofre artesanal tallado con herrajes coloniales',
+            price: 120.0,
+            tags: ['maderas', 'decoración', 'cultural', 'esculturas'],
+            images_urls: ['/images/maderas.webp'],
+            properties: {
+              wood: 'caoba',
+              lock: 'hierro forjado',
+              origin: 'Suchitoto',
+            },
+            business_id: createdBusinesses[2].id,
+          },
+          // Textiles & Tejidos (al menos 6 productos cubriendo sub-tags y rangos de precio)
+          {
+            name: 'Camino de mesa con tintes naturales de añil',
+            price: 22.0,
+            tags: ['textiles-tejidos', 'hogar', 'cultural'],
+            images_urls: ['/images/textiles.webp'],
+            properties: {
+              dye: 'añil puro',
+              length: '1.80m',
+              technique: 'telar de pedal',
+            },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Funda para cojín con bordado tradicional',
+            price: 32.0,
+            tags: ['textiles-tejidos', 'dormitorio', 'hogar'],
+            images_urls: ['/images/textiles.webp'],
+            properties: {
+              size: '45x45cm',
+              material: 'manta de algodón',
+              embroidery: 'hilo de seda',
+            },
+            business_id: createdBusinesses[1].id,
+          },
+          {
+            name: 'Chalina de algodón teñida con añil salvadoreño',
+            price: 45.0,
+            tags: ['textiles-tejidos', 'ropa', 'cultural'],
+            images_urls: ['/images/ropa.webp'],
+            properties: {
+              technique: 'shibori con añil',
+              fabric: 'algodón 100%',
+            },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Hamaca de algodón tejida a mano',
+            price: 75.0,
+            tags: ['textiles-tejidos', 'hogar'],
+            images_urls: ['/images/hamacas.webp'],
+            properties: {
+              material: 'algodón hilado',
+              size: 'matrimonial',
+              capacity: '200kg',
+            },
+            business_id: createdBusinesses[1].id,
+          },
+          {
+            name: 'Colcha artesanal tejida en telar de San Sebastián',
+            price: 95.0,
+            tags: ['textiles-tejidos', 'dormitorio', 'hogar', 'cultural'],
+            images_urls: ['/images/textiles.webp'],
+            properties: {
+              origin: 'San Sebastián',
+              size: 'Queen',
+              technique: 'doble urdimbre',
+            },
+            business_id: createdBusinesses[2].id,
+          },
+          {
+            name: 'Huipil bordado tradicional ceremonial',
+            price: 120.0,
+            tags: ['textiles-tejidos', 'ropa', 'cultural'],
+            images_urls: ['/images/ropa.webp'],
+            properties: {
+              origin: 'Santiago Atitlán',
+              technique: 'telar de cintura maya',
+            },
+            business_id: createdBusinesses[2].id,
+          },
+          // Joyería (al menos 6 productos cubriendo sub-tags y rangos de precio)
+          {
+            name: 'Aretes de semillas naturales de tagua',
+            price: 12.0,
+            tags: ['joyeria', 'semillas', 'aretes'],
+            images_urls: ['/images/joyeria.webp'],
+            properties: {
+              material: 'semillas de tagua',
+              hooks: 'acero quirúrgico',
+            },
+            business_id: createdBusinesses[2].id,
+          },
+          {
+            name: 'Pulsera elástica de semillas de café y madera',
+            price: 16.5,
+            tags: ['joyeria', 'semillas'],
+            images_urls: ['/images/productos4.webp'],
+            properties: {
+              material: 'granos de café tostado barnizado',
+              size: 'ajustable',
+            },
+            business_id: createdBusinesses[1].id,
+          },
+          {
+            name: 'Aretes colgantes en filigrana de plata 925',
+            price: 38.0,
+            tags: ['joyeria', 'aretes', 'piedras'],
+            images_urls: ['/images/joyeria.webp'],
+            properties: {
+              metal: 'plata esterlina 925',
+              stones: 'circonia natural',
+            },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Gargantilla artesanal de piedras volcánicas',
+            price: 46.0,
+            tags: ['joyeria', 'collares', 'piedras'],
+            images_urls: ['/images/productos5.webp'],
+            properties: {
+              stone: 'lava volcánica y turquesa',
+              clasp: 'cobre antiguo',
+            },
+            business_id: createdBusinesses[1].id,
+          },
+          {
+            name: 'Collar de jade guatemalteco pulido',
+            price: 85.0,
+            tags: ['joyeria', 'piedras', 'collares'],
+            images_urls: ['/images/joyeria.webp'],
+            properties: {
+              stone: 'jade verde de Motagua',
+              cord: 'cuero trenzado',
+            },
+            business_id: createdBusinesses[2].id,
+          },
+          {
+            name: 'Collar pectoral ceremonial con jade imperial y plata',
+            price: 145.0,
+            tags: ['joyeria', 'piedras', 'collares'],
+            images_urls: ['/images/joyeria.webp'],
+            properties: {
+              stone: 'jade imperial',
+              metal: 'plata 925',
+              certified: true,
+            },
+            business_id: createdBusinesses[2].id,
+          },
+          // Pinturas y Arte (al menos 6 productos cubriendo sub-tags y rangos de precio)
+          {
+            name: 'Semilla de copinol pintada a mano',
+            price: 14.0,
+            tags: ['pinturas-arte', 'miniaturas', 'eventos', 'decoración'],
+            images_urls: ['/images/productos2.webp'],
+            properties: {
+              base: 'semilla de copinol',
+              style: 'arte naíf',
+              size: '5cm',
+            },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Miniatura pintada en madera de cedro',
+            price: 22.0,
+            tags: ['pinturas-arte', 'decoración', 'miniaturas'],
+            images_urls: ['/images/pinturas.webp'],
+            properties: { technique: 'óleo sobre madera', size: '10x15cm' },
+            business_id: createdBusinesses[1].id,
+          },
+          {
+            name: 'Retablo conmemorativo para eventos familiares',
+            price: 40.0,
+            tags: ['pinturas-arte', 'decoración', 'eventos'],
+            images_urls: ['/images/pinturas.webp'],
+            properties: {
+              style: 'retablo tradicional',
+              personalization: 'nombres y fecha',
+            },
+            business_id: createdBusinesses[2].id,
+          },
+          {
+            name: 'Lienzo de atardecer en los volcanes salvadoreños',
+            price: 78.0,
+            tags: ['pinturas-arte', 'cuadros', 'decoración'],
+            images_urls: ['/images/pinturas.webp'],
+            properties: {
+              technique: 'acrílico espatulado',
+              dimensions: '40x50cm',
+            },
+            business_id: createdBusinesses[1].id,
+          },
+          {
+            name: 'Cuadro naif de pueblo salvadoreño',
+            price: 95.0,
+            tags: ['pinturas-arte', 'cuadros', 'decoración'],
+            images_urls: ['/images/pinturas.webp'],
+            properties: {
+              technique: 'acrílico sobre lienzo',
+              size: '40x60cm',
+              school: 'La Palma',
+            },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Mural tríptico de aves mesoamericanas',
+            price: 160.0,
+            tags: ['pinturas-arte', 'cuadros', 'decoración', 'eventos'],
+            images_urls: ['/images/artesanias.webp'],
+            properties: {
+              pieces: 3,
+              technique: 'óleo sobre lienzo en bastidor',
+              total_size: '90x120cm',
+            },
+            business_id: createdBusinesses[2].id,
+          },
+          // Accesorios (al menos 6 productos cubriendo sub-tags y rangos de precio)
+          {
+            name: 'Monedero tejido en fibra de henequén',
+            price: 11.5,
+            tags: ['accesorios', 'bolsos', 'henequén'],
+            images_urls: ['/images/producto6.webp'],
+            properties: {
+              material: 'henequén teñido',
+              closure: 'cremallera metálica',
+            },
+            business_id: createdBusinesses[1].id,
+          },
+          {
+            name: 'Sombrero de palma artesanal de campo',
+            price: 20.0,
+            tags: ['accesorios', 'sombreros', 'palma'],
+            images_urls: ['/images/accesorios.webp'],
+            properties: { material: 'palma criolla', brim: 'ala ancha' },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Bolso de henequén tejido con asas de cuero',
+            price: 35.0,
+            tags: ['accesorios', 'bolsos', 'henequén'],
+            images_urls: ['/images/accesorios.webp'],
+            properties: {
+              material: 'henequén natural',
+              handles: 'cuero curtido',
+            },
+            business_id: createdBusinesses[2].id,
+          },
+          {
+            name: 'Sombrero fino de palma jipi japa',
+            price: 48.0,
+            tags: ['accesorios', 'sombreros', 'palma'],
+            images_urls: ['/images/accesorios.webp'],
+            properties: {
+              material: 'palma jipi japa tejida en cueva',
+              grade: 'fino',
+            },
+            business_id: createdBusinesses[0].id,
+          },
+          {
+            name: 'Bolso playero tipo tote en palma y cuero',
+            price: 65.0,
+            tags: ['accesorios', 'bolsos', 'palma'],
+            images_urls: ['/images/accesorios.webp'],
+            properties: {
+              material: 'palma trenzada y forro de manta',
+              interiorPocket: true,
+            },
+            business_id: createdBusinesses[1].id,
+          },
+          {
+            name: 'Morral tradicional de telar con detalles en cuero y henequén',
+            price: 110.0,
+            tags: ['accesorios', 'bolsos', 'henequén'],
+            images_urls: ['/images/accesorios.webp'],
+            properties: {
+              strap: 'cuero ajustable',
+              technique: 'telar y henequén entrelazado',
             },
             business_id: createdBusinesses[2].id,
           },
@@ -491,6 +904,456 @@ export class DatabaseService {
       throw error;
     } finally {
       await queryRunner.release();
+    }
+  }
+
+  /**
+   * Asegura que los productos de las 6 categorías canónicas estén disponibles,
+   * incluso si la base de datos ya contenía datos previos.
+   */
+  async ensureArtisanalProducts(): Promise<void> {
+    const productRepo = this.dataSource.getRepository(Product);
+    const businessRepo = this.dataSource.getRepository(Business);
+
+    const existingProducts = await productRepo.find();
+    const canonicalCategories = [
+      'barro-ceramica',
+      'maderas',
+      'textiles-tejidos',
+      'joyeria',
+      'pinturas-arte',
+      'accesorios',
+    ];
+
+    const hasCategoryProducts = existingProducts.some(
+      (p) => p.tags && p.tags.some((t) => canonicalCategories.includes(t)),
+    );
+
+    if (hasCategoryProducts && existingProducts.length >= 10) {
+      return;
+    }
+
+    const businesses = await businessRepo.find();
+    if (businesses.length === 0) {
+      return;
+    }
+
+    const b0 = businesses[0].id;
+    const b1 = businesses[1 % businesses.length].id;
+    const b2 = businesses[2 % businesses.length].id;
+
+    const productsToSeed = [
+      // Barro & Cerámica (al menos 6 productos cubriendo sub-tags y rangos de precio)
+      {
+        name: 'Plato decorativo de cerámica pintada',
+        price: 18.5,
+        tags: ['barro-ceramica', 'decoración', 'cerámica'],
+        images_urls: ['/images/alfareria.webp'],
+        properties: {
+          material: 'cerámica',
+          technique: 'pintado a mano',
+          origin: 'Ilobasco',
+        },
+        business_id: b0,
+      },
+      {
+        name: 'Taza artesanal de barro bruñido',
+        price: 12.0,
+        tags: ['barro-ceramica', 'vajilla', 'barro'],
+        images_urls: ['/images/producto1.webp'],
+        properties: {
+          material: 'barro bruñido',
+          capacity: '350ml',
+          origin: 'Guatajiagua',
+        },
+        business_id: b1,
+      },
+      {
+        name: 'Jarrón de barro artesanal',
+        price: 28.0,
+        tags: ['barro-ceramica', 'decoración', 'barro'],
+        images_urls: ['/images/alfareria.webp'],
+        properties: {
+          material: 'barro rojo',
+          finish: 'natural',
+          origin: 'El Salvador',
+        },
+        business_id: b0,
+      },
+      {
+        name: 'Juego de cuencos de cerámica y barro',
+        price: 42.0,
+        tags: ['barro-ceramica', 'vajilla', 'cerámica', 'barro'],
+        images_urls: ['/images/producto3.webp'],
+        properties: {
+          pieces: 4,
+          material: 'arcilla horneada',
+          origin: 'San Antonio Palopó',
+        },
+        business_id: b2,
+      },
+      {
+        name: 'Ámfora lenca de barro negro',
+        price: 68.0,
+        tags: ['barro-ceramica', 'decoración', 'barro'],
+        images_urls: ['/images/alfareria.webp'],
+        properties: {
+          technique: 'tinte nacascolo',
+          style: 'lenca tradicional',
+          height: '45cm',
+        },
+        business_id: b1,
+      },
+      {
+        name: 'Vajilla completa de cerámica esmaltada',
+        price: 135.0,
+        tags: ['barro-ceramica', 'vajilla', 'cerámica', 'decoración'],
+        images_urls: ['/images/artesanias.webp'],
+        properties: {
+          pieces: 16,
+          glaze: 'mineral libre de plomo',
+          dishwasherSafe: true,
+        },
+        business_id: b2,
+      },
+      // Maderas (al menos 6 productos cubriendo sub-tags y rangos de precio)
+      {
+        name: 'Cucharas artesanales de madera (set de 4)',
+        price: 15.0,
+        tags: ['maderas', 'cocina'],
+        images_urls: ['/images/maderas.webp'],
+        properties: {
+          wood: 'palo blanco',
+          pieces: 4,
+          finish: 'aceite mineral',
+        },
+        business_id: b1,
+      },
+      {
+        name: 'Portavasos tallados en madera con motivos naíf',
+        price: 19.5,
+        tags: ['maderas', 'decoración', 'cocina'],
+        images_urls: ['/images/productos2.webp'],
+        properties: { wood: 'pino', pieces: 6, style: 'La Palma' },
+        business_id: b0,
+      },
+      {
+        name: 'Tabla para picar y servir en madera de teca',
+        price: 34.0,
+        tags: ['maderas', 'cocina', 'decoración'],
+        images_urls: ['/images/maderas.webp'],
+        properties: { wood: 'teca sostenible', dimensions: '30x45cm' },
+        business_id: b1,
+      },
+      {
+        name: 'Máscara ceremonial tallada en madera',
+        price: 55.0,
+        tags: ['maderas', 'decoración', 'cultural'],
+        images_urls: ['/images/maderas.webp'],
+        properties: {
+          wood: 'cedro',
+          origin: 'Guatemala',
+          motif: 'danza tradicional',
+        },
+        business_id: b0,
+      },
+      {
+        name: 'Escultura de jaguar en relieve de cedro real',
+        price: 85.0,
+        tags: ['maderas', 'esculturas', 'cultural', 'decoración'],
+        images_urls: ['/images/producto6.webp'],
+        properties: {
+          wood: 'cedro real',
+          technique: 'tallado en relieve manual',
+        },
+        business_id: b2,
+      },
+      {
+        name: 'Cofre artesanal tallado con herrajes coloniales',
+        price: 120.0,
+        tags: ['maderas', 'decoración', 'cultural', 'esculturas'],
+        images_urls: ['/images/maderas.webp'],
+        properties: {
+          wood: 'caoba',
+          lock: 'hierro forjado',
+          origin: 'Suchitoto',
+        },
+        business_id: b2,
+      },
+      // Textiles & Tejidos (al menos 6 productos cubriendo sub-tags y rangos de precio)
+      {
+        name: 'Camino de mesa con tintes naturales de añil',
+        price: 22.0,
+        tags: ['textiles-tejidos', 'hogar', 'cultural'],
+        images_urls: ['/images/textiles.webp'],
+        properties: {
+          dye: 'añil puro',
+          length: '1.80m',
+          technique: 'telar de pedal',
+        },
+        business_id: b0,
+      },
+      {
+        name: 'Funda para cojín con bordado tradicional',
+        price: 32.0,
+        tags: ['textiles-tejidos', 'dormitorio', 'hogar'],
+        images_urls: ['/images/textiles.webp'],
+        properties: {
+          size: '45x45cm',
+          material: 'manta de algodón',
+          embroidery: 'hilo de seda',
+        },
+        business_id: b1,
+      },
+      {
+        name: 'Chalina de algodón teñida con añil salvadoreño',
+        price: 45.0,
+        tags: ['textiles-tejidos', 'ropa', 'cultural'],
+        images_urls: ['/images/ropa.webp'],
+        properties: { technique: 'shibori con añil', fabric: 'algodón 100%' },
+        business_id: b0,
+      },
+      {
+        name: 'Hamaca de algodón tejida a mano',
+        price: 75.0,
+        tags: ['textiles-tejidos', 'hogar'],
+        images_urls: ['/images/hamacas.webp'],
+        properties: {
+          material: 'algodón hilado',
+          size: 'matrimonial',
+          capacity: '200kg',
+        },
+        business_id: b1,
+      },
+      {
+        name: 'Colcha artesanal tejida en telar de San Sebastián',
+        price: 95.0,
+        tags: ['textiles-tejidos', 'dormitorio', 'hogar', 'cultural'],
+        images_urls: ['/images/textiles.webp'],
+        properties: {
+          origin: 'San Sebastián',
+          size: 'Queen',
+          technique: 'doble urdimbre',
+        },
+        business_id: b2,
+      },
+      {
+        name: 'Huipil bordado tradicional ceremonial',
+        price: 120.0,
+        tags: ['textiles-tejidos', 'ropa', 'cultural'],
+        images_urls: ['/images/ropa.webp'],
+        properties: {
+          origin: 'Santiago Atitlán',
+          technique: 'telar de cintura maya',
+        },
+        business_id: b2,
+      },
+      // Joyería (al menos 6 productos cubriendo sub-tags y rangos de precio)
+      {
+        name: 'Aretes de semillas naturales de tagua',
+        price: 12.0,
+        tags: ['joyeria', 'semillas', 'aretes'],
+        images_urls: ['/images/joyeria.webp'],
+        properties: {
+          material: 'semillas de tagua',
+          hooks: 'acero quirúrgico',
+        },
+        business_id: b2,
+      },
+      {
+        name: 'Pulsera elástica de semillas de café y madera',
+        price: 16.5,
+        tags: ['joyeria', 'semillas'],
+        images_urls: ['/images/productos4.webp'],
+        properties: {
+          material: 'granos de café tostado barnizado',
+          size: 'ajustable',
+        },
+        business_id: b1,
+      },
+      {
+        name: 'Aretes colgantes en filigrana de plata 925',
+        price: 38.0,
+        tags: ['joyeria', 'aretes', 'piedras'],
+        images_urls: ['/images/joyeria.webp'],
+        properties: {
+          metal: 'plata esterlina 925',
+          stones: 'circonia natural',
+        },
+        business_id: b0,
+      },
+      {
+        name: 'Gargantilla artesanal de piedras volcánicas',
+        price: 46.0,
+        tags: ['joyeria', 'collares', 'piedras'],
+        images_urls: ['/images/productos5.webp'],
+        properties: {
+          stone: 'lava volcánica y turquesa',
+          clasp: 'cobre antiguo',
+        },
+        business_id: b1,
+      },
+      {
+        name: 'Collar de jade guatemalteco pulido',
+        price: 85.0,
+        tags: ['joyeria', 'piedras', 'collares'],
+        images_urls: ['/images/joyeria.webp'],
+        properties: { stone: 'jade verde de Motagua', cord: 'cuero trenzado' },
+        business_id: b2,
+      },
+      {
+        name: 'Collar pectoral ceremonial con jade imperial y plata',
+        price: 145.0,
+        tags: ['joyeria', 'piedras', 'collares'],
+        images_urls: ['/images/joyeria.webp'],
+        properties: {
+          stone: 'jade imperial',
+          metal: 'plata 925',
+          certified: true,
+        },
+        business_id: b2,
+      },
+      // Pinturas y Arte (al menos 6 productos cubriendo sub-tags y rangos de precio)
+      {
+        name: 'Semilla de copinol pintada a mano',
+        price: 14.0,
+        tags: ['pinturas-arte', 'miniaturas', 'eventos', 'decoración'],
+        images_urls: ['/images/productos2.webp'],
+        properties: {
+          base: 'semilla de copinol',
+          style: 'arte naíf',
+          size: '5cm',
+        },
+        business_id: b0,
+      },
+      {
+        name: 'Miniatura pintada en madera de cedro',
+        price: 22.0,
+        tags: ['pinturas-arte', 'decoración', 'miniaturas'],
+        images_urls: ['/images/pinturas.webp'],
+        properties: { technique: 'óleo sobre madera', size: '10x15cm' },
+        business_id: b1,
+      },
+      {
+        name: 'Retablo conmemorativo para eventos familiares',
+        price: 40.0,
+        tags: ['pinturas-arte', 'decoración', 'eventos'],
+        images_urls: ['/images/pinturas.webp'],
+        properties: {
+          style: 'retablo tradicional',
+          personalization: 'nombres y fecha',
+        },
+        business_id: b2,
+      },
+      {
+        name: 'Lienzo de atardecer en los volcanes salvadoreños',
+        price: 78.0,
+        tags: ['pinturas-arte', 'cuadros', 'decoración'],
+        images_urls: ['/images/pinturas.webp'],
+        properties: { technique: 'acrílico espatulado', dimensions: '40x50cm' },
+        business_id: b1,
+      },
+      {
+        name: 'Cuadro naif de pueblo salvadoreño',
+        price: 95.0,
+        tags: ['pinturas-arte', 'cuadros', 'decoración'],
+        images_urls: ['/images/pinturas.webp'],
+        properties: {
+          technique: 'acrílico sobre lienzo',
+          size: '40x60cm',
+          school: 'La Palma',
+        },
+        business_id: b0,
+      },
+      {
+        name: 'Mural tríptico de aves mesoamericanas',
+        price: 160.0,
+        tags: ['pinturas-arte', 'cuadros', 'decoración', 'eventos'],
+        images_urls: ['/images/artesanias.webp'],
+        properties: {
+          pieces: 3,
+          technique: 'óleo sobre lienzo en bastidor',
+          total_size: '90x120cm',
+        },
+        business_id: b2,
+      },
+      // Accesorios (al menos 6 productos cubriendo sub-tags y rangos de precio)
+      {
+        name: 'Monedero tejido en fibra de henequén',
+        price: 11.5,
+        tags: ['accesorios', 'bolsos', 'henequén'],
+        images_urls: ['/images/producto6.webp'],
+        properties: {
+          material: 'henequén teñido',
+          closure: 'cremallera metálica',
+        },
+        business_id: b1,
+      },
+      {
+        name: 'Sombrero de palma artesanal de campo',
+        price: 20.0,
+        tags: ['accesorios', 'sombreros', 'palma'],
+        images_urls: ['/images/accesorios.webp'],
+        properties: { material: 'palma criolla', brim: 'ala ancha' },
+        business_id: b0,
+      },
+      {
+        name: 'Bolso de henequén tejido con asas de cuero',
+        price: 35.0,
+        tags: ['accesorios', 'bolsos', 'henequén'],
+        images_urls: ['/images/accesorios.webp'],
+        properties: { material: 'henequén natural', handles: 'cuero curtido' },
+        business_id: b2,
+      },
+      {
+        name: 'Sombrero fino de palma jipi japa',
+        price: 48.0,
+        tags: ['accesorios', 'sombreros', 'palma'],
+        images_urls: ['/images/accesorios.webp'],
+        properties: {
+          material: 'palma jipi japa tejida en cueva',
+          grade: 'fino',
+        },
+        business_id: b0,
+      },
+      {
+        name: 'Bolso playero tipo tote en palma y cuero',
+        price: 65.0,
+        tags: ['accesorios', 'bolsos', 'palma'],
+        images_urls: ['/images/accesorios.webp'],
+        properties: {
+          material: 'palma trenzada y forro de manta',
+          interiorPocket: true,
+        },
+        business_id: b1,
+      },
+      {
+        name: 'Morral tradicional de telar con detalles en cuero y henequén',
+        price: 110.0,
+        tags: ['accesorios', 'bolsos', 'henequén'],
+        images_urls: ['/images/accesorios.webp'],
+        properties: {
+          strap: 'cuero ajustable',
+          technique: 'telar y henequén entrelazado',
+        },
+        business_id: b2,
+      },
+    ];
+
+    let insertedCount = 0;
+    for (const pData of productsToSeed) {
+      const alreadyExists = existingProducts.some((p) => p.name === pData.name);
+      if (!alreadyExists) {
+        const product = productRepo.create(pData);
+        await productRepo.save(product);
+        insertedCount++;
+      }
+    }
+
+    if (insertedCount > 0) {
+      this.logger.log(
+        `🌱 Added ${insertedCount} missing artisanal products into database.`,
+      );
     }
   }
 }

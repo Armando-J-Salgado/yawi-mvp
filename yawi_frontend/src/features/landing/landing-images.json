@@ -9,26 +9,34 @@
   },
   "categories": [
     {
-      "id": "textiles",
-      "src": "/images/textiles.webp",
-      "titleKey": "categories.items.textiles"
-    },
-    {
-      "id": "ceramics",
+      "id": "barro-ceramica",
       "src": "/images/alfareria.webp",
-      "titleKey": "categories.items.ceramics"
-    },
-    { "id": "jewelry", "src": "/images/joyeria.webp", "titleKey": "categories.items.jewelry" },
-    { "id": "wood", "src": "/images/maderas.webp", "titleKey": "categories.items.wood" },
-    {
-      "id": "accesories",
-      "src": "/images/milpas.webp",
-      "titleKey": "categories.items.accesories"
+      "titleKey": "categories.items.barro_ceramica"
     },
     {
-      "id": "paintings",
+      "id": "maderas",
+      "src": "/images/maderas.webp",
+      "titleKey": "categories.items.maderas"
+    },
+    {
+      "id": "textiles-tejidos",
+      "src": "/images/textiles.webp",
+      "titleKey": "categories.items.textiles_tejidos"
+    },
+    {
+      "id": "joyeria",
+      "src": "/images/joyeria.webp",
+      "titleKey": "categories.items.joyeria"
+    },
+    {
+      "id": "pinturas-arte",
       "src": "/images/pinturas.webp",
-      "titleKey": "categories.items.paintings"
+      "titleKey": "categories.items.pinturas_arte"
+    },
+    {
+      "id": "accesorios",
+      "src": "/images/accesorios.webp",
+      "titleKey": "categories.items.accesorios"
     }
   ],
   "story": {

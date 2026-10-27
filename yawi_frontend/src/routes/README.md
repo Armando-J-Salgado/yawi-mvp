@@ -6,7 +6,7 @@ Define la configuración central de enrutamiento y jerarquía de vistas de la ap
 
 ## Contenido
 
-- `index.tsx`: Componente `AppRoutes` que envuelve las páginas en `AppLayout` y mapea rutas URL a vistas (`/` -> `LandingPage`).
+- `index.tsx`: Componente `AppRoutes` que envuelve las páginas en `AppLayout` y mapea rutas URL a vistas (`/` redirige a `/artesanias`, `/artesanias` landing principal, `/artesanias/:slug` categoría, `/buscar` resultados de búsqueda con parámetro `?q=`, `/cultura-yawi` landing cultural, `/products` catálogo fallback).
 - `guards.tsx`: `RequireAuth`, guarda de rutas privadas. Envuelve `/checkout`, `/orders` y `/orders/:id`; si no hay sesión redirige a `/login` con `state.from` para volver tras autenticarse.
 
 ## Reglas

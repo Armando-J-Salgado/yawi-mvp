@@ -5,5 +5,22 @@
   "view_all": "View all",
   "learn_more": "Learn more",
   "back_to_top": "Back to top",
-  "price": "Price"
+  "price": "Price",
+  "artesanias": {
+    "categories": {
+      "section_title": "Shop by category",
+      "barro_ceramica": "Clay & Ceramics",
+      "barro_ceramica_desc": "Handmade ceramic and pottery pieces made with ancestral techniques by Latin American artisans.",
+      "maderas": "Woodwork",
+      "maderas_desc": "Carvings, sculptures, and decorative objects made from fine woods crafted by hand.",
+      "textiles_tejidos": "Textiles & Weaving",
+      "textiles_tejidos_desc": "Hammocks, blankets, huipiles, and woven textiles crafted using traditional techniques passed down through generations.",
+      "joyeria": "Jewelry",
+      "joyeria_desc": "Necklaces, bracelets, earrings, and unique accessories created with indigenous materials.",
+      "pinturas_arte": "Paintings & Art",
+      "pinturas_arte_desc": "Paintings and visual art capturing the Latin American cultural identity.",
+      "accesorios": "Accessories",
+      "accesorios_desc": "Handcrafted bags, purses, hats, and accessories with cultural identity."
+    }
+  }
 }

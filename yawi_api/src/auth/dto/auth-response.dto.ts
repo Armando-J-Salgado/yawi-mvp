@@ -11,13 +11,20 @@ export class AuthUserDto {
     description: 'Tipo de usuario',
     example: 'customer',
   })
-  userType: 'customer';
+  userType: 'customer' | 'vendor';
 
   @ApiProperty({
     description: 'Correo electrónico del usuario',
     example: 'cliente@example.com',
   })
-  email: string;
+  email?: string;
+
+  @ApiProperty({
+    description: 'Username del Vendor',
+    example: 'jperez',
+    required: false,
+  })
+  username?: string;
 
   @ApiProperty({
     description: 'Nombre del usuario',
@@ -29,7 +36,13 @@ export class AuthUserDto {
     description: 'Apellido del usuario',
     example: 'Pérez',
   })
-  lastname: string;
+  lastname?: string;
+
+  @ApiProperty({ required: false, example: 'Pérez' })
+  surname?: string;
+
+  @ApiProperty({ required: false, example: 'López' })
+  second_lastname?: string;
 }
 
 export class AuthResponseDto {

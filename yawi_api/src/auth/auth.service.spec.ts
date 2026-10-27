@@ -6,6 +6,8 @@ import { UnauthorizedException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { AuthService } from './auth.service';
 import { Customer } from '../customers/entities/customer.entity';
+import { Vendor } from '../vendors/entities/vendor.entity';
+import { VendorLoginDto } from './dto/vendor-login.dto';
 
 jest.mock('bcrypt', () => ({
   compare: jest.fn(),
@@ -15,6 +17,7 @@ describe('AuthService', () => {
   let service: AuthService;
   let jwtService: JwtService;
   let customerRepository: any;
+  let vendorRepository: any;
 
   const mockCustomer: Partial<Customer> = {
     id: 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
@@ -29,6 +32,18 @@ describe('AuthService', () => {
     deletedAt: null,
   };
 
+  const mockVendor: Partial<Vendor> = {
+    id: 'b0eebc99-9c0b-4ef8-bb6d-6bb9bd380a22',
+    username: 'jperez',
+    password: '$2b$10$hashedVendorPasswordValue',
+    name: 'Juan',
+    surname: 'Pérez',
+    lastname: 'Carlos',
+    second_lastname: 'López',
+    DUI: '01234567-8',
+    deletedAt: null,
+  };
+
   const createQueryBuilderMock = (result: any) => ({
     where: jest.fn().mockReturnThis(),
     addSelect: jest.fn().mockReturnThis(),
@@ -40,6 +55,10 @@ describe('AuthService', () => {
       createQueryBuilder: jest.fn(),
       findOne: jest.fn(),
     };
+    vendorRepository = {
+      createQueryBuilder: jest.fn(),
+      findOne: jest.fn(),
+    };
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -47,6 +66,10 @@ describe('AuthService', () => {
         {
           provide: getRepositoryToken(Customer),
           useValue: customerRepository,
+        },
+        {
+          provide: getRepositoryToken(Vendor),
+          useValue: vendorRepository,
         },
         {
           provide: JwtService,
@@ -83,7 +106,12 @@ describe('AuthService', () => {
       } as unknown as ConfigService;
 
       expect(() => {
-        new AuthService(customerRepository, jwtService, emptyConfig);
+        new AuthService(
+          customerRepository,
+          vendorRepository,
+          jwtService,
+          emptyConfig,
+        );
       }).toThrow('JWT_SECRET must be configured in environment variables');
     });
   });
@@ -239,6 +267,97 @@ describe('AuthService', () => {
           email: 'ana.perez@example.com',
         }),
       ).rejects.toThrow(UnauthorizedException);
+    });
+
+    describe('vendorLogin', () => {
+      it('debe autenticar un Vendor por username y devolver solo datos públicos', async () => {
+        vendorRepository.createQueryBuilder.mockReturnValue(
+          createQueryBuilderMock(mockVendor),
+        );
+        jest.mocked(bcrypt.compare).mockResolvedValue(true);
+
+        const result = await service.vendorLogin({
+          identifier: '  jperez  ',
+          password: 'Password123!',
+        });
+
+        expect(result.user).toEqual({
+          id: mockVendor.id,
+          userType: 'vendor',
+          username: mockVendor.username,
+          name: mockVendor.name,
+          surname: mockVendor.surname,
+          lastname: mockVendor.lastname,
+          second_lastname: mockVendor.second_lastname,
+        });
+        expect(jwtService.sign).toHaveBeenCalledWith({
+          sub: mockVendor.id,
+          userType: 'vendor',
+          username: mockVendor.username,
+        });
+        expect((result.user as any).password).toBeUndefined();
+      });
+
+      it('debe autenticar un Vendor por DUI', async () => {
+        vendorRepository.createQueryBuilder.mockReturnValue(
+          createQueryBuilderMock(mockVendor),
+        );
+        jest.mocked(bcrypt.compare).mockResolvedValue(true);
+
+        await service.vendorLogin({
+          identifier: '01234567-8',
+          password: 'Password123!',
+        });
+
+        expect(vendorRepository.createQueryBuilder).toHaveBeenCalledWith(
+          'vendor',
+        );
+      });
+
+      it('debe rechazar credenciales inválidas o Vendors eliminados', async () => {
+        vendorRepository.createQueryBuilder.mockReturnValue(
+          createQueryBuilderMock(null),
+        );
+
+        await expect(
+          service.vendorLogin({
+            identifier: 'jperez',
+            password: 'Password123!',
+          } as VendorLoginDto),
+        ).rejects.toThrow(UnauthorizedException);
+
+        vendorRepository.createQueryBuilder.mockReturnValue(
+          createQueryBuilderMock({ ...mockVendor, deletedAt: new Date() }),
+        );
+        await expect(
+          service.vendorLogin({
+            identifier: 'jperez',
+            password: 'Password123!',
+          }),
+        ).rejects.toThrow(UnauthorizedException);
+      });
+    });
+
+    describe('vendor token validation', () => {
+      it('debe validar el payload y retornar la identidad del Vendor', async () => {
+        vendorRepository.findOne.mockResolvedValue(mockVendor);
+
+        await expect(
+          service.validateTokenPayload({
+            sub: mockVendor.id!,
+            userType: 'vendor',
+            username: mockVendor.username!,
+          }),
+        ).resolves.toEqual({
+          id: mockVendor.id,
+          userType: 'vendor',
+          username: mockVendor.username,
+          name: mockVendor.name,
+          surname: mockVendor.surname,
+          lastname: mockVendor.lastname,
+          second_lastname: mockVendor.second_lastname,
+        });
+      });
     });
   });
 });

@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { AppLayout, AuthLayout } from '../components/layout';
 import { RequireAuth } from './guards';
 import { LandingPage } from '../pages/LandingPage';
@@ -8,6 +8,9 @@ import { LoginPage } from '../pages/LoginPage';
 import { RegisterPage } from '../pages/RegisterPage';
 import { Skeleton } from '../components/ui';
 
+const ArtesaniasPage = lazy(() => import('../pages/ArtesaniasPage/ArtesaniasPage'));
+const CategoryPage = lazy(() => import('../pages/CategoryPage/CategoryPage'));
+const SearchResultsPage = lazy(() => import('../pages/SearchResultsPage/SearchResultsPage'));
 const ArtisansPage = lazy(() => import('../pages/ArtisansPage/ArtisansPage'));
 const BusinessDetailPage = lazy(() => import('../pages/BusinessDetailPage/BusinessDetailPage'));
 const CatalogPage = lazy(() => import('../pages/CatalogPage/CatalogPage'));
@@ -37,7 +40,11 @@ export function AppRoutes() {
       <Routes>
         {/* Rutas con layout principal (Navbar + Footer) */}
         <Route element={<AppLayout />}>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<Navigate to="/artesanias" replace />} />
+          <Route path="/artesanias" element={<ArtesaniasPage />} />
+          <Route path="/artesanias/:slug" element={<CategoryPage />} />
+          <Route path="/buscar" element={<SearchResultsPage />} />
+          <Route path="/cultura-yawi" element={<LandingPage />} />
           <Route path="/vender" element={<SellerLandingPage />} />
           <Route path="/artisans" element={<ArtisansPage />} />
           <Route path="/artisans/:id" element={<BusinessDetailPage />} />

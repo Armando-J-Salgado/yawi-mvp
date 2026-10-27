@@ -6,7 +6,10 @@ Representa las vistas de nivel superior asociadas a rutas de la aplicación web.
 
 ## Contenido
 
-- `LandingPage/`: Página de inicio que orquesta y ensambla las 9 secciones del feature de landing (usa `AppLayout`).
+- `ArtesaniasPage/`: Página principal transaccional (`/artesanias`) que muestra categorías de artesanías y productos destacados. Nueva landing por defecto del sitio (usa `AppLayout`).
+- `CategoryPage/`: Página de categoría individual (`/artesanias/:slug`) que muestra productos filtrados por categoría con sidebar de navegación (usa `AppLayout`).
+- `SearchResultsPage/`: Página de resultados de búsqueda global (`/buscar?q=<query>`) que muestra productos filtrados por término de búsqueda y sugerencias de categorías si no hay resultados (usa `AppLayout`).
+- `LandingPage/`: Página cultural (`/cultura-yawi`, antes `/`) que orquesta y ensambla las 9 secciones del feature de landing (usa `AppLayout`).
 - `SellerLandingPage/`: Página de vendedores (`/vender`) que orquesta y ensambla las 9 secciones del feature seller (usa `AppLayout`).
 - `LoginPage/`: Página de inicio de sesión (`/login`) que orquesta el feature `auth` (usa `AuthLayout`).
 - `RegisterPage/`: Página de registro de clientes (`/register`) que orquesta el feature `auth` en 2 pasos (usa `AuthLayout`).
@@ -28,5 +31,5 @@ Representa las vistas de nivel superior asociadas a rutas de la aplicación web.
 
 ## Dependencias
 
-- Importa de: `features/landing/`, `features/seller/`, `features/auth/`, `features/artisans/`, `features/catalog/`, `features/cart/`, `features/checkout/`, `features/orders/`.
+- Importa de: `features/artesanias/`, `features/landing/`, `features/seller/`, `features/auth/`, `features/artisans/`, `features/catalog/`, `features/cart/`, `features/checkout/`, `features/orders/`.
 - Importado por: `routes/index.tsx`.
