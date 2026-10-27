@@ -2,7 +2,8 @@
   "hero": {
     "title": "Latin American Handicrafts",
     "subtitle": "Find unique handmade pieces crafted by artisans across the region.",
-    "search_placeholder": "Search handicrafts..."
+    "search_placeholder": "Search handicrafts...",
+    "search_aria_submit": "Search"
   },
   "artesanias": {
     "categories": {
@@ -73,5 +74,18 @@
     "home_title": "Latin American Handicrafts | Yawi",
     "home_description": "Shop handmade crafts: clay, ceramics, textiles, jewelry, woodwork, and more. Direct from Latin American artisans.",
     "category_title_suffix": "— Handicrafts | Yawi"
+  },
+  "search": {
+    "meta_title": "Results for \"{{query}}\" — Handicrafts | Yawi",
+    "meta_title_empty": "Search — Handicrafts | Yawi",
+    "breadcrumb_label": "Results for \"{{query}}\"",
+    "heading": "Results for \"{{query}}\"",
+    "count_one": "{{count}} product found",
+    "count_other": "{{count}} products found",
+    "empty_title": "No results found for \"{{query}}\"",
+    "empty_text": "Try different words or explore our handicraft categories.",
+    "suggestions_label": "Suggested categories",
+    "empty_cta": "View all handicrafts",
+    "error": "Could not load products. Please try again."
   }
 }

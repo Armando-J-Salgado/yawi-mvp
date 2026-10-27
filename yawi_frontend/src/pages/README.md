@@ -8,6 +8,7 @@ Representa las vistas de nivel superior asociadas a rutas de la aplicación web.
 
 - `ArtesaniasPage/`: Página principal transaccional (`/artesanias`) que muestra categorías de artesanías y productos destacados. Nueva landing por defecto del sitio (usa `AppLayout`).
 - `CategoryPage/`: Página de categoría individual (`/artesanias/:slug`) que muestra productos filtrados por categoría con sidebar de navegación (usa `AppLayout`).
+- `SearchResultsPage/`: Página de resultados de búsqueda global (`/buscar?q=<query>`) que muestra productos filtrados por término de búsqueda y sugerencias de categorías si no hay resultados (usa `AppLayout`).
 - `LandingPage/`: Página cultural (`/cultura-yawi`, antes `/`) que orquesta y ensambla las 9 secciones del feature de landing (usa `AppLayout`).
 - `SellerLandingPage/`: Página de vendedores (`/vender`) que orquesta y ensambla las 9 secciones del feature seller (usa `AppLayout`).
 - `LoginPage/`: Página de inicio de sesión (`/login`) que orquesta el feature `auth` (usa `AuthLayout`).

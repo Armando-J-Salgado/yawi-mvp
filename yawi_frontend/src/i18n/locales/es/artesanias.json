@@ -2,7 +2,8 @@
   "hero": {
     "title": "Artesanías de Latinoamérica",
     "subtitle": "Encuentra piezas únicas hechas a mano por artesanos de toda la región.",
-    "search_placeholder": "Buscar artesanías..."
+    "search_placeholder": "Buscar artesanías...",
+    "search_aria_submit": "Buscar"
   },
   "artesanias": {
     "categories": {
@@ -73,5 +74,18 @@
     "home_title": "Artesanías de Latinoamérica | Yawi",
     "home_description": "Compra artesanías hechas a mano: barro, cerámica, textiles, joyería, maderas y más. Directo de artesanos latinoamericanos.",
     "category_title_suffix": "— Artesanías | Yawi"
+  },
+  "search": {
+    "meta_title": "Resultados para \"{{query}}\" — Artesanías | Yawi",
+    "meta_title_empty": "Búsqueda — Artesanías | Yawi",
+    "breadcrumb_label": "Resultados para \"{{query}}\"",
+    "heading": "Resultados para \"{{query}}\"",
+    "count_one": "{{count}} producto encontrado",
+    "count_other": "{{count}} productos encontrados",
+    "empty_title": "No se encontraron resultados para \"{{query}}\"",
+    "empty_text": "Intenta con otras palabras o explora nuestras categorías de artesanías.",
+    "suggestions_label": "Categorías sugeridas",
+    "empty_cta": "Ver todas las artesanías",
+    "error": "No se pudieron cargar los productos. Por favor intenta de nuevo."
   }
 }
