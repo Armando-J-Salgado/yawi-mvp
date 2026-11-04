@@ -374,3 +374,28 @@ Los workflows y credenciales deben persistirse en PostgreSQL y nunca depender de
 # CI/CD
 
 > Pendiente de implementación.
+
+---
+
+# Demo pública en AWS (Terraform)
+
+Para dejar el agente de n8n encendido y accesible por HTTPS sin comprar dominio,
+hay una infraestructura mínima en:
+
+```text
+infra/
+```
+
+Despliega una instancia EC2 (t4g.small) que corre n8n + Caddy, con IP elástica,
+HTTPS automático vía `<ip>.sslip.io` y los secretos en SSM Parameter Store
+(iguales a `yawi_n8n/.env`, solo cambia `WEBHOOK_URL`).
+
+```powershell
+cd infra
+Copy-Item terraform.tfvars.example terraform.tfvars
+# completa terraform.tfvars con los valores de ../yawi_n8n/.env
+terraform init
+terraform apply
+```
+
+Ver `infra/README.md` para costos, operación y destrucción.
