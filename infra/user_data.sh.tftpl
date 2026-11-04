@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+#
+# Bootstrap de la demo de n8n. Se ejecuta como root la primera vez que arranca
+# la instancia. Levanta dos contenedores Docker:
+#   - yawi_n8n   : la imagen n8nio/n8n (sin puertos publicados)
+#   - yawi_caddy : reverse proxy con TLS automático (Let's Encrypt)
+#
+set -euo pipefail
+
+exec > >(tee -a /var/log/n8n-bootstrap.log) 2>&1
+
+REGION='${region}'
+PARAM_NAME='${param_name}'
+N8N_HOST='${n8n_host}'
+N8N_TAG='${n8n_tag}'
+ACME_EMAIL='${acme_email}'
+
+echo "[bootstrap] Instalando Docker..."
+dnf install -y docker
+systemctl enable --now docker
+
+mkdir -p /opt/n8n
+cd /opt/n8n
+
+echo "[bootstrap] Descargando secretos desde SSM (SecureString)..."
+aws ssm get-parameter \
+  --region "$REGION" \
+  --name "$PARAM_NAME" \
+  --with-decryption \
+  --query 'Parameter.Value' \
+  --output text > /opt/n8n/.env
+chmod 600 /opt/n8n/.env
+
+echo "[bootstrap] Escribiendo Caddyfile para $N8N_HOST..."
+if [ -n "$ACME_EMAIL" ]; then EMAIL_LINE="email $ACME_EMAIL"; else EMAIL_LINE=""; fi
+cat > /opt/n8n/Caddyfile <<CADDY
+{
+	$EMAIL_LINE
+	admin off
+}
+
+${n8n_host} {
+	encode gzip
+	reverse_proxy yawi_n8n:5678
+}
+CADDY
+
+echo "[bootstrap] Descargando imágenes..."
+docker pull "n8nio/n8n:$N8N_TAG"
+docker pull caddy:2
+
+docker network inspect yawi_net >/dev/null 2>&1 || docker network create yawi_net
+
+echo "[bootstrap] Recreando contenedores..."
+docker rm -f yawi_n8n yawi_caddy >/dev/null 2>&1 || true
+
+docker run -d \
+  --name yawi_n8n \
+  --restart unless-stopped \
+  --network yawi_net \
+  --env-file /opt/n8n/.env \
+  -v n8n_data:/home/node/.n8n \
+  "n8nio/n8n:$N8N_TAG"
+
+docker run -d \
+  --name yawi_caddy \
+  --restart unless-stopped \
+  --network yawi_net \
+  -p 80:80 \
+  -p 443:443 \
+  -v /opt/n8n/Caddyfile:/etc/caddy/Caddyfile:ro \
+  -v caddy_data:/data \
+  -v caddy_config:/config \
+  caddy:2
+
+echo "[bootstrap] Creando script de recarga de secretos..."
+cat > /opt/n8n/reload.sh <<'RELOAD'
+#!/usr/bin/env bash
+# Vuelve a leer las variables desde SSM y recrea el contenedor de n8n.
+# Úsalo después de cambiar secretos en terraform.tfvars + terraform apply.
+set -euo pipefail
+aws ssm get-parameter \
+  --region ${region} \
+  --name ${param_name} \
+  --with-decryption \
+  --query 'Parameter.Value' \
+  --output text > /opt/n8n/.env
+chmod 600 /opt/n8n/.env
+docker rm -f yawi_n8n >/dev/null 2>&1 || true
+docker run -d \
+  --name yawi_n8n \
+  --restart unless-stopped \
+  --network yawi_net \
+  --env-file /opt/n8n/.env \
+  -v n8n_data:/home/node/.n8n \
+  n8nio/n8n:${n8n_tag}
+echo "n8n recargado."
+RELOAD
+chmod +x /opt/n8n/reload.sh
+
+echo "[bootstrap] Listo. n8n disponible en https://$N8N_HOST/"

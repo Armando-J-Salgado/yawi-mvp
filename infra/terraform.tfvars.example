@@ -1,0 +1,21 @@
+# Copia este archivo a terraform.tfvars y complétalo con los valores de yawi_n8n/.env.
+# terraform.tfvars está en .gitignore: NUNCA lo subas al repositorio.
+
+aws_region      = "us-east-1"
+project         = "yawi-n8n"
+instance_type   = "t4g.small"
+n8n_tag         = "latest" # IMPORTANTE: fija la MISMA versión que uses en local (p.ej. "2.46.6").
+timezone        = "America/El_Salvador"
+
+# Opcional: limita SSH a tu IP (déjalo vacío y usa SSM Session Manager).
+# admin_cidr = "203.0.113.10/32"
+
+# --- Secretos (copia los valores reales desde ../yawi_n8n/.env) ---
+# OJO con la contraseña: usa el valor LITERAL con UN solo '$'.
+# En ../yawi_n8n/.env verás '$$' (escapado de docker-compose); aquí debe ir con '$'.
+db_host            = "aws-0-<region>.pooler.supabase.com"
+db_port            = "6543"
+db_name            = "postgres"
+db_user            = "postgres.<project-ref>"
+db_password        = "<tu-password-literal-con-un-solo-$>"
+n8n_encryption_key = "<tu-n8n-encryption-key>"
